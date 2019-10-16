@@ -9,7 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--}}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="shortcut icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     {{-- Styles --}}
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
@@ -20,16 +22,19 @@
             ]) !!};
     </script>
     @yield('head')
-
 </head>
 <body>
 <div id="app">
-
-
     <main class="py-4">
-        @yield('content')
+        <div class="main-bottom">
+            <div class="tool-bar">
+                <div class="left"><i class="fa fa-sync"></i></div>
+                <div class="center">accessibility</div>
+                <div class="right"><i class="fa fa-times"></i></div>
+            </div>
+            @yield('content')
+        </div>
     </main>
-
 </div>
 
 {{-- Scripts --}}

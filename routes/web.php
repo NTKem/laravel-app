@@ -12,7 +12,10 @@
 */
 
 Route::get('/home', function () {
-    return view('index');
+    return view('pages/index');
 });
+Route::get('/ederly', function () {
+    return view('pages/prolife/ederly');
+})->name('ederly');
 Route::get('/', 'Auth\LoginShopifyController@redirectToProvider')->name('login');
 Route::get('login/shopify/callback', 'Auth\LoginShopifyController@handleProviderCallback');
