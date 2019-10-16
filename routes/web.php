@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function () {
+    return view('auth/register');
 });
-Route::get('login/shopify', 'Auth\LoginShopifyController@redirectToProvider');
+Route::get('/', 'Auth\LoginShopifyController@redirectToProvider')->name('login');
 Route::get('login/shopify/callback', 'Auth\LoginShopifyController@handleProviderCallback');
 Route::get('/install', 'AppController@install');

@@ -47,6 +47,15 @@ class CreateUsersTable extends Migration
             $table->string('provider_token')->nullable();
             $table->timestamps();
         });
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('site')->unique();
+            $table->string('access_token');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**

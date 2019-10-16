@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Socialite;
 use Illuminate\Http\Request;
+use App\User;
+use App\Store;
+use App\UserProviders;
+use Auth;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Contracts\Auth\Authenticatable;
 class LoginShopifyController extends Controller
 {
 
@@ -18,20 +22,13 @@ class LoginShopifyController extends Controller
     {
 
         $this->validate($request, [
-            'domain' => 'string|required'
+            'shop' => 'string|required'
         ]);
+        $shop_name = $request->shop;
+        $scopes = 'read_script_tags,write_script_tags';
 
-        $config = new \SocialiteProviders\Manager\Config(
-            env('SHOPIFY_KEY'),
-            env('SHOPIFY_SECRET'),
-            env('SHOPIFY_REDIRECT'),
-            ['subdomain' => $request->get('domain')]
-        );
-
-        return Socialite::with('shopify')
-            ->setConfig($config)
-            ->scopes(['read_products','write_products'])
-            ->redirect();
+        $kem =   'https://'.$shop_name.'/admin/oauth/authorize?client_id='.env('SHOPIFY_KEY').'&scope='.$scopes.'&redirect_uri='.env('APP_URL').'/login/shopify/callback';
+        return redirect($kem);
 
     }
 
@@ -43,17 +40,20 @@ class LoginShopifyController extends Controller
     public function handleProviderCallback()
     {
 
-        $shopifyUser = Socialite::driver('shopify')->user();
+        $shopifyUser = Socialite::driver('shopify')->stateless()->user();
 
         // Create user
+
         $user = User::firstOrCreate([
-            'name' => $shopifyUser->nickname,
+            'name' => $shopifyUser->name,
             'email' => $shopifyUser->email,
-            'password' => '',
+            'site' => $shopifyUser->nickname,
+            'access_token'=> $shopifyUser->token
         ]);
 
+
         // Store the OAuth Identity
-        UserProvider::firstOrCreate([
+        UserProviders::firstOrCreate([
             'user_id' => $user->id,
             'provider' => 'shopify',
             'provider_user_id' => $shopifyUser->id,
@@ -61,7 +61,7 @@ class LoginShopifyController extends Controller
         ]);
 
         // Create shop
-        $shop = Shop::firstOrCreate([
+        $shop = Store::firstOrCreate([
             'name' => $shopifyUser->name,
             'domain' => $shopifyUser->nickname,
         ]);

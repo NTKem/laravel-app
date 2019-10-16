@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserProvider extends Model
+class UserProviders extends Model
 {
 
     /**
