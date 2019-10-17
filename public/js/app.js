@@ -19235,6 +19235,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19269,6 +19271,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $('.tab-bar .items').click(function () {
+    $('.tab-bar .items').removeClass('items-active');
+    $(this).addClass('items-active');
+    var id = $(this).data('href');
+    $('.menu-bar').removeClass('active-bar');
+    $(id).addClass('active-bar');
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -19287,21 +19308,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
 
 /******/ });
-
-$(function(){
- $('.tab-bar .items').click(function(){
-   $('.tab-bar .items').removeClass('items-active');
-   $(this).addClass('items-active');
-  var id = $(this).data('href');
-  $('.menu-bar').removeClass('active-bar');
-  $(id).addClass('active-bar');
-
- });
-});
