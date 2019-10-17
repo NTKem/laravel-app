@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('pages/index');
-});
+})->middleware(['auth.shop'])->name('home');
 Route::get('/ederly', function () {
     return view('pages/prolife/ederly');
 })->name('ederly');
-Route::get('/', 'Auth\LoginShopifyController@redirectToProvider')->name('login');
-Route::get('login/shopify/callback', 'Auth\LoginShopifyController@handleProviderCallback');
+//Route::get('/', 'Auth\LoginShopifyController@redirectToProvider')->name('login');
+//Route::get('login/shopify/callback', 'Auth\LoginShopifyController@handleProviderCallback');
