@@ -1,5 +1,5 @@
 @extends('../layouts.app')
-
+@section('class','home')
 @section('content')
     <h2 class="title">select your profile</h2>
     <div class="menu-bar">

@@ -23,7 +23,7 @@
     </script>
     @yield('head')
 </head>
-<body>
+<body class="@yield('class')">
 <div id="app">
     <main class="py-4">
         <div class="main-bottom">
