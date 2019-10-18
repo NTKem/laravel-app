@@ -7,7 +7,7 @@
         foreach ($profile as $item):
         ?>
         <div class="items">
-            <a href="{{route($item->url)}}">
+            <a href="{{route($item->url,['id' => $item->id])}}">
                 <img src="{{ asset('images/profile/'. $item->image.'') }}">
                 <p>{{ $item->name }}</p>
             </a>
@@ -16,4 +16,9 @@
         endforeach
         ;?>
     </div>
+    <script>
+        var string = '';
+        string = 'body,*{'+ {{$settings->font_size}} +'}';
+        window.kem = string;
+    </script>
 @endsection

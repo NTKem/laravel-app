@@ -8,7 +8,10 @@
         <?php endforeach;?>
     </div>
     <div class="main-section">
-        <form method="post" action="settings">
+        <form method="post" action="settings" class="form-settings">
+            {{ csrf_field() }}
+            <input hidden name="shop_id" value="{{ $shopDomain->id }}" />
+            <input hidden name="profile_id" value="{{ $id }}" />
             <?php foreach ($site_menu as  $key => $menu_items):?>
             <?php if($menu_items->name == 'Readable Text'):?>
             <div class="menu-bar active-bar hidden readable-text" id="tabs-{{$key}}">
@@ -17,6 +20,7 @@
                     <p>Line<br> Height</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
+                        <input type="hidden" name="line_height" value="16" min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -25,6 +29,7 @@
                     <p>Font<br> Size</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
+                        <input type="hidden" name="font_size" value="16" min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -33,6 +38,7 @@
                     <p>Font<br> Spacing</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
+                        <input type="hidden" name="font_spacing" value="16" min="0" max="100" />
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -163,6 +169,7 @@
             </div>
             <?php endif; ?>
             <?php endforeach;?>
+            <button>Save</button>
         </form>
     </div>
 @endsection
