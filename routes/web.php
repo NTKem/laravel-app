@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Profile selected
+Route::get('/', 'AppController@index')->middleware(['auth.shop'])->name('home');
+// Profile elderly
+Route::get('elderly', 'AppController@elderly')->middleware(['auth.shop'])->name('elderly');
 
-Route::get('/', function () {
-    return view('pages/index');
-})->middleware(['auth.shop'])->name('home');
-Route::get('/ederly', function () {
-    return view('pages/prolife/ederly');
-})->name('ederly');
-//Route::get('/', 'Auth\LoginShopifyController@redirectToProvider')->name('login');
-//Route::get('login/shopify/callback', 'Auth\LoginShopifyController@handleProviderCallback');
