@@ -16,4 +16,5 @@ Route::get('/', 'AppController@index')->middleware(['auth.shop'])->name('home');
 Route::get('elderly/{id}', 'AppController@elderly')->middleware(['auth.shop'])->name('elderly');
 //Setting save
 Route::post('settings','AppController@settings')->middleware(['auth.shop'])->name('settings');
-
+//Setting css
+Route::get('settings-css','AppController@Settings_Css')->middleware(['auth.shop'])->name('settings-css');

@@ -38,7 +38,7 @@
                     <p>Font<br> Spacing</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input type="hidden" name="font_spacing" value="16" min="0" max="100" />
+                        <input type="hidden" name="font_spacing" value="0" min="0" max="100" />
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>

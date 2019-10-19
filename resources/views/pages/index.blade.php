@@ -16,9 +16,4 @@
         endforeach
         ;?>
     </div>
-    <script>
-        var string = '';
-        string = 'body,*{'+ {{$settings->font_size}} +'}';
-        window.kem = string;
-    </script>
 @endsection
