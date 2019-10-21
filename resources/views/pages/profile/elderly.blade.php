@@ -48,6 +48,7 @@
                 <div class="font-list">
                     <?php foreach ($site_font as $font_items):?>
                     <div class="list-items">
+                        <input type="radio" name="font" value="{{$font_items->id}}" />
                         {{$font_items->name}}
                     </div>
                     <?php endforeach;?>
@@ -58,14 +59,17 @@
                 <div class="items">
                     <img src="{{ asset('images/color/Grayscale.png') }}">
                     <p>Grayscale</p>
+                    <input type="checkbox" name="grayscale" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/color/invert-colors.png') }}">
                     <p>Invert Colors</p>
+                    <input type="checkbox" name="invert_colors" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/color/sepia.png') }}">
                     <p>Sepia</p>
+                    <input type="checkbox" name="sepia" value="true" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Highlight'): ?>
@@ -73,14 +77,17 @@
                 <div class="items">
                     <img src="{{ asset('images/highlight/title.png') }}">
                     <p>Highlight Title</p>
+                    <input type="checkbox" name="highlight" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/highlight/focus.png') }}">
                     <p>Highlight Link</p>
+                    <input type="checkbox" name="highlight_focus" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/highlight/links.png') }}">
                     <p>Highlight Focus</p>
+                    <input type="checkbox" name="highlight_links" value="true" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Ship Link'): ?>
@@ -88,33 +95,40 @@
                 <div class="items">
                     <img src="{{ asset('images/skip/title.png') }}">
                     <p>Skip Title</p>
+                    <input type="checkbox" name="skip_title" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/skip/focus.png') }}">
                     <p>Skip Link</p>
+                    <input type="checkbox" name="skip_focus" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/skip/links.png') }}">
                     <p>Skip Focus</p>
+                    <input type="checkbox" name="skip_links" value="true" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Screen Settings'): ?>
-            <div class="menu-bar hidden screen-settings" id="tabs-{{$key}}">
+            <div class="menu-bar hidden screen_settings" id="tabs-{{$key}}">
                 <div class="items">
                     <img src="{{ asset('images/screen-settings/mask.png') }}">
                     <p>Screen Mask</p>
+                    <input type="checkbox" name="screen_settings" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/screen-settings/ruler.png') }}">
                     <p>Screen Ruler</p>
+                    <input type="checkbox" name="screen_ruler" value="true" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/screen-settings/cursor.png') }}">
                     <p>Blank Cursor</p>
+                    <input type="radio" name="screen_cursor" value="blank" />
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/screen-settings/white-cursor.png') }}">
                     <p>White Cursor</p>
+                    <input type="radio" name="screen_cursor" value="white" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Zoom'): ?>
@@ -135,10 +149,12 @@
                     <?php if($color_items->color == 'null'):?>
                     <div class="contrast-items" data-index="<?= $key?>" data-id="{{$color_items->id}}">
                         <i class="far fa-times-circle"></i>
+                        <input type="radio" name="contrast" value="default" />
                     </div>
                     <?php else: ?>
                     <div class="contrast-items" data-index="<?= $key?>" style="background: {{$color_items->background}};color:{{$color_items->color}}" data-id="{{$color_items->id}}">
                         A
+                        <input type="radio" name="contrast" value="{{$color_items->id}}" />
                     </div>
                     <?php endif; ?>
 

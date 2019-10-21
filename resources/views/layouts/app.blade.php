@@ -23,7 +23,7 @@
     </script>
     @yield('head')
 </head>
-<body class="@yield('class')">
+<body class="@yield('class')" id="hkoAccessibilityAssets">
 <div id="app">
     <main class="py-4">
         <div class="main-bottom">

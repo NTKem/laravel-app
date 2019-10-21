@@ -19296,6 +19296,19 @@ $(function () {
     qty = parseInt(qty) - 1;
     $(this).parents('.items').find('input').val(qty);
   });
+  $('.ederly input[type="checkbox"]').click(function () {
+    if ($(this).is(':checked')) {
+      $(this).parents('.items').addClass('active-checkbox');
+      $(this).val('true');
+    } else {
+      $(this).parents('.items').removeClass('active-checkbox');
+      $(this).val('null');
+    }
+  });
+  $('.list-items input,.contrast-items input').click(function () {
+    $('.list-items,.contrast-items').removeClass('active-checkbox');
+    $(this).parents('.list-items,.contrast-items').addClass('active-checkbox');
+  });
   $(".form-settings").submit(function (e) {// e.preventDefault();
   });
 });
@@ -19320,8 +19333,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

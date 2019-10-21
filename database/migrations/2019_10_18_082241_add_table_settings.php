@@ -15,16 +15,25 @@ class AddTableSettings extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('shop_id');
             $table->string('profile_id');
             $table->string('menu_id');
             $table->string('line_height')->nullable();
             $table->string('font_size')->nullable();
             $table->string('font_spacing')->nullable();
             $table->string('font_family')->nullable();
-            $table->string('color')->nullable();
+            $table->string('grayscale')->nullable();
+            $table->string('invert_colors')->nullable();
+            $table->string('sepia')->nullable();
             $table->string('highlight')->nullable();
-            $table->string('ship_link')->nullable();
+            $table->string('highlight_focus')->nullable();
+            $table->string('highlight_links')->nullable();
+            $table->string('skip_title')->nullable();
+            $table->string('skip_focus')->nullable();
+            $table->string('skip_links')->nullable();
             $table->string('screen_settings')->nullable();
+            $table->string('screen_ruler')->nullable();
+            $table->string('screen_cursor')->nullable();
             $table->string('zoom')->nullable();
             $table->string('contrast')->nullable();
             $table->string('tool_tip')->nullable();
