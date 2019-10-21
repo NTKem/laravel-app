@@ -19305,10 +19305,65 @@ $(function () {
       $(this).val('null');
     }
   });
-  $('.list-items input,.contrast-items input').click(function () {
-    $('.list-items,.contrast-items').removeClass('active-checkbox');
-    $(this).parents('.list-items,.contrast-items').addClass('active-checkbox');
+  $('.list-items input').click(function () {
+    $('.list-items').removeClass('active-checkbox');
+    $(this).parents('.list-items').addClass('active-checkbox');
   });
+  $('.screen_settings input[type="radio"]').click(function () {
+    $('.radio-items').removeClass('active-checkbox');
+    $(this).parents('.items').addClass('active-checkbox');
+  });
+  $('.contrast-items input').click(function () {
+    $('.contrast-items').removeClass('active-checkbox');
+    $(this).parents('.contrast-items').addClass('active-checkbox');
+  });
+  $('.zoom-increase').click(function () {
+    var qty = $(this).parents('.zoom').find('input').val();
+    qty = parseInt(qty) + 1;
+
+    if (qty <= 3) {
+      $(this).parents('.zoom').find('input').val(qty);
+    }
+
+    if (qty > 0) {
+      $('.zoom .items').removeClass('active-checkbox');
+      $('.zoom-increase').addClass('active-checkbox');
+      $(this).parents('.zoom').find('input').attr('name', 'zoom_increase');
+    } else {
+      $('.zoom .items').removeClass('active-checkbox');
+      $('.zoom-decrease').addClass('active-checkbox');
+      $(this).parents('.zoom').find('input').attr('name', 'zoom_decrease');
+    }
+  });
+  $('.zoom-decrease').click(function () {
+    var qty = $(this).parents('.zoom').find('input').val();
+    qty = parseInt(qty) - 1;
+
+    if (qty >= -3) {
+      $(this).parents('.zoom').find('input').val(qty);
+    }
+
+    if (qty < 0) {
+      $('.zoom .items').removeClass('active-checkbox');
+      $('.zoom-decrease').addClass('active-checkbox');
+      $(this).parents('.zoom').find('input').attr('name', 'zoom_decrease');
+    } else {
+      $('.zoom .items').removeClass('active-checkbox');
+      $('.zoom-increase').addClass('active-checkbox');
+      $(this).parents('.zoom').find('input').attr('name', 'zoom_increase');
+    }
+  });
+
+  if ($('.zoom-input').val() > 0) {
+    $('.zoom .items').removeClass('active-checkbox');
+    $('.zoom-increase').addClass('active-checkbox');
+  } else if ($('.zoom-input').val() == 0) {
+    $('.zoom .items').removeClass('active-checkbox');
+  } else {
+    $('.zoom .items').removeClass('active-checkbox');
+    $('.zoom-decrease').addClass('active-checkbox');
+  }
+
   $(".form-settings").submit(function (e) {// e.preventDefault();
   });
 });
@@ -19333,8 +19388,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

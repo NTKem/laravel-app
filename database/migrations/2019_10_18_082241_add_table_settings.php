@@ -37,6 +37,8 @@ class AddTableSettings extends Migration
             $table->string('zoom')->nullable();
             $table->string('contrast')->nullable();
             $table->string('tool_tip')->nullable();
+            $table->string('tooltip_permanent')->nullable();
+            $table->string('tooltip_mouseover')->nullable();
             $table->string('other')->nullable();
             $table->timestamps();
         });

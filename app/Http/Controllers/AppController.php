@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use phpDocumentor\Reflection\Types\Null_;
 use View;
 use Illuminate\Http\Request;
 use App\Profile;
@@ -42,7 +43,68 @@ class AppController extends Controller
                 $id_themes = $item->id;
             }
         }
-
+        $string = '';
+        foreach($this->site_font as $items){
+            if($items->id == $settings->font_family){
+                $string .=  $items->font_face;
+            }
+        }
+        foreach($this->site_contrast as $items){
+            if($items->id == $settings->contrast){
+                $string .=  ' color-contrast';
+                $color= $items->color;
+                $background =$items->background;
+            }
+        }
+        if($settings->grayscale == 'true'){
+            $string .= ' grayscale ';
+        }
+        if($settings->invert_colors == 'true'){
+            $string .= ' invert_colors ';
+        }
+        if($settings->sepia == 'true'){
+            $string .= 'sepia ';
+        }
+        if($settings->highlight == 'true'){
+            $string.=' highlight-title';
+        }
+        if($settings->highlight_links == 'true'){
+            $string.=' highlight-link';
+        }
+        if($settings->highlight_focus == 'true'){
+            $string.=' highlight-focus';
+        }
+        if($settings->skip_title == 'true'){
+            $string.='';
+        }
+        if($settings->skip_focus == 'true'){
+            $string.='';
+        }
+        if($settings->skip_links == 'true'){
+            $string.='';
+        }
+        if($settings->screen_settings == 'true'){
+            $string.=' screen-mask';
+        }
+        if($settings->screen_ruler == 'true'){
+            $string.=' screen-ruler';
+        }
+        if($settings->tooltip_mouseover == 'true'){
+            $string.=' tooltip-mouseover';
+        }
+        if($settings->tooltip_permanent == 'true'){
+            $string.=' tooltip-permanent';
+        }
+        if($settings->screen_cursor == 'blank'){
+            $string.=' black-cursor';
+        }else{
+            $string.=' white-cursor';
+        }
+        if($settings->zoom > 0){
+            $string.=' zoom-decrease-'.$settings->zoom;
+        }else{
+            $string.=' white-cursor'.$settings->zoom;
+        }
         $array = [
             'asset'=>[
                 'key'=> 'assets/Accessibility.scss.liquid',
@@ -588,20 +650,16 @@ class AppController extends Controller
               text-align: left!important;
               display: block !important;
             }
+            body.color-contrast>:not(#hkoAccessibilityAssets), body.color-contrast>:not(#hkoAccessibilityAssets) div, body.color-contrast footer, body.color-contrast head{
+                color: '. $color.'!important;
+                background-color: '. $background.'!important;
+            }
                 '
             ]
         ];
         $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
-        $string = '';
-        if($settings->grayscale){
-            $string .= 'grayscale ';
-        }
-        if($settings->invert_colors){
-            $string .= 'invert_colors ';
-        }
-        if($settings->sepia){
-            $string .= 'sepia ';
-        }
+
+
         $array = [
             'asset'=>[
                 'key'=> 'templates/index.liquid',
@@ -622,7 +680,11 @@ class AppController extends Controller
     public function  elderly($id){
         $shop =ShopifyApp::shop()->shopify_domain;
         $shopDomain = Shop::where(['shopify_domain' => $shop])->first();
-        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'shopDomain'=>$shopDomain,'id'=>$id]);
+        $shop = ShopifyApp::shop();
+        $shop2 =$shop->shopify_domain;
+        $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
+        $settings = Setting::where(['shop_id' => $shopDomain->id])->first();
+        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'shopDomain'=>$shopDomain,'id'=>$id,'settings'=>$settings]);
     }
     public function Settings_Css(){
 
@@ -670,6 +732,17 @@ class AppController extends Controller
         $screen_ruler = $request->screen_ruler;
         $screen_cursor = $request->screen_cursor;
         $contrast = $request->contrast;
+        $tooltip_permanent = $request->tooltip_permanent;
+        $tooltip_mouseover = $request->tooltip_mouseover;
+
+        if($request->zoom_increase > 0){
+            $zoom = $request->zoom_increase;
+        }
+        else if($request->zoom_decrease < 0){
+             $zoom = $request->zoom_decrease;
+        }else{
+            $zoom = 0;
+        }
 
         Setting::where(['shop_id' => $request->shop_id])->update([
             'profile_id' => $profile_id,
@@ -689,7 +762,10 @@ class AppController extends Controller
             'screen_settings'=>$screen_settings,
             'screen_ruler'=>$screen_ruler,
             'screen_cursor'=>$screen_cursor,
-            'contrast'=>$contrast
+            'contrast'=>$contrast,
+            'zoom'=>$zoom,
+            'tooltip_permanent'=>$tooltip_permanent,
+            'tooltip_mouseover'=>$tooltip_mouseover
         ]);
 
         return  redirect('settings-css');
