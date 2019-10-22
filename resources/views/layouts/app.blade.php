@@ -40,30 +40,6 @@
 {{-- Scripts --}}
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')
-<script>
-    $(function() {
-        window.onload = function() {
 
-            var  e  = {
-                origin: "ACCESSIBILITY",
-                type: 'test',
-                message: 'kem'
-            };
-
-            parent.postMessage(e, "*")
-
-
-        }
-        $('.items').click(function(){
-            var  e  = {
-                origin: "ACCESSIBILITY",
-                type: 'test',
-                message: 'kem2'
-            };
-
-            parent.postMessage(e, "*");
-        });
-    });
-</script>
 </body>
 </html>

@@ -9,12 +9,13 @@ $(function(){
     $('.fa-plus').click(function(){
        var qty = $(this).parents('.items').find('input').val();
        qty = parseInt(qty)  + 1;
-        $(this).parents('.items').find('input').val(qty);
+        $(this).parents('.items').find('input').val(qty).change();
     });
+
     $('.fa-minus').click(function(){
         var qty = $(this).parents('.items').find('input').val();
         qty = parseInt(qty)  - 1;
-        $(this).parents('.items').find('input').val(qty);
+        $(this).parents('.items').find('input').val(qty).change();
     });
     $('.ederly input[type="checkbox"]').click(function(){
         if($(this).is(':checked')){
@@ -44,9 +45,6 @@ $(function(){
     $('.zoom-increase').click(function(){
         var qty = $(this).parents('.zoom').find('input').val();
         qty = parseInt(qty)  + 1;
-        if(qty <= 3 ){
-            $(this).parents('.zoom').find('input').val(qty);
-        }
         if(qty > 0){
             $('.zoom .items').removeClass('active-checkbox');
             $('.zoom-increase').addClass('active-checkbox');
@@ -56,14 +54,13 @@ $(function(){
             $('.zoom-decrease').addClass('active-checkbox');
             $(this).parents('.zoom').find('input').attr('name','zoom_decrease');
         }
-
+        if(qty <= 3 ){
+            $(this).parents('.zoom').find('input').val(qty).change();
+        }
     });
     $('.zoom-decrease').click(function(){
         var qty = $(this).parents('.zoom').find('input').val();
         qty = parseInt(qty)  - 1;
-        if(qty >= -3){
-            $(this).parents('.zoom').find('input').val(qty);
-        }
         if(qty < 0){
             $('.zoom .items').removeClass('active-checkbox');
             $('.zoom-decrease').addClass('active-checkbox');
@@ -72,6 +69,9 @@ $(function(){
             $('.zoom .items').removeClass('active-checkbox');
             $('.zoom-increase').addClass('active-checkbox');
             $(this).parents('.zoom').find('input').attr('name','zoom_increase');
+        }
+        if(qty >= -3){
+            $(this).parents('.zoom').find('input').val(qty).change();
         }
     });
     if($('.zoom-input').val() > 0){
@@ -83,16 +83,62 @@ $(function(){
         $('.zoom .items').removeClass('active-checkbox');
         $('.zoom-decrease').addClass('active-checkbox')
     }
-$('body').delegate('input[type="checkbox"]','click',function(){
-    var url= 'settings';
-    $.ajax({
-        type: "POST",
-        url: url,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        dataType: 'JSON',
-        data: { grayscale: 'true' }
-    });
-});
+    window.onload = function() {}
+        var  e  = {
+            origin: "ACCESSIBILITY",
+            type: 'test',
+            font:'',
+            line_height:'',
+            font_size:'',
+            font_spacing:'',
+            grayscale:'',
+            invert_colors:'',
+            sepia:'',
+            highlight_title:'',
+            highlight_focus:'',
+            highlight_links:'',
+            skip_title:'',
+            skip_focus:'',
+            skip_links:'',
+            screen_settings:'',
+            screen_ruler:'',
+            screen_cursor:'',
+            zoom:'',
+            contrast:'',
+            tooltip_permanent:'',
+            tooltip_mouseover:'',
+
+        };
+            $('.font-list input[type="radio"]').click(function () {
+                var name = $(this).attr('name');
+                e[name]= $(this).data('action');
+                parent.postMessage(e, "*");
+            });
+            $('.custom-input').change(function(){
+                var name = $(this).attr('name');
+                e[name] = $(this).val();
+                parent.postMessage(e, "*");
+            });
+            $('.contrast-items input').change(function(){
+                var name = $(this).attr('name');
+                e[name] = $(this).val();
+                parent.postMessage(e, "*");
+            });
+            $('input[type="checkbox"]').click(function () {
+                var name = $(this).attr('name');
+                e[name]= name;
+                parent.postMessage(e, "*");
+            });
+            $('.radio-items input').click(function () {
+                var name = $(this).attr('name');
+                e[name]= name+'-'+$(this).val();
+                parent.postMessage(e, "*");
+            });
+            $('.zoom-input').change(function () {
+                var name = $(this).attr('name');
+                e['zoom']= name+'-'+$(this).val();
+                parent.postMessage(e, "*");
+            });
+
+
 });
