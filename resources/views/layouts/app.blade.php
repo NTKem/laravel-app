@@ -8,7 +8,7 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--}}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -40,6 +40,30 @@
 {{-- Scripts --}}
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')
+<script>
+    $(function() {
+        window.onload = function() {
 
+            var  e  = {
+                origin: "ACCESSIBILITY",
+                type: 'test',
+                message: 'kem'
+            };
+
+            parent.postMessage(e, "*")
+
+
+        }
+        $('.items').click(function(){
+            var  e  = {
+                origin: "ACCESSIBILITY",
+                type: 'test',
+                message: 'kem2'
+            };
+
+            parent.postMessage(e, "*");
+        });
+    });
+</script>
 </body>
 </html>

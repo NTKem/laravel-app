@@ -83,7 +83,16 @@ $(function(){
         $('.zoom .items').removeClass('active-checkbox');
         $('.zoom-decrease').addClass('active-checkbox')
     }
-    $(".form-settings").submit(function(e){
-        // e.preventDefault();
+$('body').delegate('input[type="checkbox"]','click',function(){
+    var url= 'settings';
+    $.ajax({
+        type: "POST",
+        url: url,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        dataType: 'JSON',
+        data: { grayscale: 'true' }
     });
+});
 });

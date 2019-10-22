@@ -650,7 +650,7 @@ class AppController extends Controller
               text-align: left!important;
               display: block !important;
             }
-            body.color-contrast>:not(#hkoAccessibilityAssets), body.color-contrast>:not(#hkoAccessibilityAssets) div, body.color-contrast footer, body.color-contrast head{
+            body.color-contrast>:not(#hkoAccessibilityAssets), body.color-contrast>:not(#hkoAccessibilityAssets) div, body.color-contrast>:not(#hkoAccessibilityAssets) footer, body.color-contrast>:not(#hkoAccessibilityAssets) header{
                 color: '. $color.'!important;
                 background-color: '. $background.'!important;
             }
@@ -674,7 +674,7 @@ class AppController extends Controller
             ]
         ];
         $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
-        return view('pages/index')->with(['profile'=>$profile]);
+        return view('pages/index')->with(['profile'=>$profile,'string'=>$string]);
     }
 
     public function  elderly($id){
@@ -767,7 +767,6 @@ class AppController extends Controller
             'tooltip_permanent'=>$tooltip_permanent,
             'tooltip_mouseover'=>$tooltip_mouseover
         ]);
-
         return  redirect('settings-css');
     }
 }
