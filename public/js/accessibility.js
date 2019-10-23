@@ -25,6 +25,7 @@ setTimeout(function(){
                     else if(key == 'reset'){
                         if( new_ob[key] == 'true' ){
                             window.data  = {};
+                            $('#readtext').remove();
                             new_ob[key] = 'false';
                         }
                     }else{
