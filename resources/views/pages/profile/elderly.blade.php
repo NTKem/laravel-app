@@ -9,7 +9,6 @@
     </div>
     <div class="main-section">
             <input hidden name="shop_id" value="{{ $shopDomain->id }}" />
-            <input hidden name="profile_id" value="{{ $id }}" />
             <?php foreach ($site_menu as  $key => $menu_items):?>
             <?php if($menu_items->name == 'Readable Text'):?>
             <div class="menu-bar active-bar hidden readable-text" id="tabs-{{$key}}">
@@ -78,14 +77,14 @@
                     <input type="checkbox" name="highlight_title" value="true"/>
                 </div>
                 <div class="items">
-                    <img src="{{ asset('images/highlight/focus.png') }}">
+                    <img src="{{ asset('images/highlight/links.png') }}">
                     <p>Highlight Link</p>
-                    <input type="checkbox" name="highlight_focus" value="true"/>
+                    <input type="checkbox" name="highlight_links" value="true"/>
                 </div>
                 <div class="items">
-                    <img src="{{ asset('images/highlight/links.png') }}">
+                    <img src="{{ asset('images/highlight/focus.png') }}">
                     <p>Highlight Focus</p>
-                    <input type="checkbox" name="highlight_links" value="true" />
+                    <input type="checkbox" name="highlight_focus" value="true" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Ship Link'): ?>
@@ -96,14 +95,14 @@
                     <input type="checkbox" name="skip_title" value="true" />
                 </div>
                 <div class="items">
-                    <img src="{{ asset('images/skip/focus.png') }}">
+                    <img src="{{ asset('images/skip/links.png') }}">
                     <p>Skip Link</p>
-                    <input type="checkbox" name="skip_focus" value="true" />
+                    <input type="checkbox" name="skip_links" value="true" />
                 </div>
                 <div class="items">
-                    <img src="{{ asset('images/skip/links.png') }}">
+                    <img src="{{ asset('images/skip/focus.png') }}">
                     <p>Skip Focus</p>
-                    <input type="checkbox" name="skip_links" value="true" />
+                    <input type="checkbox" name="skip_focus" value="true" />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Screen Settings'): ?>
@@ -179,7 +178,7 @@
                     <img src="{{ asset('images/others/plain-text-mode.png') }}">
                     <p>Plain Text Mode</p>
                 </div>
-                <div class="items">
+                <div class="items reset">
                     <img src="{{ asset('images/others/reset.png') }}">
                     <p>Reset</p>
                 </div>

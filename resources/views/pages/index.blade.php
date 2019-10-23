@@ -7,7 +7,7 @@
         foreach ($profile as $item):
         ?>
         <div class="items">
-            <a href="{{route($item->url,['id' => $item->id])}}">
+            <a class="link-bar" href="{{route($item->url,['id' => $item->id])}}">
                 <img src="{{ asset('images/profile/'. $item->image.'') }}">
                 <p>{{ $item->name }}</p>
             </a>

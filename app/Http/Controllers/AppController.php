@@ -35,7 +35,7 @@ class AppController extends Controller
         $shop = ShopifyApp::shop();
         $shop2 =$shop->shopify_domain;
         $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-        $settings = Setting::where(['shop_id' => $shopDomain->id])->first();
+
 
         $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
         foreach ($request->body->themes as $item){
@@ -44,88 +44,31 @@ class AppController extends Controller
             }
         }
         $string = '';
-        foreach($this->site_font as $items){
-            if($items->id == $settings->font_family){
-                $string .=  $items->font_face;
-            }
-        }
         foreach($this->site_contrast as $items){
-            if($items->id == $settings->contrast){
-                $string .=  ' color-contrast';
                 $color= $items->color;
                 $background =$items->background;
-            }
-        }
-        if($settings->grayscale == 'true'){
-            $string .= ' grayscale ';
-        }
-        if($settings->invert_colors == 'true'){
-            $string .= ' invert_colors ';
-        }
-        if($settings->sepia == 'true'){
-            $string .= 'sepia ';
-        }
-        if($settings->highlight == 'true'){
-            $string.=' highlight-title';
-        }
-        if($settings->highlight_links == 'true'){
-            $string.=' highlight-link';
-        }
-        if($settings->highlight_focus == 'true'){
-            $string.=' highlight-focus';
-        }
-        if($settings->skip_title == 'true'){
-            $string.='';
-        }
-        if($settings->skip_focus == 'true'){
-            $string.='';
-        }
-        if($settings->skip_links == 'true'){
-            $string.='';
-        }
-        if($settings->screen_settings == 'true'){
-            $string.=' screen-mask';
-        }
-        if($settings->screen_ruler == 'true'){
-            $string.=' screen-ruler';
-        }
-        if($settings->tooltip_mouseover == 'true'){
-            $string.=' tooltip-mouseover';
-        }
-        if($settings->tooltip_permanent == 'true'){
-            $string.=' tooltip-permanent';
-        }
-        if($settings->screen_cursor == 'blank'){
-            $string.=' black-cursor';
-        }else{
-            $string.=' white-cursor';
-        }
-        if($settings->zoom > 0){
-            $string.=' zoom-decrease-'.$settings->zoom;
-        }else{
-            $string.=' white-cursor'.$settings->zoom;
+                $string .=  '
+                body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets), body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) div, body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) footer, body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) header{
+                color: '. $color.'!important;
+                background-color: '. $background.'!important;
+                }';
         }
         $array = [
             'asset'=>[
                 'key'=> 'assets/Accessibility.scss.liquid',
                 'value'=>'
-                   body, h1, h2, h3, h4, h5, h6, p, blockquote, li, a, *:not(.fa){
-                        font-size: '.$settings->font_size.'px;
-                        line-height: '.$settings->line_height.'px;
-                        letter-spacing: '.$settings->font_spacing.'px;
-                    }
-             body.highlight-title h1,
-             body.highlight-title h1 *,
-             body.highlight-title h2,
-             body.highlight-title h2 *,
-             body.highlight-title h3,
-             body.highlight-title h3 *,
-             body.highlight-title h4,
-             body.highlight-title h4 *,
-             body.highlight-title h5,
-             body.highlight-title h5 *,
-             body.highlight-title h6,
-             body.highlight-title h6 * {
+             body.highlight_title h1,
+             body.highlight_title h1 *,
+             body.highlight_title h2,
+             body.highlight_title h2 *,
+             body.highlight_title h3,
+             body.highlight_title h3 *,
+             body.highlight_title h4,
+             body.highlight_title h4 *,
+             body.highlight_title h5,
+             body.highlight_title h5 *,
+             body.highlight_title h6,
+             body.highlight_title h6 * {
               color: #03344e !important;
               border-radius: 4px;
               font-weight: 900;
@@ -295,56 +238,56 @@ class AppController extends Controller
               filter: sepia(0.75) contrast(0.95);
               background: #fec;
             }
-            body.invert-color > :not(#hkoAccessibilityAssets) {
+            body.invert_colors > :not(#hkoAccessibilityAssets) {
               -webkit-filter: invert(100%);
               filter: invert(100%);
               -o-filter: invert(100%);
               -moz-filter: invert(100%);
               background: #000 !important;
             }
-            body.highlight-link a {
+            body.highlight_links a {
               text-decoration: none;
               background: 0 0;
               background-color: #07a8d4 !important;
               color: #fff !important;
               box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
             }
-            body.zoom-increase-1 > :not(#hkoAccessibilityAssets) {
+            body.zoom_increase-1 > :not(#hkoAccessibilityAssets) {
               zoom: 1.2;
               -ms-zoom: 1.2;
               -webkit-zoom: 1.2;
               -moz-transform: scale(1.15);
               -moz-transform-origin: top center;
             }
-            body.zoom-increase-2 > :not(#hkoAccessibilityAssets) {
+            body.zoom_increase-2 > :not(#hkoAccessibilityAssets) {
               zoom: 1.3;
               -ms-zoom: 1.3;
               -webkit-zoom: 1.3;
               -moz-transform: scale(1.2);
               -moz-transform-origin: top center;
             }
-            body.zoom-increase-3 > :not(#hkoAccessibilityAssets) {
+            body.zoom_increase-3 > :not(#hkoAccessibilityAssets) {
               zoom: 1.5;
               -ms-zoom: 1.5;
               -webkit-zoom: 1.5;
               -moz-transform: scale(1.4);
               -moz-transform-origin: top center;
             }
-            body.zoom-decrease-1 > :not(#hkoAccessibilityAssets) {
+            body.zoom_decrease--1 > :not(#hkoAccessibilityAssets) {
               zoom: 0.8;
               -ms-zoom: 0.8;
               -webkit-zoom: 0.8;
               -moz-transform: scale(0.8);
               -moz-transform-origin: top center;
             }
-            body.zoom-decrease-2 > :not(#hkoAccessibilityAssets) {
+            body.zoom_decrease--2 > :not(#hkoAccessibilityAssets) {
               zoom: 0.7;
               -ms-zoom: 0.7;
               -webkit-zoom: 0.7;
               -moz-transform: scale(0.7);
               -moz-transform-origin: top center;
             }
-            body.zoom-decrease-3 > :not(#hkoAccessibilityAssets) {
+            body.zoom_decrease--3 > :not(#hkoAccessibilityAssets) {
               zoom: 0.6;
               -ms-zoom: 0.6;
               -webkit-zoom: 0.6;
@@ -360,24 +303,24 @@ class AppController extends Controller
               -o-animation-play-state: paused;
               animation-play-state: paused;
             }
-            body.white-cursor {
+            body.screen_cursor-white {
               cursor: url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_arrow_white.png), url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_arrow_white.cur), auto !important;
               z-index: 2147483635;
             }
-            body.white-cursor a {
+            body.screen_cursor-white a {
               cursor: url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_hand_white.png), url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_hand_white.cur), auto !important;
               z-index: 2147483635;
             }
-            body.black-cursor {
+            body.screen_cursor-blank {
               cursor: url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_arrow_black.png), url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_arrow_black.cur), auto !important;
               z-index: 2147483635;
             }
-            body.black-cursor a {
+            body.screen_cursor-blank a {
               cursor: url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_hand_black.png), url(https://jsappcdn.hikeorders.com/assets/accessibility_cursors/cursor_hand_black.cur), auto !important;
               z-index: 2147483635;
             }
-            body.highlight-focus :focus,
-            body.highlight-focus a:hover {
+            body.highlight_focus :focus,
+            body.highlight_focus a:hover {
               background-color: #c6f710 !important;
               outline: 2px dashed #e65e34 !important;
               color: #000 !important;
@@ -440,8 +383,8 @@ class AppController extends Controller
               box-shadow: 3px 3px 30px 0 #4d4e2d;
             }
              
-            body.screen-mask .mask-screen-bottom,
-            body.screen-mask .mask-screen-top {
+            body.screen_settings .mask-screen-bottom,
+            body.screen_settings .mask-screen-top {
               display: block;
             }
             .mask-screen-bottom,
@@ -649,26 +592,17 @@ class AppController extends Controller
               cursor: pointer!important;
               text-align: left!important;
               display: block !important;
-            }
-            body.color-contrast>:not(#hkoAccessibilityAssets), body.color-contrast>:not(#hkoAccessibilityAssets) div, body.color-contrast>:not(#hkoAccessibilityAssets) footer, body.color-contrast>:not(#hkoAccessibilityAssets) header{
-                color: '. $color.'!important;
-                background-color: '. $background.'!important;
-            }
+            }'.$string.'
+           
                 '
             ]
         ];
         $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
-
-
         $array = [
             'asset'=>[
                 'key'=> 'templates/index.liquid',
                 'value'=> '
-                <script> 
-                var classBody = "'. $string .'"
-                </script>
                  {{ "Accessibility.scss" | asset_url | stylesheet_tag }} {{ content_for_index }}
-                 
                  ',
 
             ]
@@ -683,90 +617,6 @@ class AppController extends Controller
         $shop = ShopifyApp::shop();
         $shop2 =$shop->shopify_domain;
         $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-        $settings = Setting::where(['shop_id' => $shopDomain->id])->first();
-        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'shopDomain'=>$shopDomain,'id'=>$id,'settings'=>$settings]);
-    }
-    public function Settings_Css(){
-
-//        $shop = ShopifyApp::shop();
-
-        //
-//        $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
-//        foreach ($request->body->themes as $item){
-//            if($item->role == 'main'){
-//                $id_themes = $item->id;
-//            }
-//        }
-        //admin/api/2019-10/themes/#{theme_id}/assets.json
-
-//        $array = [
-//            'asset'=>[
-//                'key'=> 'layout/theme.bk.liquid',
-//                'source_key'=> 'layout/theme.liquid',
-//            ]
-//        ];
-//
-//        $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
-        ///admin/api/2019-10/themes/#{theme_id}/assets.json
-
-        return  redirect('/');
-    }
-
-    public function settings(Request $request){
-
-        $profile_id = $request->profile_id;
-        $line_height = $request->line_height;
-        $font_size = $request->font_size;
-        $font_spacing = $request->font_spacing;
-        $font_family = $request->font;
-        $grayscale = $request->grayscale;
-        $invert_colors = $request->invert_colors;
-        $sepia = $request->sepia;
-        $highlight = $request->highlight;
-        $highlight_focus = $request->highlight_focus;
-        $highlight_links = $request->highlight_links;
-        $skip_title = $request->skip_title;
-        $skip_focus = $request->skip_focus;
-        $skip_links = $request->skip_links;
-        $screen_settings = $request->screen_settings;
-        $screen_ruler = $request->screen_ruler;
-        $screen_cursor = $request->screen_cursor;
-        $contrast = $request->contrast;
-        $tooltip_permanent = $request->tooltip_permanent;
-        $tooltip_mouseover = $request->tooltip_mouseover;
-
-        if($request->zoom_increase > 0){
-            $zoom = $request->zoom_increase;
-        }
-        else if($request->zoom_decrease < 0){
-             $zoom = $request->zoom_decrease;
-        }else{
-            $zoom = 0;
-        }
-
-        Setting::where(['shop_id' => $request->shop_id])->update([
-            'profile_id' => $profile_id,
-            'line_height'=>$line_height,
-            'font_size'=>$font_size,
-            'font_spacing'=>$font_spacing,
-            'font_family'=>$font_family,
-            'grayscale'=>$grayscale,
-            'invert_colors'=>$invert_colors,
-            'sepia'=>$sepia,
-            'highlight'=>$highlight,
-            'highlight_focus'=>$highlight_focus,
-            'highlight_links'=>$highlight_links,
-            'skip_title'=>$skip_title,
-            'skip_focus'=>$skip_focus,
-            'skip_links'=>$skip_links,
-            'screen_settings'=>$screen_settings,
-            'screen_ruler'=>$screen_ruler,
-            'screen_cursor'=>$screen_cursor,
-            'contrast'=>$contrast,
-            'zoom'=>$zoom,
-            'tooltip_permanent'=>$tooltip_permanent,
-            'tooltip_mouseover'=>$tooltip_mouseover
-        ]);
-        return  redirect('settings-css');
+        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'shopDomain'=>$shopDomain,'id'=>$id]);
     }
 }

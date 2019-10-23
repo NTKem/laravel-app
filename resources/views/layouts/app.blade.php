@@ -28,7 +28,7 @@
     <main class="py-4">
         <div class="main-bottom">
             <div class="tool-bar">
-                <div class="left"><i class="fa fa-sync"></i></div>
+                <div class="left reset"><i class="fa fa-sync"></i></div>
                 <div class="center">accessibility</div>
                 <div class="right"><i class="fa fa-times"></i></div>
             </div>

@@ -1,27 +1,6 @@
 var $ = jQuery;
 $(function(e){
       window.data  = {
-          font:'',
-          line_height:'',
-          font_size:'',
-          font_spacing:'',
-          grayscale:'',
-          invert_colors:'',
-          sepia:'',
-          highlight_title:'',
-          highlight_focus:'',
-          highlight_links:'',
-          skip_title:'',
-          skip_focus:'',
-          skip_links:'',
-          screen_settings:'',
-          screen_ruler:'',
-          screen_cursor:'',
-          zoom:'',
-          contrast:'',
-          tooltip_permanent:'',
-          tooltip_mouseover:'',
-
     };
     var body = $('body'),
     new_ob;
@@ -38,27 +17,72 @@ setTimeout(function(){
         if(e.data.origin === 'ACCESSIBILITY'){
              new_ob = e.data;
             Object.keys(new_ob).forEach(key => {
-                if(new_ob[key] != '' || new_ob[key] != 'null' || new_ob[key] != undefined){
+                if(new_ob[key] != ''){
                     $('body').removeClass(window.data[key]);
+                    if(key == 'contrast'){
+                        window.data[key] ='contrast-'+new_ob[key];
+                    }
+                    else if(key == 'reset'){
+                        if( new_ob[key] == 'true' ){
+                            window.data  = {};
+                            new_ob[key] = 'false';
+                        }
+                    }else{
+                            window.data[key] =new_ob[key];
+                    }
+                }else{
                     window.data[key] =new_ob[key];
-                    $('#readtext').remove();
                 }
             });
             Object.keys(window.data).forEach(key => {
-                if(window.data[key] != '' || window.data[key] != 'null' || window.data[key] != undefined){
-                    if(window.data[key] == 'line_height'){
-                        debugger;
-                        $('head').append('<style id="readtext">body, h1, h2, h3, h4, h5, h6, p, blockquote, li, a, *:not(.fa){ font-size:'+ window.data['font_size'] +'%  ;line-height:'+ window.data['line_height'] +' % ;letter-spacing:'+ window.data['font_spacing'] +'px  ;}</style>')
+                if(window.data[key] != ''){
+                    if(key == 'line_height' || key == 'font_size' || key == 'font_spacing' && window.data[key] != ''){
+                        var style = '<style id="readtext">  h1, h2, h3, h4, h5, h6, p, blockquote, li, a{';
+                            style +='line-height:'+ window.data['line_height']+'0% !important; letter-spacing:'+ window.data['font_spacing'] +'px !important;font-size:'+ window.data['font_size']+'0% !important;';
+                            style +='}</style>';
+                        $('#readtext').remove();
+                        $('head').append(style);
                     }else{
                         $('body').addClass(window.data[key]);
                     }
+
+                }else{
+                    $('body').removeClass(key);
                 }
             });
         }
 
     });
 
-},5000)
-
+},5000);
+    $('body').append('<div class="mask-screen-top screen_items"></div><div class="mask-screen-bottom screen_items"></div><div class="screen-ruler-box"></div>');
+    $("body").mousemove(function(a){
+        if($(this).hasClass('screen_settings')){
+            var b = a.clientY
+                , c = b - 100
+                , d = b + 100
+                , e = $(".mask-screen-top")
+                , f = $(".mask-screen-bottom");
+            e.css('height',c+'px');
+            f.css('top', d + 'px');
+        }
+        if($(this).hasClass('screen_ruler')){
+                g = $(".screen-ruler-box");
+                g.show();
+                g.css('top', b + 'px');
+        }
+        if($(this).hasClass('tooltip_mouseover')){
+            $("img").mousemove(function(a){
+                var b = a.clientX + 10,
+                c=a.clientY + 10;
+                alt = $(this)[0].alt;
+                $('.tooltip-on-fly').remove();
+                $('body').append('<div class="tooltip-on-fly" style="display: inline-block; top: '+c+'px; left:'+b+'px;opacity: 1;">'+alt+'</div>')
+            });
+            $("img").mouseleave(function(a){
+                $('.tooltip-on-fly').remove();
+            });
+        }
+    });
 });
 
