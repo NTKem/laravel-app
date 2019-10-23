@@ -23,6 +23,7 @@ setTimeout(function(){
                         window.data[key] ='contrast-'+new_ob[key];
                     }
                     else if(key == 'reset'){
+
                         if( new_ob[key] == 'true' ){
                             window.data  = {};
                             $('#readtext').remove();
@@ -32,7 +33,25 @@ setTimeout(function(){
                             window.data[key] =new_ob[key];
                     }
                 }else{
-                    window.data[key] =new_ob[key];
+                    window.data  = {
+                        font:'',
+                        grayscale:'',
+                        invert_colors:'',
+                        sepia:'',
+                        highlight_title:'',
+                        highlight_focus:'',
+                        highlight_links:'',
+                        skip_title:'',
+                        skip_focus:'',
+                        skip_links:'',
+                        screen_settings:'',
+                        screen_ruler:'',
+                        screen_cursor:'',
+                        zoom:'',
+                        contrast:'',
+                        tooltip_permanent:'',
+                        tooltip_mouseover:'',
+                    };
                 }
             });
             Object.keys(window.data).forEach(key => {
@@ -51,6 +70,16 @@ setTimeout(function(){
                     $('body').removeClass(key);
                 }
             });
+            if($('body').hasClass('tooltip_permanent')){
+                $('img').each(function(){
+                    var left =$(this).offset().left+'px',
+                        top = $(this).offset().top -30+'px',
+                        alt = $(this).attr('alt')
+                    $('body').append('<div class="app-tooltip" style="left:'+left+';top:'+top+';opacity:1">'+alt+'</div>');
+                });
+            }else{
+                $('.app-tooltip').remove();
+            }
         }
 
     });
@@ -85,5 +114,6 @@ setTimeout(function(){
             });
         }
     });
+
 });
 

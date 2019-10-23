@@ -326,13 +326,13 @@ class AppController extends Controller
               color: #000 !important;
               box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
             }
-            body.tooltip-permanent .tooltip {
+            body.tooltip-permanent .app-tooltip {
               opacity: 1;
             }
             body.tooltip-mouseover .tooltip-on-fly {
               opacity: 1;
             }
-            .tooltip {
+            .app-tooltip {
               -ms-transform: translateZ(0);
               -moz-transform: translateZ(0);
               -webkit-transform: translateZ(0);
@@ -352,7 +352,7 @@ class AppController extends Controller
               -moz-box-shadow: 3px 3px 30px 0 #4d4e2d;
               box-shadow: 3px 3px 30px 0 #4d4e2d;
             }
-            .tooltip:after {
+            .app-tooltip:after {
               content: "";
               position: absolute;
               top: 100%;
