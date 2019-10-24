@@ -23,7 +23,6 @@ setTimeout(function(){
                         window.data[key] ='contrast-'+new_ob[key];
                     }
                     else if(key == 'reset'){
-
                         if( new_ob[key] == 'true' ){
                             window.data  = {};
                             $('#readtext').remove();
