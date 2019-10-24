@@ -23,35 +23,28 @@ setTimeout(function(){
                         window.data[key] ='contrast-'+new_ob[key];
                     }
                     else if(key == 'reset'){
-
                         if( new_ob[key] == 'true' ){
+                            Object.keys(window.data).forEach(item => {
+                                $('body').removeClass(item);
+                            });
                             window.data  = {};
+                            new_ob={};
                             $('#readtext').remove();
                             new_ob[key] = 'false';
                         }
+                    }else if(key == 'menu_bar'){
+                        if(new_ob[key] == 'true'){
+                            $('#hkoAccessibilityAssets').css({'height':'35px','min-height':'auto'});
+                        }else{
+                            $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
+                        }
+                        window.data[key] =new_ob[key];
+
                     }else{
                             window.data[key] =new_ob[key];
                     }
                 }else{
-                    window.data  = {
-                        font:'',
-                        grayscale:'',
-                        invert_colors:'',
-                        sepia:'',
-                        highlight_title:'',
-                        highlight_focus:'',
-                        highlight_links:'',
-                        skip_title:'',
-                        skip_focus:'',
-                        skip_links:'',
-                        screen_settings:'',
-                        screen_ruler:'',
-                        screen_cursor:'',
-                        zoom:'',
-                        contrast:'',
-                        tooltip_permanent:'',
-                        tooltip_mouseover:'',
-                    };
+                    window.data[key] = '';
                 }
             });
             Object.keys(window.data).forEach(key => {

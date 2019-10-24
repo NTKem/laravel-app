@@ -244,3 +244,15 @@ a {
 .active-checkbox{
   border: solid 2px;
 }
+.activeBar {
+  .main-bottom{
+    height:auto;
+  }
+  .tool-bar{
+    .fa-times{
+      &:before{
+        content: "\f106";
+      }
+    }
+  }
+}
