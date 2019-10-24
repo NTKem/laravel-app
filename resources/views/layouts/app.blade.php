@@ -32,7 +32,9 @@
                 <div class="center">accessibility</div>
                 <div class="right"><i class="fa fa-times"></i></div>
             </div>
-            @yield('content')
+            <div class="main-content">
+                @yield('content')
+            </div>
         </div>
     </main>
 </div>

@@ -123,9 +123,23 @@ $(function(){
                 parent.postMessage(e, "*");
             });
             $('.reset').click(function(){
+                e  = {
+                    origin: "ACCESSIBILITY",
+                };
                 e['reset']= 'true';
                 parent.postMessage(e, "*");
                 e['reset']= 'false';
                 $('.active-checkbox').removeClass('active-checkbox');
+            });
+            $('.tool-bar .right').click(function(){
+                $('.main-content').toggle();
+                $(this).parents('body').toggleClass('activeBar');
+                if($(this).parents('body').hasClass('activeBar')){
+                    e['menu_bar']= 'true';
+                }else{
+                    e['menu_bar']= 'false';
+                }
+
+                parent.postMessage(e, "*");
             });
 });

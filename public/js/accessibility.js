@@ -4,7 +4,7 @@ $(function(e){
     };
     var body = $('body'),
     new_ob;
-    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://ntkem.test" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');;
+    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://18.221.221.44" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');;
 setTimeout(function(){
     var eventMethod = window.addEventListener
         ? "addEventListener"
@@ -24,33 +24,27 @@ setTimeout(function(){
                     }
                     else if(key == 'reset'){
                         if( new_ob[key] == 'true' ){
+                            Object.keys(window.data).forEach(item => {
+                                $('body').removeClass(item);
+                            });
                             window.data  = {};
+                            new_ob={};
                             $('#readtext').remove();
                             new_ob[key] = 'false';
                         }
+                    }else if(key == 'menu_bar'){
+                        if(new_ob[key] == 'true'){
+                            $('#hkoAccessibilityAssets').css({'height':'35px','min-height':'auto'});
+                        }else{
+                            $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
+                        }
+                        window.data[key] =new_ob[key];
+
                     }else{
                             window.data[key] =new_ob[key];
                     }
                 }else{
-                    window.data  = {
-                        font:'',
-                        grayscale:'',
-                        invert_colors:'',
-                        sepia:'',
-                        highlight_title:'',
-                        highlight_focus:'',
-                        highlight_links:'',
-                        skip_title:'',
-                        skip_focus:'',
-                        skip_links:'',
-                        screen_settings:'',
-                        screen_ruler:'',
-                        screen_cursor:'',
-                        zoom:'',
-                        contrast:'',
-                        tooltip_permanent:'',
-                        tooltip_mouseover:'',
-                    };
+                    window.data[key] = '';
                 }
             });
             Object.keys(window.data).forEach(key => {
