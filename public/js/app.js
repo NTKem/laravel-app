@@ -19279,12 +19279,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ (function(module, exports) {
 
 $(function () {
-  function check_data() {
+  var e = {
+    origin: "ACCESSIBILITY"
+  };
+
+  if (localStorage.data == undefined || localStorage.data == '{}') {
+    localStorage.setItem('data', JSON.stringify(e));
+  } else {
     e = $.parseJSON(localStorage.data);
     e['menu_bar'] = 'true';
     $('.main-content').hide();
     $('body').toggleClass('activeBar');
-    parent.postMessage(e, "*");
     Object.keys(e).forEach(function (key) {
       if (e[key] != '') {
         e;
@@ -19294,25 +19299,11 @@ $(function () {
         }
       }
     });
-  }
-
-  if (localStorage.data != undefined || localStorage.data != '{}') {
-    // check_data();
-    if (localStorage.data == undefined) {
-      var e = {
-        origin: "ACCESSIBILITY"
-      };
-      localStorage.setItem('data', JSON.stringify(e.data));
-      check_data();
-    } else {
-      check_data();
-    }
-  } else {
-    var e = {
-      origin: "ACCESSIBILITY"
-    };
-    localStorage.setItem('data', JSON.stringify(e.data));
-    check_data();
+    console.log('1');
+    setTimeout(function () {
+      parent.postMessage(e, "*");
+      console.log('2');
+    }, 1000);
   }
 
   $('.tab-bar .items').click(function () {
@@ -19485,8 +19476,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

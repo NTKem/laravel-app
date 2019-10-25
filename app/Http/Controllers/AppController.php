@@ -31,12 +31,9 @@ class AppController extends Controller
 
     }
     public function index(){
-        $profile = Profile::all();
         $shop = ShopifyApp::shop();
         $shop2 =$shop->shopify_domain;
         $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-
-
         $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
         foreach ($request->body->themes as $item){
             if($item->role == 'main'){
@@ -608,15 +605,14 @@ class AppController extends Controller
             ]
         ];
         $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
-        return view('pages/index')->with(['profile'=>$profile,'string'=>$string]);
+        return redirect('profile');
     }
 
     public function  elderly($id){
-        $shop =ShopifyApp::shop()->shopify_domain;
-        $shopDomain = Shop::where(['shopify_domain' => $shop])->first();
-        $shop = ShopifyApp::shop();
-        $shop2 =$shop->shopify_domain;
-        $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'shopDomain'=>$shopDomain,'id'=>$id]);
+        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id]);
+    }
+    public function profile(){
+        $profile = Profile::all();
+        return view('pages/index')->with(['profile'=>$profile]);
     }
 }

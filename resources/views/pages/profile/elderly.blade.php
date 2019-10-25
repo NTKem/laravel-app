@@ -8,7 +8,6 @@
         <?php endforeach;?>
     </div>
     <div class="main-section">
-            <input hidden name="shop_id" value="{{ $shopDomain->id }}" />
             <?php foreach ($site_menu as  $key => $menu_items):?>
             <?php if($menu_items->name == 'Readable Text'):?>
             <div class="menu-bar active-bar hidden readable-text" id="tabs-{{$key}}">

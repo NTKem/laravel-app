@@ -12,8 +12,10 @@
 */
 //Profile selected
 Route::get('/', 'AppController@index')->middleware(['auth.shop'])->name('home');
+
+Route::get('/profile', 'AppController@profile')->name('profile');
 // Profile elderly
-Route::get('elderly/{id}', 'AppController@elderly')->middleware(['auth.shop'])->name('elderly');
+Route::get('elderly/{id}', 'AppController@elderly')->name('elderly');
 //Setting save
 Route::post('settings','AppController@settings')->middleware(['auth.shop'])->name('settings');
 //Setting css
