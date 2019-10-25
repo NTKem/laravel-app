@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     {{-- Styles --}}
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" async  defer  rel="stylesheet">
     {{-- Scripts --}}
     <script>
         window.Laravel = {!! json_encode([

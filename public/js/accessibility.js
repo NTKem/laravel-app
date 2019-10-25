@@ -73,6 +73,8 @@ setTimeout(function(){
             }else{
                 $('.app-tooltip').remove();
             }
+            var iframeEl = document.getElementById('hkoAccessibilityAssets');
+            iframeEl.contentWindow.postMessage(window.data,'*');
         }
 
     });
@@ -90,8 +92,8 @@ setTimeout(function(){
             f.css('top', d + 'px');
         }
         if($(this).hasClass('screen_ruler')){
+            b = a.clientY;
                 g = $(".screen-ruler-box");
-                g.show();
                 g.css('top', b + 'px');
         }
         if($(this).hasClass('tooltip_mouseover')){

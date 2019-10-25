@@ -1,4 +1,39 @@
 $(function(){
+    function check_data(){
+        e = $.parseJSON(localStorage.data);
+        e['menu_bar'] = 'true';
+        $('.main-content').hide();
+        $('body').toggleClass('activeBar');
+        parent.postMessage(e, "*");
+        Object.keys(e).forEach(key => {
+            if(e[key] != ''){
+                e;
+                if($('input[name='+key+']').length >= 1){
+                    $('input[name=' + key + ']').parents('.items').addClass('active-checkbox');
+                }
+            }
+        });
+    }
+        if(localStorage.data != undefined || localStorage.data != '{}' ){
+            // check_data();
+            if(localStorage.data == undefined){
+                var  e  = {
+                    origin: "ACCESSIBILITY",
+                };
+                localStorage.setItem('data', JSON.stringify(e.data));
+                check_data();
+            }else{
+                check_data();
+            }
+
+        }else{
+            var  e  = {
+                origin: "ACCESSIBILITY",
+            };
+            localStorage.setItem('data', JSON.stringify(e.data));
+            check_data();
+        }
+
     $('.tab-bar .items').click(function(){
         $('.tab-bar .items').removeClass('items-active');
         $(this).addClass('items-active');
@@ -83,10 +118,8 @@ $(function(){
         $('.zoom .items').removeClass('active-checkbox');
         $('.zoom-decrease').addClass('active-checkbox')
     }
-    window.onload = function() {}
-        var  e  = {
-            origin: "ACCESSIBILITY",
-        };
+
+
             $('.font-list input[type="radio"]').click(function () {
                 var name = $(this).attr('name');
                 e[name]= $(this).data('action');
@@ -142,4 +175,14 @@ $(function(){
 
                 parent.postMessage(e, "*");
             });
+    var eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod === "attachEvent"
+        ? "onmessage"
+        : "message";
+    eventer(messageEvent, function (e) {
+        localStorage.setItem('data', JSON.stringify(e.data));
+    });
 });
