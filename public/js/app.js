@@ -19287,9 +19287,9 @@ $(function () {
     localStorage.setItem('data', JSON.stringify(e));
   } else {
     e = $.parseJSON(localStorage.data);
-    e['menu_bar'] = 'true';
-    $('.main-content').hide();
-    $('body').toggleClass('activeBar');
+    e['menu_bar'] = 'false'; // $('.main-content').hide();
+    // $('body').toggleClass('activeBar');
+
     Object.keys(e).forEach(function (key) {
       if (e[key] != '') {
         e;
@@ -19299,10 +19299,8 @@ $(function () {
         }
       }
     });
-    console.log('1');
     setTimeout(function () {
       parent.postMessage(e, "*");
-      console.log('2');
     }, 1000);
   }
 
