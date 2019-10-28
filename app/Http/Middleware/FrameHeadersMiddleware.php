@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class FrameHeadersMiddleware
+class FrameHeadersMiddleware extends Middleware
 {
     /**
      * Handle an incoming request.
