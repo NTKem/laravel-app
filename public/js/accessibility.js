@@ -6,7 +6,7 @@ $(function(e){
     new_ob;
 
 setTimeout(function(){
-    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://18.221.221.44/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');
+    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://accessibilityplus.ca/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');
     setTimeout(function(){
         var eventMethod = window.addEventListener
             ? "addEventListener"
@@ -22,7 +22,7 @@ setTimeout(function(){
                     if(new_ob[key] != ''){
                         $('body').removeClass(window.data[key]);
                         if(key == 'contrast'){
-                            window.data[key] ='contrast-'+new_ob[key];
+                            window.data[key] = new_ob[key];
                         }
                         else if(key == 'reset'){
                             if( new_ob[key] == 'true' ){

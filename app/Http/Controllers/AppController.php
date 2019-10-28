@@ -30,15 +30,15 @@ class AppController extends Controller
 
     }
     public function index(){
-        $shop = ShopifyApp::shop();
-        $shop2 =$shop->shopify_domain;
-        $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-        $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
-        foreach ($request->body->themes as $item){
-            if($item->role == 'main'){
-                $id_themes = $item->id;
-            }
-        }
+//        $shop = ShopifyApp::shop();
+//        $shop2 =$shop->shopify_domain;
+//        $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
+//        $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
+//        foreach ($request->body->themes as $item){
+//            if($item->role == 'main'){
+//                $id_themes = $item->id;
+//            }
+//        }
 //        $string = '';
 //        foreach($this->site_contrast as $items){
 //                $color= $items->color;

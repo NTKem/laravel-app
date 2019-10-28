@@ -151,7 +151,7 @@
                     <?php else: ?>
                     <div class="contrast-items" data-index="<?= $key?>" style="background: {{$color_items->background}};color:{{$color_items->color}}" data-id="{{$color_items->id}}">
                         A
-                        <input type="radio" name="contrast" value="{{$color_items->id}}" />
+                        <input type="radio" name="contrast" value="contrast-{{$color_items->id}}" />
                     </div>
                     <?php endif; ?>
 
