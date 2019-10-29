@@ -27,7 +27,10 @@ class AppController extends Controller
         View::share('site_contrast', $this->site_contrast);
     }
     public function index(){
-        return redirect('profile');
+
+            return redirect('profile');
+
+
     }
 
     public function  elderly($id){
