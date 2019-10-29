@@ -11,7 +11,7 @@
 |
 */
 //Profile selected
-Route::get('/', 'AppController@index')->middleware(['auth.shop'])->name('home');
+Route::get('/', 'AppController@index')->name('home');
 
 Route::get('/profile', 'AppController@profile')->name('profile');
 // Profile elderly

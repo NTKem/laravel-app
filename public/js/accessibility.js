@@ -6,7 +6,7 @@ $(function(e){
     new_ob;
 
 setTimeout(function(){
-    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://accessibilityplus.ca/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');
+    body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://ntkem.test/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');
     setTimeout(function(){
         var eventMethod = window.addEventListener
             ? "addEventListener"
@@ -27,7 +27,7 @@ setTimeout(function(){
                         else if(key == 'reset'){
                             if( new_ob[key] == 'true' ){
                                 Object.keys(window.data).forEach(item => {
-                                    $('body').removeClass(item);
+                                    $('body').removeClass(window.data[item]);
                                 });
                                 window.data  = {};
                                 new_ob={};
@@ -42,10 +42,48 @@ setTimeout(function(){
                             }
                             window.data[key] =new_ob[key];
 
+                        }else if(key == 'text_mode'){
+
+                                $('*').each(function(){
+                                    if($(this)[0].tagName == "IMG" || $(this)[0].tagName == "svg"){
+                                        $(this).hide();
+                                    }else if($(this).attr('style') != '' && $(this)[0].tagName != 'LINK'){
+                                        if($(this)[0].tagName != "IFRAME"){
+                                            var style = $(this).attr('style');
+                                            $(this).removeAttr('style').attr('mode-style',style);
+                                        }
+                                    }else if($(this)[0].tagName == 'LINK'){
+                                        if($(this).attr('rel') == 'stylesheet'){
+                                            var src = $(this).attr('href');
+                                            $(this).removeAttr('href');
+                                            $(this).attr('mode-href',src);
+                                        }
+                                    }
+                                });
+
                         }else{
-                            window.data[key] =new_ob[key];
+                            if(new_ob[key] != ''){
+                                    $('*').each(function(){
+                                        if($(this)[0].tagName == "IMG" || $(this)[0].tagName == "svg"){
+                                            $(this).show();
+                                        }else if($(this).attr('style') != '' && $(this)[0].tagName != 'LINK'){
+                                            if($(this)[0].tagName != "IFRAME"){
+                                                var style = $(this).attr('mode-style');
+                                                $(this).removeAttr('mode-style').attr('style',style);
+                                            }
+                                        }else if($(this)[0].tagName == 'LINK'){
+                                            if($(this).attr('rel') == 'stylesheet'){
+                                                var src = $(this).attr('mode-href');
+                                                $(this).removeAttr('mode-href');
+                                                $(this).attr('href',src);
+                                            }
+                                        }
+                                    });
+                                }
+                                window.data[key] =new_ob[key];
                         }
                     }else{
+                        debugger;
                         window.data[key] = '';
                     }
                 });
@@ -69,8 +107,10 @@ setTimeout(function(){
                     $('img').each(function(){
                         var left =$(this).offset().left+'px',
                             top = $(this).offset().top -30+'px',
-                            alt = $(this).attr('alt')
-                        $('body').append('<div class="app-tooltip" style="left:'+left+';top:'+top+';opacity:1">'+alt+'</div>');
+                            alt = $(this).attr('alt');
+                        if(alt != ''){
+                            $('body').append('<div class="app-tooltip" style="left:'+left+';top:'+top+';opacity:1">'+alt+'</div>');
+                        }
                     });
                 }else{
                     $('.app-tooltip').remove();
@@ -101,7 +141,7 @@ setTimeout(function(){
                 g.css('top', b + 'px');
         }
         if($(this).hasClass('tooltip_mouseover')){
-            $("img").mousemove(function(a){
+            $("div").find('img').mousemove(function(a){
                 var b = a.clientX + 10,
                 c=a.clientY + 10;
                 alt = $(this)[0].alt;

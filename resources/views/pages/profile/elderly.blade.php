@@ -1,7 +1,6 @@
 @extends('../../layouts.app')
-@section('class','ederly')
+@section('class','ederly profile')
 @section('content')
-
     <div class="tab-bar">
         <?php foreach ($site_menu as  $key => $menu_items):?>
         <div class="items <?php if($key == 0):?>items-active<?php endif; ?>" data-href="#tabs-{{$key}}">{{ $menu_items->name }}</div>
@@ -41,31 +40,31 @@
             </div>
             <?php elseif ($menu_items->name == 'Change Font'): ?>
             <div class="menu-bar hidden change-font" id="tabs-{{$key}}">
-                <div class="font-list">
+                <div class="font-list radio-check">
                     <?php foreach ($site_font as $font_items):?>
-                    <div class="list-items">
-                        <input type="radio" data-action="{{$font_items->font_face}}" name="font" value="{{$font_items->id}}"/>
+                    <div class="list-items radio-input">
+                        <input type="radio" data-action="{{$font_items->font_face}}" name="font" value="{{$font_items->font_face}}"/>
                         {{$font_items->name}}
                     </div>
                     <?php endforeach;?>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Color More'): ?>
-            <div class="menu-bar hidden color-more" id="tabs-{{$key}}">
-                <div class="items">
+            <div class="menu-bar hidden color-more radio-check" id="tabs-{{$key}}">
+                <div class="items radio-input">
                     <img src="{{ asset('images/color/Grayscale.png') }}">
                     <p>Grayscale</p>
-                    <input type="checkbox" name="grayscale" value="true"/>
+                    <input type="radio" name="color_more" value="grayscale"/>
                 </div>
-                <div class="items">
+                <div class="items radio-input">
                     <img src="{{ asset('images/color/invert-colors.png') }}">
                     <p>Invert Colors</p>
-                    <input type="checkbox" name="invert_colors" value="true" />
+                    <input type="radio" name="color_more" value="invert_colors" />
                 </div>
-                <div class="items">
+                <div class="items radio-input">
                     <img src="{{ asset('images/color/sepia.png') }}">
                     <p>Sepia</p>
-                    <input type="checkbox" name="sepia" value="true"/>
+                    <input type="radio" name="color_more" value="sepia"/>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Highlight'): ?>
@@ -129,11 +128,11 @@
             </div>
             <?php elseif ($menu_items->name == 'Zoom'): ?>
             <div class="menu-bar hidden zoom" id="tabs-{{$key}}">
-                <div class="items zoom-increase">
+                <div class="items zoom-increase radio-input">
                     <img src="{{ asset('images/zoom/increase.png') }}">
                     <p>Increase</p>
                 </div>
-                <div class="items zoom-decrease">
+                <div class="items zoom-decrease radio-input">
                     <img src="{{ asset('images/zoom/decrease.png') }}">
                     <p>Decrease</p>
                 </div>
@@ -176,6 +175,7 @@
                 <div class="items">
                     <img src="{{ asset('images/others/plain-text-mode.png') }}">
                     <p>Plain Text Mode</p>
+                    <input type="checkbox" name="text_mode" value="true" />
                 </div>
                 <div class="items reset">
                     <img src="{{ asset('images/others/reset.png') }}">

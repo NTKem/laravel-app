@@ -18,7 +18,6 @@ class AppController extends Controller
     public $site_menu, $site_font,$site_contrast,$shopDomain;
     public function __construct()
     {
-
         // Fetch the Site Settings object
         $this->site_menu = Menu::all();
         View::share('site_menu',  $this->site_menu);
@@ -26,29 +25,8 @@ class AppController extends Controller
         View::share('site_font',  $this->site_font);
         $this->site_contrast = Contrast::all();
         View::share('site_contrast', $this->site_contrast);
-
-
     }
     public function index(){
-//        $shop = ShopifyApp::shop();
-//        $shop2 =$shop->shopify_domain;
-//        $shopDomain = Shop::where(['shopify_domain' => $shop2])->first();
-//        $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
-//        foreach ($request->body->themes as $item){
-//            if($item->role == 'main'){
-//                $id_themes = $item->id;
-//            }
-//        }
-//        $string = '';
-//        foreach($this->site_contrast as $items){
-//                $color= $items->color;
-//                $background =$items->background;
-//                $string .=  '
-//                body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets), body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) div, body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) footer, body.contrast-'.$items->id.'>:not(#hkoAccessibilityAssets) header{
-//                color: '. $color.'!important;
-//                background-color: '. $background.'!important;
-//                }';
-//        }
         return redirect('profile');
     }
 

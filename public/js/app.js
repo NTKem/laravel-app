@@ -19287,15 +19287,20 @@ $(function () {
     localStorage.setItem('data', JSON.stringify(e));
   } else {
     e = $.parseJSON(localStorage.data);
-    e['menu_bar'] = 'false'; // $('.main-content').hide();
-    // $('body').toggleClass('activeBar');
-
+    e['menu_bar'] = 'false';
     Object.keys(e).forEach(function (key) {
       if (e[key] != '') {
         e;
 
-        if ($('input[name=' + key + ']').length >= 1) {
+        if ($('input[name=' + key + ']').length == 1) {
           $('input[name=' + key + ']').parents('.items').addClass('active-checkbox');
+        } else {
+          var val = $('input[name=' + key + ']').parents('.radio-input');
+          val.find('input').each(function (item) {
+            if ($(this).val() == e[key]) {
+              $(this).parents('.radio-input').addClass('active-checkbox');
+            }
+          });
         }
       }
     });
@@ -19389,9 +19394,11 @@ $(function () {
     $('.zoom-decrease').addClass('active-checkbox');
   }
 
-  $('.font-list input[type="radio"]').click(function () {
+  $('.radio-check input[type="radio"]').click(function () {
     var name = $(this).attr('name');
-    e[name] = $(this).data('action');
+    e[name] = $(this).val();
+    $('.radio-check').find('.radio-input').removeClass('active-checkbox');
+    $(this).parents('.radio-input').addClass('active-checkbox');
     parent.postMessage(e, "*");
   });
   $('.custom-input').change(function () {
@@ -19474,8 +19481,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

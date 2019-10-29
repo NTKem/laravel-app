@@ -3,20 +3,23 @@ $(function(){
         origin: "ACCESSIBILITY",
     };
 
-
-
         if(localStorage.data == undefined || localStorage.data == '{}' ){
             localStorage.setItem('data', JSON.stringify(e));
         }else{
             e = $.parseJSON(localStorage.data);
             e['menu_bar'] = 'false';
-            // $('.main-content').hide();
-            // $('body').toggleClass('activeBar');
             Object.keys(e).forEach(key => {
                 if(e[key] != ''){
                     e;
-                    if($('input[name='+key+']').length >= 1){
+                    if($('input[name='+key+']').length == 1){
                         $('input[name=' + key + ']').parents('.items').addClass('active-checkbox');
+                    }else{
+                        var val = $('input[name=' + key + ']').parents('.radio-input');
+                        val.find('input').each(function(item){
+                            if($(this).val() == e[key]){
+                                $(this).parents('.radio-input').addClass('active-checkbox')
+                            }
+                        });
                     }
                 }
             });
@@ -24,9 +27,6 @@ $(function(){
             parent.postMessage(e, "*");
             },1000);
         }
-
-
-
     $('.tab-bar .items').click(function(){
         $('.tab-bar .items').removeClass('items-active');
         $(this).addClass('items-active');
@@ -113,61 +113,63 @@ $(function(){
     }
 
 
-            $('.font-list input[type="radio"]').click(function () {
-                var name = $(this).attr('name');
-                e[name]= $(this).data('action');
-                parent.postMessage(e, "*");
-            });
-            $('.custom-input').change(function(){
-                var name = $(this).attr('name');
-                e[name] = $(this).val();
-                parent.postMessage(e, "*");
-            });
-            $('.contrast-items input').change(function(){
-                var name = $(this).attr('name');
-                e[name] = $(this).val();
-                parent.postMessage(e, "*");
-            });
-            $('input[type="checkbox"]').click(function () {
-                var name = $(this).attr('name');
-                e[name]= name;
-                if($(this).parents('.items').hasClass('active-checkbox')){
+                $('.radio-check input[type="radio"]').click(function () {
+                    var name = $(this).attr('name');
+                    e[name]= $(this).val();
+                    $('.radio-check').find('.radio-input').removeClass('active-checkbox');
+                    $(this).parents('.radio-input').addClass('active-checkbox');
                     parent.postMessage(e, "*");
-                }else{
-                    e[name]= '';
+                });
+                $('.custom-input').change(function(){
+                    var name = $(this).attr('name');
+                    e[name] = $(this).val();
                     parent.postMessage(e, "*");
-                }
-            });
-            $('.radio-items input').click(function () {
-                var name = $(this).attr('name');
-                e[name]= name+'-'+$(this).val();
-                parent.postMessage(e, "*");
-            });
-            $('.zoom-input').change(function () {
-                var name = $(this).attr('name');
-                e['zoom']= name+'-'+$(this).val();
-                parent.postMessage(e, "*");
-            });
-            $('.reset').click(function(){
-                e  = {
-                    origin: "ACCESSIBILITY",
-                };
-                e['reset']= 'true';
-                parent.postMessage(e, "*");
-                e['reset']= 'false';
-                $('.active-checkbox').removeClass('active-checkbox');
-            });
-            $('.tool-bar .right').click(function(){
-                $('.main-content').toggle();
-                $(this).parents('body').toggleClass('activeBar');
-                if($(this).parents('body').hasClass('activeBar')){
-                    e['menu_bar']= 'true';
-                }else{
-                    e['menu_bar']= 'false';
-                }
+                });
+                $('.contrast-items input').change(function(){
+                    var name = $(this).attr('name');
+                    e[name] = $(this).val();
+                    parent.postMessage(e, "*");
+                });
+                $('input[type="checkbox"]').click(function () {
+                    var name = $(this).attr('name');
+                    e[name]= name;
+                    if($(this).parents('.items').hasClass('active-checkbox')){
+                        parent.postMessage(e, "*");
+                    }else{
+                        e[name]= '';
+                        parent.postMessage(e, "*");
+                    }
+                });
+                $('.radio-items input').click(function () {
+                    var name = $(this).attr('name');
+                    e[name]= name+'-'+$(this).val();
+                    parent.postMessage(e, "*");
+                });
+                $('.zoom-input').change(function () {
+                    var name = $(this).attr('name');
+                    e['zoom']= name+'-'+$(this).val();
+                    parent.postMessage(e, "*");
+                });
+                $('.reset').click(function(){
+                    e  = {
+                        origin: "ACCESSIBILITY",
+                    };
+                    e['reset']= 'true';
+                    parent.postMessage(e, "*");
+                    e['reset']= 'false';
+                    $('.active-checkbox').removeClass('active-checkbox');
+                });
+                $('.tool-bar .right').click(function(){
+                    $('.main-content').toggle();
+                    $(this).parents('body').toggleClass('activeBar');
+                    if($(this).parents('body').hasClass('activeBar')){
+                        e['menu_bar']= 'true';
+                    }else{
+                        e['menu_bar']= 'false';
+                    }
 
-                parent.postMessage(e, "*");
-            });
+                    parent.postMessage(e, "*");
+                });
 
     var eventMethod = window.addEventListener
         ? "addEventListener"
