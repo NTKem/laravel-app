@@ -2,13 +2,29 @@ $(function(){
     var  e  = {
         origin: "ACCESSIBILITY",
     };
+    //
+    var eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod === "attachEvent"
+        ? "onmessage"
+        : "message";
+    eventer(messageEvent, function (e) {
+        localStorage.setItem('data', JSON.stringify(e.data));
+            $.get('checkdomain/'+e.data.domain).done(function(data){
+                e.data.layout = data;
+                localStorage.setItem('data', JSON.stringify(e.data));
+            });
+
+    });
         if(localStorage.data == undefined || localStorage.data == '{}' ){
             localStorage.setItem('data', JSON.stringify(e));
         }else{
             e = $.parseJSON(localStorage.data);
-            e['menu_bar'] = 'false';
             if(e['layout'] != ''){
                 $('body').addClass(e['layout']);
+                $('body').addClass('trigger-'+e['menu_bar']);
             }
 
             Object.keys(e).forEach(key => {
@@ -153,23 +169,44 @@ $(function(){
                     parent.postMessage(e, "*");
                 });
                 $('.reset').click(function(){
+                    var ob = e;
                     e  = {
                         origin: "ACCESSIBILITY",
                     };
+                    e['layout'] = ob['layout'];
+                    if(ob['menu_bar'] != undefined){
+                        e['menu_bar'] = ob['menu_bar'];
+                    }else{
+                         e['menu_bar'] = 'false';
+                    }
                     e['reset']= 'true';
                     parent.postMessage(e, "*");
                     e['reset']= 'false';
                     $('.active-checkbox').removeClass('active-checkbox');
                 });
                 $('.tool-bar .right').click(function(){
-                    $('.main-content').toggle();
-                    $(this).parents('body').toggleClass('activeBar');
-                    if($(this).parents('body').hasClass('activeBar')){
-                        e['menu_bar']= 'true';
-                    }else{
-                        e['menu_bar']= 'false';
-                    }
 
+                    if($(this).parents('body').hasClass('default')){
+                        $('.Orders-trigger-container').hide();
+                        $('.main-content').toggle();
+                        $(this).parents('body').toggleClass('activeBar');
+                        if($(this).parents('body').hasClass('activeBar')){
+                            e['menu_bar']= 'true';
+                        }else{
+                            e['menu_bar']= 'false';
+                        }
+                    }else{
+                        $(this).parents('body').removeClass('activeBar');
+                        e['menu_bar']= 'false';
+                        $('.Orders-trigger-container').show();
+                        $('.Orders-popup-full').hide();
+                    }
+                    parent.postMessage(e, "*");
+                });
+                $('.Orders-trigger-container').click(function(){
+                    $('.main-content').show();
+                    $(this).parents('body').addClass('activeBar');
+                        e['menu_bar']= 'true';
                     parent.postMessage(e, "*");
                 });
     //admin js
@@ -177,9 +214,6 @@ $(function(){
         $('.items').removeClass('active-checkbox');
         $(this).addClass('active-checkbox');
     });
-    function postLayouts($value){
-
-    }
     $('.index-admin.settings input[type="radio"]').click(function(){
         $value =  $(this).val();
         $e = $(this);
@@ -201,22 +235,4 @@ $(function(){
         $(this).hide();
         $('.Orders-popup-full').show();
     });
-    //
-    var eventMethod = window.addEventListener
-        ? "addEventListener"
-        : "attachEvent";
-    var eventer = window[eventMethod];
-    var messageEvent = eventMethod === "attachEvent"
-        ? "onmessage"
-        : "message";
-    eventer(messageEvent, function (e) {
-        if(e.data.layout == undefined){
-            $.get('checkdomain/'+e.data.domain).done(function(data){
-                e.data.layout = data;
-                localStorage.setItem('data', JSON.stringify(e.data));
-            });
-        }
-        localStorage.setItem('data', JSON.stringify(e.data));
-    });
-
 });

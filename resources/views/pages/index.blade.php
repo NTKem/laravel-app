@@ -6,7 +6,7 @@
             }
         }
     }else{
-        $layout = 'default';
+        $layout = 'show-default';
     }
 ?>
 @extends('../layouts.app')

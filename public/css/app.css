@@ -320,14 +320,20 @@ html {
 }
 
 .Orders-trigger-container {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   color: #fff;
   outline: 0;
   transition: 0.3s;
   background-color: #8F1EB2;
   border-radius: 50%;
+  background-size: cover;
+  background: url(/images/icon_accessibility.png?42f0500a26a2010935fe89100fd055ee);
+}
+
+body.show-default .Orders-trigger-container {
+  display: none;
 }
 
 body.default .Orders-trigger-container {
@@ -345,6 +351,34 @@ body.footer .Orders-popup-full,
 body.left .Orders-popup-full,
 body.right .Orders-popup-full,
 body.middle .Orders-popup-full {
+  display: none;
+}
+
+body.footer.trigger-true .Orders-trigger-container,
+body.left.trigger-true .Orders-trigger-container,
+body.right.trigger-true .Orders-trigger-container,
+body.middle.trigger-true .Orders-trigger-container {
+  display: none;
+}
+
+body.footer.trigger-true .Orders-popup-full,
+body.left.trigger-true .Orders-popup-full,
+body.right.trigger-true .Orders-popup-full,
+body.middle.trigger-true .Orders-popup-full {
+  display: block;
+}
+
+body.footer.trigger-false .Orders-trigger-container,
+body.left.trigger-false .Orders-trigger-container,
+body.right.trigger-false .Orders-trigger-container,
+body.middle.trigger-false .Orders-trigger-container {
+  display: block;
+}
+
+body.footer.trigger-false .Orders-popup-full,
+body.left.trigger-false .Orders-popup-full,
+body.right.trigger-false .Orders-popup-full,
+body.middle.trigger-false .Orders-popup-full {
   display: none;
 }
 

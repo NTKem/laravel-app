@@ -6,8 +6,7 @@ $(function(e){
     new_ob,
     domain = Shopify.shop;
     window.data['domain'] = domain;
-    // var iframeEl = document.getElementById('hkoAccessibilityAssets');
-    // iframeEl.contentWindow.postMessage(window.data['domain'],'*');
+
 function text_mode_off(){
     $('*').each(function(){
         if($(this)[0].tagName == "IMG" || $(this)[0].tagName == "svg"){
@@ -45,7 +44,11 @@ function text_mode_off(){
         });
     }
 setTimeout(function(){
+
     body.append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://ntkem.test/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; min-height:350px"></iframe>');
+    var iframeEl = document.getElementById('hkoAccessibilityAssets');
+    iframeEl.contentWindow.postMessage(window.data['domain'],'*');
+
     setTimeout(function(){
         var eventMethod = window.addEventListener
             ? "addEventListener"
@@ -70,24 +73,31 @@ setTimeout(function(){
                                 });
                                 text_mode_off();
                                 window.data  = {};
+                                window.data['layout'] = new_ob['layout'];
+                                window.data['menu_bar'] = new_ob['menu_bar'];
                                 new_ob={};
                                 $('#readtext').remove();
                                 new_ob[key] = 'false';
                             }
                         }else if(key == 'menu_bar'){
                             if(new_ob[key] == 'true'){
-                                $('#hkoAccessibilityAssets').css({'height':'35px','min-height':'auto'});
+                                if(new_ob['layout'] != 'default'){
+                                    $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
+                                }else{
+                                    $('#hkoAccessibilityAssets').css({'height':'50px','min-height':'auto'});
+                                }
                             }else{
-                                $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
+                                if(new_ob['layout'] != 'default'){
+                                    $('#hkoAccessibilityAssets').css({'height':'50px','min-height':'auto'});
+                                }else{
+                                    $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
+                                }
                             }
                             window.data[key] =new_ob[key];
-
                         }else if(key == 'text_mode'){
                             text_mode_on();
                             window.data[key] =new_ob[key];
                         }else{
-
-
                             window.data[key] =new_ob[key];
                         }
                     }else{
@@ -139,10 +149,8 @@ setTimeout(function(){
                 var iframeEl = document.getElementById('hkoAccessibilityAssets');
                 iframeEl.contentWindow.postMessage(window.data,'*');
             }
-
         });
     },100);
-
 
 },1000);
     $('body').append('<div class="mask-screen-top screen_items"></div><div class="mask-screen-bottom screen_items"></div><div class="screen-ruler-box"></div>');
