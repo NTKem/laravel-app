@@ -10,7 +10,6 @@
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="shortcut icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     {{-- Styles --}}
@@ -23,30 +22,30 @@
     </script>
     @yield('head')
 </head>
-<body class="@yield('class')" id="hkoAccessibilityAssets">
+<body class="@yield('class')">
 <div id="app">
-    <main class="py-4">
-
-        <div class="Orders-trigger-container trigger-position-right">
-            <div role="button" aria-expanded="false" tabindex="0" class="hikeOrders-trigger showNow">
-                <span class="icon icon-a11y-0"></span>
-            </div>
-        </div>
-        <div class="main-bottom Orders-popup-full">
-            <div class="tool-bar">
-                <div class="left reset"><i class="fa fa-sync"></i></div>
-                <div class="center">accessibility</div>
-                <div class="right"><i class="fa fa-times"></i></div>
-            </div>
-            <div class="main-content">
+    <main class="py-4 main-app">
                 @yield('content')
-            </div>
-        </div>
     </main>
 </div>
 
 {{-- Scripts --}}
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')
+@if(config('shopify-app.appbridge_enabled'))
+    <script src="https://unpkg.com/@shopify/app-bridge{{ config('shopify-app.appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>
+    <script>
+        var AppBridge = window['app-bridge'];
+        var createApp = AppBridge.default;
+        var app = createApp({
+            apiKey: '{{ config('shopify-app.api_key') }}',
+            shopOrigin: '{{ ShopifyApp::shop()->shopify_domain }}',
+            forceRedirect: true,
+        });
+    </script>
+
+    @include('shopify-app::partials.flash_messages')
+@endif
+@yield('scripts')
 </body>
 </html>

@@ -11,12 +11,15 @@
 |
 */
 //Profile selected
-Route::get('/', 'AppController@index')->name('home');
+Route::get('/', 'AppController@settings')->middleware(['auth.shop'])->name('home');
+//Settings
+Route::get('settings', 'AppController@settings')->middleware(['auth.shop'])->name('settings');
+//Settings
+Route::get('layouts/{id}', 'AppController@layouts')->middleware(['auth.shop'])->name('layouts');
+Route::get('possitions', 'AppController@possitions')->middleware(['auth.shop'])->name('possitions');
+Route::get('checkdomain/{id}', 'AppController@checkdomain')->name('checkdomain');
 
 Route::get('/profile', 'AppController@profile')->name('profile');
 // Profile elderly
 Route::get('elderly/{id}', 'AppController@elderly')->name('elderly');
-//Setting save
-Route::post('settings','AppController@settings')->middleware(['auth.shop'])->name('settings');
-//Setting css
-Route::get('settings-css','AppController@Settings_Css')->middleware(['auth.shop'])->name('settings-css');
+

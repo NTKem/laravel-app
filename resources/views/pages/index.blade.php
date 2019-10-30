@@ -1,5 +1,16 @@
+<?php
+    if($domain != ''){
+        foreach($shop as $items){
+            if($items['shopify_domain'] == $domain){
+                $layout =  $items->layout['value'];
+            }
+        }
+    }else{
+        $layout = 'default';
+    }
+?>
 @extends('../layouts.app')
-@section('class','home')
+@section('class',$layout.' home')
 @section('content')
     <h2 class="title">select your profile</h2>
     <div class="menu-bar">

@@ -3,7 +3,11 @@ $(function(e){
       window.data  = {
     };
     var body = $('body'),
-    new_ob;
+    new_ob,
+    domain = Shopify.shop;
+    window.data['domain'] = domain;
+    // var iframeEl = document.getElementById('hkoAccessibilityAssets');
+    // iframeEl.contentWindow.postMessage(window.data['domain'],'*');
 function text_mode_off(){
     $('*').each(function(){
         if($(this)[0].tagName == "IMG" || $(this)[0].tagName == "svg"){
@@ -80,6 +84,7 @@ setTimeout(function(){
 
                         }else if(key == 'text_mode'){
                             text_mode_on();
+                            window.data[key] =new_ob[key];
                         }else{
 
 

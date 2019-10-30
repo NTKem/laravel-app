@@ -3,6 +3,7 @@
 body {
   background: transparent;
   font-family: "Open Sans", sans-serif;
+  margin: 0;
 }
 
 a {
@@ -45,6 +46,7 @@ a {
   width: 100%;
   height: 100%;
   display: block;
+  overflow: hidden;
 }
 
 .menu-bar .items img {
@@ -292,5 +294,69 @@ a {
 
 input {
   cursor: pointer;
+}
+
+html {
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.index-admin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+}
+
+.index-admin .main-app {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.Orders-trigger-container {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  outline: 0;
+  transition: 0.3s;
+  background-color: #8F1EB2;
+  border-radius: 50%;
+}
+
+body.default .Orders-trigger-container {
+  display: none;
+}
+
+body.footer .Orders-trigger-container,
+body.left .Orders-trigger-container,
+body.right .Orders-trigger-container,
+body.middle .Orders-trigger-container {
+  display: block;
+}
+
+body.footer .Orders-popup-full,
+body.left .Orders-popup-full,
+body.right .Orders-popup-full,
+body.middle .Orders-popup-full {
+  display: none;
+}
+
+body.left .Orders-trigger-container {
+  margin-left: 0;
+}
+
+body.right .Orders-trigger-container {
+  float: right;
+}
+
+body.middle .Orders-trigger-container {
+  margin: auto;
 }
 

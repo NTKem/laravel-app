@@ -25,5 +25,9 @@ class Shop extends Model
             'App\User', 'store_users', 'store_id', 'user_id'
         );
     }
+    public function layout()
+    {
+        return $this->hasOne('App\Layout');
+    }
 
 }
