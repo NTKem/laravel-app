@@ -329,7 +329,6 @@ html {
   background-color: #8F1EB2;
   border-radius: 50%;
   background-size: cover;
-  background: url(/images/icon_accessibility.png?42f0500a26a2010935fe89100fd055ee);
 }
 
 body.show-default .Orders-trigger-container {
@@ -392,5 +391,31 @@ body.right .Orders-trigger-container {
 
 body.middle .Orders-trigger-container {
   margin: auto;
+}
+
+.upload-page .title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.upload-page .nav-tabs {
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.upload-page .nav-tabs a {
+  color: #000;
+}
+
+.upload-page .tab-content {
+  max-width: 500px;
+  margin: auto;
+  padding-top: 30px;
+}
+
+.upload-page .tab-content > .active {
+  border: none;
 }
 

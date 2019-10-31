@@ -1,4 +1,4 @@
-@extends('../../layouts.app')
+@extends('../../layouts.admin')
 @section('class','ederly profile')
 @section('content')
     <div class="tab-bar">
@@ -7,6 +7,10 @@
         <?php endforeach;?>
     </div>
     <div class="main-section">
+        <form method="post" action="admin/settings" class="form-settings">
+            {{ csrf_field() }}
+            <input hidden name="shop_id" value="{{ $shop->id }}" />
+            <input hidden name="profile_id" value="{{ $id }}" />
             <?php foreach ($site_menu as  $key => $menu_items):?>
             <?php if($menu_items->name == 'Readable Text'):?>
             <div class="menu-bar active-bar hidden readable-text" id="tabs-{{$key}}">
@@ -15,7 +19,7 @@
                     <p>Line<br> Height</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input class="custom-input" type="hidden" name="line_height" value="16" min="1" max="100"/>
+                        <input class="custom-input" type="hidden" name="line_height" value="11" min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -24,7 +28,7 @@
                     <p>Font<br> Size</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input class="custom-input" type="hidden" name="font_size" value="16" min="1" max="100"/>
+                        <input class="custom-input" type="hidden" name="font_size" value="11" min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -184,5 +188,23 @@
             </div>
             <?php endif; ?>
             <?php endforeach;?>
+        <button>SAVE</button>
+        </form>
     </div>
+@endsection
+@section('scripts')
+    @parent
+    @if(config('shopify-app.appbridge_enabled'))
+        <script type="text/javascript">
+            var AppBridge = window['app-bridge'];
+            var actions = AppBridge.actions;
+            var TitleBar = actions.TitleBar;
+            var Button = actions.Button;
+            var Redirect = actions.Redirect;
+            var titleBarOptions = {
+                title: 'Profile/Settings',
+            };
+            var myTitleBar = TitleBar.create(app, titleBarOptions);
+        </script>
+    @endif
 @endsection

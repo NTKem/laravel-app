@@ -46,7 +46,11 @@
 </div>
 
 {{-- Scripts --}}
+<script>
+    window.domain  = "{{ $_GET['shop'] }}";
+</script>
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')
+
 </body>
 </html>

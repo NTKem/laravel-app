@@ -1,7 +1,10 @@
 $(function(){
-    var  e  = {
-        origin: "ACCESSIBILITY",
-    };
+    var  e  = {};
+    e.access = "ACCESSIBILITY";
+    $.get('checkdomain/'+window.domain).done(function(data){
+        e.layout = data;
+        localStorage.setItem('data', JSON.stringify(e));
+    });
     //
     var eventMethod = window.addEventListener
         ? "addEventListener"
@@ -12,11 +15,6 @@ $(function(){
         : "message";
     eventer(messageEvent, function (e) {
         localStorage.setItem('data', JSON.stringify(e.data));
-            $.get('checkdomain/'+e.data.domain).done(function(data){
-                e.data.layout = data;
-                localStorage.setItem('data', JSON.stringify(e.data));
-            });
-
     });
         if(localStorage.data == undefined || localStorage.data == '{}' ){
             localStorage.setItem('data', JSON.stringify(e));
@@ -160,7 +158,7 @@ $(function(){
                 });
                 $('.radio-items input').click(function () {
                     var name = $(this).attr('name');
-                    e[name]= name+'-'+$(this).val();
+                    e[name]= $(this).val();
                     parent.postMessage(e, "*");
                 });
                 $('.zoom-input').change(function () {
@@ -171,7 +169,7 @@ $(function(){
                 $('.reset').click(function(){
                     var ob = e;
                     e  = {
-                        origin: "ACCESSIBILITY",
+                        access: "ACCESSIBILITY",
                     };
                     e['layout'] = ob['layout'];
                     if(ob['menu_bar'] != undefined){
@@ -234,5 +232,22 @@ $(function(){
     $('.Orders-trigger-container').click(function(){
         $(this).hide();
         $('.Orders-popup-full').show();
+    });
+    $('.fontend-pages .link-bar').click(function(event){
+        var href = $(this).attr('href');
+        event.preventDefault();
+        debugger;
+        e['profile'] = $(this).data('value');
+        parent.postMessage(e, "*");
+        $.get('get-profile/'+e['profile']+'/'+window.domain).done(function(data){
+            e.access = "ACCESSIBILITY";
+            Object.keys(data).forEach(function(key) {
+                if(data[key] != null){
+                    e[key] = data[key];
+                }
+            });
+            localStorage.setItem('data', JSON.stringify(e));
+            window.location.href = href+'?shop='+window.domain;
+        });
     });
 });

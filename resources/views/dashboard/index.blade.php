@@ -3,15 +3,21 @@
 @section('content')
     <div class="menu-bar">
         <div class="items">
-            <a class="link-bar" href="https://ntkem.test/profiles">
-                <img src="https://ntkem.test/images/profile/ederly.png">
+            <a class="link-bar" href="admin/profile">
+                <img src="{{ asset('images/profile/ederly.png') }}">
                 <p>Profile</p>
             </a>
         </div>
         <div class="items">
-            <a class="link-bar" href="https://ntkem.test/settings">
-                <img src="https://ntkem.test/images/profile/ederly.png">
+            <a class="link-bar" href="admin/settings">
+                <img src="{{ asset('images/profile/ederly.png') }}">
                 <p>Settings</p>
+            </a>
+        </div>
+        <div class="items">
+            <a class="link-bar" href="admin/upload-font">
+                <img src="{{ asset('images/profile/ederly.png') }}">
+                <p>Upload Font</p>
             </a>
         </div>
     </div>
