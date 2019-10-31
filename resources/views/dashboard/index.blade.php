@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="items">
-            <a class="link-bar" href="admin/settings">
+            <a class="link-bar" href="settings">
                 <img src="{{ asset('images/profile/ederly.png') }}">
                 <p>Settings</p>
             </a>
