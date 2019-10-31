@@ -193,7 +193,13 @@ class AppController extends Controller
         return $array;
     }
     public function AdminUploadFont(){
-        return view('dashboard/pages/uploads/index');
+        $domain = ShopifyApp::shop()->shopify_domain;
+        $shop = Shop::where('shopify_domain', '=', $domain)->first();
+        $font = Upload_Font::where('shop_id','=',$shop->id)->get();
+        if(count($font) < 1){
+            $font = '';
+        }
+        return view('dashboard/pages/uploads/index')->with(['font'=>$font]);
     }
     public function AdminPostUploadFont(Request $request){
         $domain = ShopifyApp::shop()->shopify_domain;
@@ -208,15 +214,47 @@ class AppController extends Controller
             $script->name = $request->name;
             if($request->hasfile('url')){
                 $file = $request->file('url');
-                $font_face = explode('.', $file->getClientOriginalName());
-                $file->move('images/',$font_face);
+                $font_face = explode('.', $file->getClientOriginalName())[0];
+                $file->move('fonts/',$font_face);
                 $script->name = $file->getClientOriginalName();
-                $script->font_face = $font_face[0];
+                $script->font_face = $font_face;
                 $script->url = 'fonts/'.$file->getClientOriginalName();
             }
         }
         $script->shop_id = $id->id;
         $script->save();
+        return redirect('admin/upload-font');
+    }
+    public function AdminEditFont($id){
+        $font = Upload_Font::find($id);
+        return view('dashboard/pages/uploads/edit')->with(['font'=>$font]);
+    }
+    public function AdminPostEditFont(Request $request,$id){
+        $font = Upload_Font::find($id);
+        if($request->has('up_script')){
+            $font->name = $request->name;
+            $font->font_face = $request->font_face;
+            $font->script =  $request->script;
+        }else{
+            $font->name = $request->name;
+            if($request->hasfile('url')){
+                $file = $request->file('url');
+                $font_face = explode('.', $file->getClientOriginalName())[0];
+                $file->move('fonts/',$font_face);
+                $font->name = $file->getClientOriginalName();
+                $font->font_face = $font_face;
+                $font->url = 'fonts/'.$file->getClientOriginalName();
+            }
+        }
+        $font->save();
+        return redirect('admin/upload-font');
+    }
+    public function AdminDeleteFont($id){
+        $font = Upload_Font::find($id);
+        if($font->url != 'null'){
+            unlink($font->url);
+        }
+        $font->delete();
         return redirect('admin/upload-font');
     }
 }

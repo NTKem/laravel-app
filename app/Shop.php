@@ -29,5 +29,8 @@ class Shop extends Model
     {
         return $this->hasOne('App\Layout');
     }
+    public function font(){
+        return $this->hasMany(Upload_Font::class);
+    }
 
 }

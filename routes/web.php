@@ -23,9 +23,12 @@ Route::get('admin/profile', 'AppController@AdminProfile')->middleware(['auth.sho
 Route::get('admin/elderly/{id}', 'AppController@AdminElderly')->middleware(['auth.shop'])->name('admin/elderly');
 Route::post('admin/settings', 'AppController@AdminSettings')->middleware(['auth.shop'])->name('admin/settings');
 Route::get('get-profile/{id}/{url}', 'AppController@GetProfile')->name('get-profile');
+//Admin Upload Font
 Route::get('admin/upload-font', 'AppController@AdminUploadFont')->middleware(['auth.shop'])->name('admin/upload-font');
 Route::post('admin/upload-font', 'AppController@AdminPostUploadFont')->middleware(['auth.shop']);
-
+Route::get('admin/edit-font/{id}', 'AppController@AdminEditFont')->middleware(['auth.shop']);
+Route::get('admin/delete-font/{id}', 'AppController@AdminDeleteFont')->middleware(['auth.shop']);
+Route::post('admin/edit-font/{id}', 'AppController@AdminPostEditFont')->middleware(['auth.shop']);
 
 Route::get('profile', 'AppController@profile')->name('profile');
 // Profile elderly

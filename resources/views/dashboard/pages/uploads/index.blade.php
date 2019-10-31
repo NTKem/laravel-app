@@ -49,6 +49,29 @@
             </form>
         </div>
     </div>
+    <?php if($font != ''):?>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Front Name</th>
+            <th scope="col">Front Face</th>
+            <th scope="col">Script/Url</th>
+            <th scope="col">Edit/Delete </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($font as $items):?>
+        <tr>
+            <td>{{$items->name}}</td>
+            <td>font-family:"{{$items->font_face}}"</td>
+            <td><?php print ($items->url == null) ?  $items->script  : env('APP_URL').'/'.$items->url ?></td>
+            <td><a href="admin/edit-font/{{$items->id}}">Edit</a>   <a href="admin/delete-font/{{$items->id}}">Delete</a></td>
+        </tr>
+        <?php endforeach;?>
+        </tbody>
+    </table>
+    <?php endif;?>
+
 @endsection
 @section('scripts')
     @parent
@@ -69,7 +92,6 @@
         $(function(){
             var file = document.getElementById('upload-font');
             file.onchange = function(e) {
-                debugger;
                 var ext = this.value.match(/\.([^\.]+)$/)[1];
                 switch (ext) {
                     case 'woff':

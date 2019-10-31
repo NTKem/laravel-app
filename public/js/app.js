@@ -19496,17 +19496,17 @@ $(function () {
   });
   $('.index-admin.settings input[type="radio"]').click(function () {
     $value = $(this).val();
-    $e = $(this);
-    $('iframe#hkoAccessibilityAssets').remove();
+    $e = $(this); // $('iframe#hkoAccessibilityAssets').remove();
+
     $.get('layouts/' + $value + '').done(function () {
       if ($e.val() == 'footer' || $e.val() == 'left' || $e.val() == 'right' || $e.val() == 'middle') {
-        $('body').append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://ntkem.test/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed;   transition: all 0.3s ease 0s; max-height: 41px;   visibility: visible; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;height:41px;bottom: 20px;"></iframe>');
+        $('#hkoAccessibilityAssets').attr('style', 'z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed;   transition: all 0.3s ease 0s; max-height: 41px;   visibility: visible; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;height:41px;bottom: 20px;');
         $('.Orders-popup-full').hide();
         $('.Orders-trigger-container').show();
       } else if ($e.val() == 'default') {
         $('.Orders-popup-full').show();
         $('.Orders-trigger-container').hide();
-        $('body').append('<iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="https://ntkem.test/profile" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 350px; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important; "></iframe>');
+        $('#hkoAccessibilityAssets').attr('style', 'z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 350px; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;');
       }
     });
   });
@@ -19553,8 +19553,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

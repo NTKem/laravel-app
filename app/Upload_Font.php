@@ -10,4 +10,8 @@ class Upload_Font extends Model
     protected $fillable = [
         'name', 'url','font_face','script'
     ];
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }
