@@ -86,7 +86,7 @@ setTimeout(function(){
                                 if(new_ob['layout'] != 'default'){
                                     $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'350px'});
                                 }else{
-                                    $('#hkoAccessibilityAssets').css({'height':'50px','min-height':'auto'});
+                                    $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'auto'});
                                 }
                             }else{
                                 if(new_ob['layout'] != 'default'){
