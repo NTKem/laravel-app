@@ -1,5 +1,5 @@
 @extends('../../../layouts.admin')
-@section('class','home show-default')
+@section('class','index-admin home show-default main-bottom')
 @section('content')
     <h2 class="title">select your profile</h2>
     <div class="menu-bar">

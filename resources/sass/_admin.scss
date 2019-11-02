@@ -14,6 +14,15 @@ html{
     height: 100%;
     background: $white;
   }
+  &.admin-home{
+    .main-app{
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &.main-bottom{
+    position: relative;
+  }
 }
 .Orders-trigger-container{
   width: 50px;
@@ -26,7 +35,7 @@ html{
   background-color: #8F1EB2;
   border-radius: 50%;
   background-size: cover;
-  //background: url("images/icon_accessibility.png");
+  background: url("images/icon_accessibility.png");
 }
 body{
   &.show-default{
@@ -34,17 +43,13 @@ body{
       display: none;
     }
   }
-  &.default{
-    .Orders-trigger-container{
-      display: none;
-    }
-  }
+
   &.footer,&.left,&.right,&.middle{
     .Orders-trigger-container{
-      display: block;
+      display: none;
     }
     .Orders-popup-full{
-      display: none;
+      display: block;
     }
     &.trigger-true{
       .Orders-trigger-container{
@@ -60,6 +65,14 @@ body{
       }
       .Orders-popup-full{
         display: none;
+      }
+    }
+    &.admin-page{
+      .Orders-trigger-container{
+        display: block !important;
+      }
+      .Orders-popup-full{
+        display: none !important;
       }
     }
   }
@@ -78,6 +91,23 @@ body{
       margin: auto;
     }
   }
+  &.default{
+    .Orders-trigger-container{
+      display: none !important;
+    }
+    .Orders-popup-full{
+      display: block !important;
+    }
+    &.admin-page{
+      .Orders-trigger-container{
+        display: none !important;
+      }
+      .Orders-popup-full{
+        display: block !important;
+      }
+    }
+  }
+
 }
 .upload-page{
   .title{
@@ -101,5 +131,9 @@ body{
     &>.active{
       border: none;
     }
+  }
+  .table{
+    max-width: 80%;
+    margin: 1rem auto;
   }
 }

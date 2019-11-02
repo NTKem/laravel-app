@@ -1,5 +1,5 @@
 @extends('../../layouts.admin')
-@section('class','ederly profile')
+@section('class','index-admin ederly profile main-bottom')
 @section('content')
     <div class="tab-bar">
         <?php foreach ($site_menu as  $key => $menu_items):?>

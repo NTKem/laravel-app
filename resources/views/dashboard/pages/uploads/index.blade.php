@@ -91,20 +91,20 @@
     <script>
         $(function(){
             var file = document.getElementById('upload-font');
-            file.onchange = function(e) {
-                var ext = this.value.match(/\.([^\.]+)$/)[1];
-                switch (ext) {
-                    case 'woff':
-                    case 'woff2':
-                    case 'eot':
-                    case 'ttf':
-                        $('.custom-file-label').text($(this)[0].files[0].name);
-                        break;
-                    default:
-                        $('.custom-file-label').text('Choose file');
-                        this.value = '';
-                }
-            };
+            // file.onchange = function(e) {
+            //     var ext = this.value.match(/\.([^\.]+)$/)[1];
+            //     switch (ext) {
+            //         case 'woff':
+            //         case 'woff2':
+            //         case 'eot':
+            //         case 'ttf':
+            //             $('.custom-file-label').text($(this)[0].files[0].name);
+            //             break;
+            //         default:
+            //             $('.custom-file-label').text('Choose file');
+            //             this.value = '';
+            //     }
+            // };
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

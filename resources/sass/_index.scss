@@ -3,6 +3,18 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
 }
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
 a {
   color: #000;
   text-decoration: none;
@@ -164,7 +176,7 @@ a {
   }
 }
 .main-section {
-  min-height: 250px;
+  height: 250px;
   display: flex;
   justify-content: center;
 }
@@ -174,11 +186,14 @@ a {
 .active-bar {
   display: flex;
   width: 100%;
+  overflow: hidden;
 }
 .font-list {
   width: 320px;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
+  box-sizing: content-box;
 }
 .list-items {
   height: 35px;

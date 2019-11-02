@@ -14,11 +14,10 @@ use App\Upload_Font;
 use Session;
 use OhMyBrew\ShopifyApp\Services\ShopSession;
 use OhMyBrew\ShopifyApp\Facades\ShopifyApp;
-
+use Illuminate\Support\Facades\Storage;
 
 class AppController extends Controller
 {
-
     public $site_menu, $site_font,$site_contrast,$shopDomain;
     public function __construct()
     {
@@ -39,13 +38,13 @@ class AppController extends Controller
         $domain = ShopifyApp::shop()->shopify_domain;
         $id = Shop::where('shopify_domain', '=', $domain)->first();
         $layout = Layout::where('shop_id', '=', $id->id)->first();
-        return view('dashboard/pages/settings')->with(['layout'=>$layout]);
+        return view('dashboard/pages/settings')->with(['layout'=>$layout,'domain'=>$domain]);
     }
     public function possitions(){
         $domain = ShopifyApp::shop()->shopify_domain;
         $id = Shop::where('shopify_domain', '=', $domain)->first();
         $layout = Layout::where('shop_id', '=', $id->id)->first();
-        return view('dashboard/pages/possition')->with(['layout'=>$layout]);
+        return view('dashboard/pages/possition')->with(['layout'=>$layout,'domain'=>$domain]);
     }
     public function layouts($value){
         $domain = ShopifyApp::shop()->shopify_domain;
@@ -65,17 +64,23 @@ class AppController extends Controller
         $id = Shop::where('shopify_domain', '=', $value)->first();
         return  $id->layout['value'];
     }
-    public function elderly($id){
-        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id]);
+    public function elderly($id,$domain){
+        if($domain != ''){
+            $shop = Shop::where('shopify_domain', '=', $domain)->first();
+            $font = Upload_Font::where('shop_id', '=', $shop->id)->get();
+            $layout = $shop->layout['value'];
+        }else{
+            $font = '';
+        }
+
+        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id,'custom_font'=>$font,'layout'=>$layout]);
     }
     public function profile(){
+        $domain = $_GET['shop'];
         $profile = Profile::all();
-        if(ShopifyApp::shop() == null){
-            $domain = '';
-        }else{
-            $domain = ShopifyApp::shop()->shopify_domain;
-        }
-        return view('pages/index')->with(['profile'=>$profile,'shop'=>$this->shop,'domain'=>$domain]);
+        $shop = Shop::where('shopify_domain','=',$domain)->first();
+        $layout = $shop->layout['value'];
+        return view('pages/index')->with(['profile'=>$profile,'domain'=>$domain,'layout'=>$layout]);
     }
     public function AdminProfile(){
         $profile = Profile::all();
@@ -198,7 +203,52 @@ class AppController extends Controller
         $font = Upload_Font::where('shop_id','=',$shop->id)->get();
         if(count($font) < 1){
             $font = '';
+        }else{
+            $shop = ShopifyApp::shop();
+            $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
+            foreach ($request->body->themes as $item){
+                if($item->role == 'main'){
+                    $id_themes = $item->id;
+                }
+            }
+            $string = '<style>';
+            foreach($font as $fonts){
+                if($fonts->url != null){
+                    $string.='@font-face{font-family:'.$fonts->font_face.';';
+                    if(strpos($fonts->url,'eot') != false){
+                        $string.= 'src:url('.env('APP_URL').'/fonts/'.$fonts->url.') format("embedded-opentype");';
+                    }else if(strpos($fonts->url,'ttf') != false){
+                        $string.= 'src:url('.env('APP_URL').'/fonts/'.$fonts->url.') format("truetype");';
+                    }else if(strpos($fonts->url,'woff') != false){
+                        $string.= 'src:url('.env('APP_URL').'/fonts/'.$fonts->url.') format("woff");';
+                    }else{
+                        $string.= 'src:url('.env('APP_URL').'/fonts/'.$fonts->url.');';
+                    }
+                    $string.='} body.'.$fonts->name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
+                }else{
+                    $string.="@import url('".$fonts->script."');";
+                    $string.=' body.'.$fonts->name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
+                }
+            }
+            $string.='</style>';
+            $array = [
+                'asset'=>[
+                    'key'=> 'snippets/custom_font.liquid',
+                    'value'=>$string
+                ]
+            ];
+            $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
+            $array = [
+                'asset'=>[
+                    'key'=> 'templates/index.liquid',
+                    'value'=> ' {% include "custom_font" %} {{ content_for_index }}',
+
+                ]
+            ];
+
+            $request = $shop->api()->rest('PUT', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json',$array);
         }
+
         return view('dashboard/pages/uploads/index')->with(['font'=>$font]);
     }
     public function AdminPostUploadFont(Request $request){
@@ -215,10 +265,10 @@ class AppController extends Controller
             if($request->hasfile('url')){
                 $file = $request->file('url');
                 $font_face = explode('.', $file->getClientOriginalName())[0];
-                $file->move('fonts/',$font_face);
-                $script->name = $file->getClientOriginalName();
+                $file->move('fonts/',$file->getClientOriginalName());
+                $script->name = $font_face;
                 $script->font_face = $font_face;
-                $script->url = 'fonts/'.$file->getClientOriginalName();
+                $script->url = $file->getClientOriginalName();
             }
         }
         $script->shop_id = $id->id;
@@ -240,20 +290,28 @@ class AppController extends Controller
             if($request->hasfile('url')){
                 $file = $request->file('url');
                 $font_face = explode('.', $file->getClientOriginalName())[0];
-                $file->move('fonts/',$font_face);
-                $font->name = $file->getClientOriginalName();
+                $file->move('fonts/',$file->getClientOriginalName());
+                $font->name = $font_face;
                 $font->font_face = $font_face;
-                $font->url = 'fonts/'.$file->getClientOriginalName();
+                $font->url = $file->getClientOriginalName();
             }
         }
         $font->save();
         return redirect('admin/upload-font');
     }
     public function AdminDeleteFont($id){
+        $shop = ShopifyApp::shop();
+        $request = $shop->api()->rest('GET', '/admin/api/2019-10/themes.json');
+        foreach ($request->body->themes as $item){
+            if($item->role == 'main'){
+                $id_themes = $item->id;
+            }
+        }
         $font = Upload_Font::find($id);
         if($font->url != 'null'){
-            unlink($font->url);
+            Storage::delete('fonts/'.$font->url);
         }
+        $request = $shop->api()->rest('DELETE', '/admin/api/2019-10/themes/'.$id_themes.'/assets.json?asset[key]=assets/'.$font->url);
         $font->delete();
         return redirect('admin/upload-font');
     }

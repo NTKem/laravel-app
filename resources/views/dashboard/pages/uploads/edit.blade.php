@@ -6,12 +6,16 @@
 @section('content')
     <h2 class="title">Upload</h2>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <?php if($font->script != null){ ?>
         <li class="nav-item">
-            <a class="nav-link <?php if($font->script != null){ echo 'active'; } ?>" id="home-tab" data-toggle="tab" href="#gg_font" role="tab" aria-controls="home" aria-selected="true">Use Google Font</a>
+            <a class="nav-link " id="home-tab" data-toggle="tab" href="#gg_font" role="tab" aria-controls="home" aria-selected="true">Use Google Font</a>
         </li>
+            <?php } ?>
+            <?php if($font->url != null){   ?>
         <li class="nav-item">
-            <a class="nav-link <?php if($font->url != null){ echo 'active'; } ?>" id="profile-tab" data-toggle="tab" href="#upload_font" role="tab" aria-controls="profile" aria-selected="false">Upload Font</a>
+            <a class="nav-link " id="profile-tab" data-toggle="tab" href="#upload_font" role="tab" aria-controls="profile" aria-selected="false">Upload Font</a>
         </li>
+        <?php } ?>
     </ul>
 <!--   --><?php // dd($font); ?>
     <div class="tab-content" id="myTabContent">

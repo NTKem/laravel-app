@@ -14,6 +14,8 @@
 Route::get('/', 'AppController@index')->middleware(['auth.shop'])->name('home');
 //Settings
 Route::get('settings', 'AppController@settings')->middleware(['auth.shop'])->name('settings');
+// Profile elderly
+Route::get('elderly/{id}/{domain}', 'AppController@elderly')->name('elderly');
 //Settings
 Route::get('layouts/{id}', 'AppController@layouts')->middleware(['auth.shop'])->name('layouts');
 Route::get('possitions', 'AppController@possitions')->middleware(['auth.shop'])->name('possitions');
@@ -31,6 +33,5 @@ Route::get('admin/delete-font/{id}', 'AppController@AdminDeleteFont')->middlewar
 Route::post('admin/edit-font/{id}', 'AppController@AdminPostEditFont')->middleware(['auth.shop']);
 
 Route::get('profile', 'AppController@profile')->name('profile');
-// Profile elderly
-Route::get('elderly/{id}', 'AppController@elderly')->name('elderly');
+
 

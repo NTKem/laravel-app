@@ -1,5 +1,15 @@
+<?php
+if(isset($_GET['shop'])){
+    $domain = $_GET['shop'];
+}
+if(isset($_GET['admin'])){
+    $page = 'admin-page';
+}else{
+    $page = 'fontend-pages';
+}
+?>
 @extends('../../layouts.app')
-@section('class','ederly profile')
+@section('class',$layout.' ederly profile '.$page)
 @section('content')
     <div class="tab-bar">
         <?php foreach ($site_menu as  $key => $menu_items):?>
@@ -42,12 +52,29 @@
             <div class="menu-bar hidden change-font" id="tabs-{{$key}}">
                 <div class="font-list radio-check">
                     <?php foreach ($site_font as $font_items):?>
-                    <div class="list-items radio-input">
-                        <input type="radio" data-action="{{$font_items->font_face}}" name="font_family" value="{{$font_items->font_face}}"/>
-                        {{$font_items->name}}
-                    </div>
+                        <div class="list-items radio-input">
+                            <input type="radio" data-action="{{$font_items->font_face}}" name="font_family" value="{{$font_items->font_face}}"/>
+                            {{$font_items->name}}
+                        </div>
                     <?php endforeach;?>
+                    <?php  if($custom_font != ''): ?>
+                        <?php foreach ($custom_font as $font_items):?>
+                        <?php if($font_items->url != null):?>
+                        <div class="list-items radio-input">
+                            <input type="radio" data-action="{{$font_items->font_face}}" name="font_family" value="{{$font_items->font_face}}"/>
+                            {{$font_items->name}}
+                        </div>
+                        <?php else: ?>
+                        <div class="list-items radio-input">
+                            <input type="radio" data-action="{{$font_items->name}}" name="font_family" value="{{$font_items->name}}"/>
+                            {{$font_items->name}}
+                        </div>
+                        <?php endif; ?>
+
+                        <?php endforeach;?>
+                    <?php endif; ?>
                 </div>
+
             </div>
             <?php elseif ($menu_items->name == 'Color More'): ?>
             <div class="menu-bar hidden color-more radio-check" id="tabs-{{$key}}">

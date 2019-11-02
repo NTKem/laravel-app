@@ -19283,6 +19283,13 @@ $(function () {
   e.access = "ACCESSIBILITY";
   $.get('checkdomain/' + window.domain).done(function (data) {
     e.layout = data;
+
+    if (e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer') {
+      e['menu_bar'] = 'false';
+    } else {
+      e['menu_bar'] = 'true';
+    }
+
     localStorage.setItem('data', JSON.stringify(e));
   }); //
 
@@ -19299,7 +19306,6 @@ $(function () {
     e = $.parseJSON(localStorage.data);
 
     if (e['layout'] != '') {
-      $('body').addClass(e['layout']);
       $('body').addClass('trigger-' + e['menu_bar']);
     }
 
@@ -19499,14 +19505,25 @@ $(function () {
     $e = $(this); // $('iframe#hkoAccessibilityAssets').remove();
 
     $.get('layouts/' + $value + '').done(function () {
+      var src = $('#hkoAccessibilityAssets').attr('src');
+      $('#hkoAccessibilityAssets').remove();
+
       if ($e.val() == 'footer' || $e.val() == 'left' || $e.val() == 'right' || $e.val() == 'middle') {
-        $('#hkoAccessibilityAssets').attr('style', 'z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed;   transition: all 0.3s ease 0s; max-height: 41px;   visibility: visible; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;height:41px;bottom: 20px;');
-        $('.Orders-popup-full').hide();
-        $('.Orders-trigger-container').show();
+        var iframeSource = src,
+            iframeStyle = 'z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed;   transition: all 0.3s ease 0s;visibility: visible; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;height:50px;bottom: 20px;',
+            iframe = document.createElement('iframe');
+        iframe.setAttribute('src', iframeSource);
+        iframe.setAttribute('id', 'hkoAccessibilityAssets');
+        iframe.setAttribute('style', iframeStyle);
+        document.body.appendChild(iframe);
       } else if ($e.val() == 'default') {
-        $('.Orders-popup-full').show();
-        $('.Orders-trigger-container').hide();
-        $('#hkoAccessibilityAssets').attr('style', 'z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 350px; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;');
+        var iframeSource = src,
+            iframeStyle = 'height:350px;z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 350px; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;',
+            iframe = document.createElement('iframe');
+        iframe.setAttribute('src', iframeSource);
+        iframe.setAttribute('id', 'hkoAccessibilityAssets');
+        iframe.setAttribute('style', iframeStyle);
+        document.body.appendChild(iframe);
       }
     });
   });
@@ -19517,7 +19534,6 @@ $(function () {
   $('.fontend-pages .link-bar').click(function (event) {
     var href = $(this).attr('href');
     event.preventDefault();
-    debugger;
     e['profile'] = $(this).data('value');
     parent.postMessage(e, "*");
     $.get('get-profile/' + e['profile'] + '/' + window.domain).done(function (data) {
@@ -19553,8 +19569,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

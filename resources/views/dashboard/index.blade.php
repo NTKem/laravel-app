@@ -1,5 +1,5 @@
 @extends('../layouts.admin')
-@section('class','index-admin home')
+@section('class','index-admin home admin-home ')
 @section('content')
     <div class="menu-bar">
         <div class="items">

@@ -23,7 +23,7 @@
     </script>
     @yield('head')
 </head>
-<body class="@yield('class')" id="hkoAccessibilityAssets">
+<body class="@yield('class')">
 <div id="app">
     <main class="py-4">
 
@@ -47,7 +47,10 @@
 
 {{-- Scripts --}}
 <script>
+    <?php if(isset($_GET['shop'])):?>
     window.domain  = "{{ $_GET['shop'] }}";
+    <?php endif; ?>
+
 </script>
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')
