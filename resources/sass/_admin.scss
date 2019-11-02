@@ -23,6 +23,20 @@ html{
   &.main-bottom{
     position: relative;
   }
+  .active-bar{
+    overflow: unset;
+  }
+  button{
+    background: #fff;
+    border: solid 1px;
+    padding: 5px 15px;
+    margin-top: 20px;
+    float: right;
+    cursor: pointer;
+  }
+  .tab-bar{
+    margin-top: 50px;
+  }
 }
 .Orders-trigger-container{
   width: 50px;

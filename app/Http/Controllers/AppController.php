@@ -12,6 +12,7 @@ use App\Setting;
 use App\Shop;
 use App\Upload_Font;
 use Session;
+use App\Profile_Default;
 use OhMyBrew\ShopifyApp\Services\ShopSession;
 use OhMyBrew\ShopifyApp\Facades\ShopifyApp;
 use Illuminate\Support\Facades\Storage;
@@ -89,7 +90,11 @@ class AppController extends Controller
     public function AdminElderly($id){
         $domain = ShopifyApp::shop()->shopify_domain;
         $shop = Shop::where('shopify_domain', '=', $domain)->first();
-        return view('dashboard/pages/profiles/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id,'shop'=>$shop]);
+        $setting = Setting::where('shop_id','=',$shop->id)->where('profile_id','=',$id)->first();
+        if($setting == null){
+            $setting = Profile_Default::where('profile_id','=',$id)->first();
+        }
+        return view('dashboard/pages/profiles/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id,'shop'=>$shop,'settings'=>$setting]);
     }
     public function AdminSettings(Request $request){
         $profile_id = $request->profile_id;
