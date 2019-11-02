@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 24, 2019 lúc 12:21 PM
+-- Thời gian đã tạo: Th10 02, 2019 lúc 07:49 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.2.13
 
@@ -126,6 +126,27 @@ INSERT INTO `fonts` (`id`, `name`, `url`, `font_face`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `layouts`
+--
+
+CREATE TABLE `layouts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `shop_id` int(11) NOT NULL,
+  `value` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `layouts`
+--
+
+INSERT INTO `layouts` (`id`, `shop_id`, `value`, `created_at`, `updated_at`) VALUES
+(1, 1, 'footer', '2019-10-29 23:40:15', '2019-11-01 23:08:55');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `menu`
 --
 
@@ -187,7 +208,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2019_10_18_082241_add_table_settings', 1),
 (16, '2019_10_18_083443_add_table_menu', 1),
 (17, '2019_10_18_090124_add_table_contrast', 1),
-(18, '2019_10_18_090856_add_table_font', 1);
+(18, '2019_10_18_090856_add_table_font', 1),
+(19, '2019_10_30_044752_add_table_layout', 2),
+(20, '2019_10_31_023508_add_table_settings', 3),
+(21, '2019_10_31_100521_add_table_custom_font', 4);
 
 -- --------------------------------------------------------
 
@@ -238,6 +262,46 @@ INSERT INTO `profile` (`id`, `name`, `image`, `url`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `shop_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profile_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `line_height` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `font_size` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `font_spacing` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `font_family` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color_more` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highlight_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highlight_focus` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highlight_links` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skip_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skip_focus` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `skip_links` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `screen_settings` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `screen_ruler` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `screen_cursor` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zoom` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contrast` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tooltip_permanent` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tooltip_mouseover` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text_mode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `settings`
+--
+
+INSERT INTO `settings` (`id`, `shop_id`, `profile_id`, `line_height`, `font_size`, `font_spacing`, `font_family`, `color_more`, `highlight_title`, `highlight_focus`, `highlight_links`, `skip_title`, `skip_focus`, `skip_links`, `screen_settings`, `screen_ruler`, `screen_cursor`, `zoom`, `contrast`, `tooltip_permanent`, `tooltip_mouseover`, `text_mode`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '11', '11', '0', 'readable-fonts-comic-sans-ms', 'grayscale', NULL, NULL, 'true', NULL, NULL, NULL, NULL, NULL, NULL, '0', 'contrast-2', NULL, NULL, NULL, '2019-10-30 20:11:06', '2019-11-01 08:24:20');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `shops`
 --
 
@@ -259,7 +323,32 @@ CREATE TABLE `shops` (
 --
 
 INSERT INTO `shops` (`id`, `shopify_domain`, `shopify_token`, `created_at`, `updated_at`, `grandfathered`, `deleted_at`, `namespace`, `plan_id`, `freemium`) VALUES
-(1, 'kem-test-app.myshopify.com', 'b84bcc06c383fca7886dc9727636619a', '2019-10-21 06:47:09', '2019-10-23 23:43:21', 0, NULL, NULL, NULL, 0);
+(1, 'kem-test-app.myshopify.com', '8d8d03fc3f282e6272412a7c7298037f', '2019-10-21 06:47:09', '2019-11-01 22:13:40', 0, NULL, NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `upload_fonts`
+--
+
+CREATE TABLE `upload_fonts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `shop_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `font_face` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `script` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `upload_fonts`
+--
+
+INSERT INTO `upload_fonts` (`id`, `shop_id`, `name`, `font_face`, `url`, `script`, `created_at`, `updated_at`) VALUES
+(10, 1, 'GreatVibes-Regular', 'GreatVibes-Regular', 'GreatVibes-Regular.otf', NULL, '2019-11-01 01:57:10', '2019-11-01 01:57:10'),
+(11, 1, 'Staatliches', '\'Staatliches\', cursive', NULL, 'https://fonts.googleapis.com/css?family=Staatliches&display=swap', '2019-11-01 03:46:43', '2019-11-01 03:46:43');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -288,6 +377,12 @@ ALTER TABLE `fonts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `layouts`
+--
+ALTER TABLE `layouts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `menu`
 --
 ALTER TABLE `menu`
@@ -312,11 +407,23 @@ ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `shops`
 --
 ALTER TABLE `shops`
   ADD PRIMARY KEY (`id`),
   ADD KEY `shops_plan_id_foreign` (`plan_id`);
+
+--
+-- Chỉ mục cho bảng `upload_fonts`
+--
+ALTER TABLE `upload_fonts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -341,6 +448,12 @@ ALTER TABLE `fonts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT cho bảng `layouts`
+--
+ALTER TABLE `layouts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
@@ -350,7 +463,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `plans`
@@ -365,10 +478,22 @@ ALTER TABLE `profile`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT cho bảng `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT cho bảng `shops`
 --
 ALTER TABLE `shops`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `upload_fonts`
+--
+ALTER TABLE `upload_fonts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
