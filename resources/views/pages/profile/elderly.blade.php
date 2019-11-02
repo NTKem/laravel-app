@@ -7,6 +7,9 @@ if(isset($_GET['admin'])){
 }else{
     $page = 'fontend-pages';
 }
+if($layout == ''){
+    $layout = 'default';
+}
 ?>
 @extends('../../layouts.app')
 @section('class',$layout.' ederly profile '.$page)
