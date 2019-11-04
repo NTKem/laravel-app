@@ -150,8 +150,7 @@ class AppController extends Controller
             $save->text_mode = $save->text_mode;
             $save->save();
         }else{
-            Setting::where(['shop_id' => $request->shop_id])->update([
-                'profile_id' => $profile_id,
+            Setting::where(['shop_id' => $request->shop_id])->where(['profile_id' => $profile_id])->update([
                 'line_height'=>$line_height,
                 'font_size'=>$font_size,
                 'font_spacing'=>$font_spacing,
@@ -179,6 +178,12 @@ class AppController extends Controller
     public function GetProfile($id,$domain){
         $shop = Shop::where('shopify_domain', '=', $domain)->first();
         $setting = Setting::where('shop_id', '=', $shop->id)->where('profile_id', '=', $id)->first();
+        $zoom = $setting->zoom;
+        if($zoom > 0){
+            $zoom ='zoom_increase'.$zoom;
+        }else if($zoom < 0){
+            $zoom ='zoom_decrease-'.$zoom;
+        }
         $array =[
             'line_height'=>$setting->line_height,
             'font_size'=>$setting->font_size,
@@ -195,7 +200,7 @@ class AppController extends Controller
             'screen_ruler'=>$setting->screen_ruler,
             'screen_cursor'=>$setting->screen_cursor,
             'contrast'=>$setting->contrast,
-            'zoom'=>$setting->zoom,
+            'zoom'=>$zoom,
             'tooltip_permanent'=>$setting->tooltip_permanent,
             'tooltip_mouseover'=>$setting->tooltip_mouseover,
             'text_mode'=>$setting->text_mode

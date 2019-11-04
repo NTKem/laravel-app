@@ -47,7 +47,7 @@
                 <div class="font-list radio-check">
                     <?php foreach ($site_font as $font_items):?>
                     <div class="list-items radio-input <?php if($settings->font_family == $font_items->font_face):?> active-checkbox <?php endif;?>">
-                        <input type="radio" data-action="{{$font_items->font_face}}" name="font_family" value="{{$font_items->font_face}}"/>
+                        <input type="radio" data-action="{{$font_items->font_face}}" name="font_family" value="{{$font_items->font_face}}" <?php if($settings->font_family == $font_items->font_face):?>checked <?php endif;?>/>
                         {{$font_items->name}}
                     </div>
                     <?php endforeach;?>
@@ -58,17 +58,17 @@
                 <div class="items radio-input <?php if($settings->color_more == 'grayscale'):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/color/Grayscale.png') }}">
                     <p>Grayscale</p>
-                    <input type="radio" name="color_more" value="grayscale" <?php if($settings->color_more == 'grayscale'):?> checked <?php endif?> />
+                    <input type="radio" name="color_more" data-name="grayscale" value="grayscale" <?php if($settings->color_more == 'grayscale'):?> checked <?php endif?> />
                 </div>
                 <div class="items radio-input <?php if($settings->color_more == 'invert_colors'):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/color/invert-colors.png') }}">
                     <p>Invert Colors</p>
-                    <input type="radio" name="color_more" value="invert_colors" <?php if($settings->color_more == 'invert_colors'):?> checked <?php endif?> />
+                    <input type="radio" name="color_more" data-name="invert_colors" value="invert_colors" <?php if($settings->color_more == 'invert_colors'):?> checked <?php endif?> />
                 </div>
                 <div class="items radio-input <?php if($settings->color_more == 'invert_colors'):?> sepia <?php endif?>">
                     <img src="{{ asset('images/color/sepia.png') }}">
                     <p>Sepia</p>
-                    <input type="radio" name="color_more" value="sepia" <?php if($settings->color_more == 'sepia'):?> checked <?php endif?>/>
+                    <input type="radio" name="color_more" data-name="sepia" value="sepia" <?php if($settings->color_more == 'sepia'):?> checked <?php endif?>/>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Highlight'): ?>
@@ -76,17 +76,17 @@
                 <div class="items <?php if($settings->highlight_title):?> active-checkbox <?php endif?>" >
                     <img src="{{ asset('images/highlight/title.png') }}">
                     <p>Highlight Title</p>
-                    <input type="checkbox" name="highlight_title" value="true" <?php if($settings->highlight_title):?> checked <?php endif?>/>
+                    <input type="checkbox" name="highlight_title" data-name="highlight_title" value="highlight_title" <?php if($settings->highlight_title):?> checked <?php endif?>/>
                 </div>
                 <div class="items <?php if($settings->highlight_links):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/highlight/links.png') }}" >
                     <p>Highlight Link</p>
-                    <input type="checkbox" name="highlight_links" value="true" <?php if($settings->highlight_links):?> checked <?php endif?> />
+                    <input type="checkbox" name="highlight_links" value="highlight_links" data-name="highlight_links" <?php if($settings->highlight_links):?> checked <?php endif?> />
                 </div>
                 <div class="items <?php if($settings->highlight_focus):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/highlight/focus.png') }}">
                     <p>Highlight Focus</p>
-                    <input type="checkbox" name="highlight_focus" value="true" <?php if($settings->highlight_focus):?> checked <?php endif?> />
+                    <input type="checkbox" name="highlight_focus" data-name="highlight_focus" value="highlight_focus" <?php if($settings->highlight_focus):?> checked <?php endif?> />
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Ship Link'): ?>
@@ -94,17 +94,17 @@
                 <div class="items <?php if($settings->skip_title):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/skip/title.png') }}">
                     <p>Skip Title</p>
-                    <input type="checkbox" name="skip_title" value="true" <?php if($settings->skip_title):?> checked <?php endif?>/>
+                    <input type="checkbox" name="skip_title" data-name="skip_title" value="skip_title" <?php if($settings->skip_title):?> checked <?php endif?>/>
                 </div>
                 <div class="items <?php if($settings->skip_links):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/skip/links.png') }}">
                     <p>Skip Link</p>
-                    <input type="checkbox" name="skip_links" value="true" <?php if($settings->skip_links):?> checked <?php endif?>/>
+                    <input type="checkbox" name="skip_links" data-name="skip_links" value="skip_links" <?php if($settings->skip_links):?> checked <?php endif?>/>
                 </div>
                 <div class="items <?php if($settings->skip_focus):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/skip/focus.png') }}">
                     <p>Skip Focus</p>
-                    <input type="checkbox" name="skip_focus" value="true" <?php if($settings->skip_focus):?> checked <?php endif?>/>
+                    <input type="checkbox" name="skip_focus" data-name="skip_focus" value="skip_focus" <?php if($settings->skip_focus):?> checked <?php endif?>/>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Screen Settings'): ?>
@@ -112,17 +112,17 @@
                 <div class="items <?php if($settings->screen_settings):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/screen-settings/mask.png') }}">
                     <p>Screen Mask</p>
-                    <input type="checkbox" name="screen_settings" value="true" <?php if($settings->screen_settings):?> checked <?php endif?>/>
+                    <input type="checkbox" name="screen_settings" value="screen_settings" data-name="screen_settings" <?php if($settings->screen_settings):?> checked <?php endif?>/>
                 </div>
                 <div class="items <?php if($settings->screen_ruler):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/screen-settings/ruler.png') }}">
                     <p>Screen Ruler</p>
-                    <input type="checkbox" name="screen_ruler" value="true" <?php if($settings->screen_ruler):?> checked <?php endif?>/>
+                    <input type="checkbox" name="screen_ruler" value="screen_ruler" data-name="screen_ruler" <?php if($settings->screen_ruler):?> checked <?php endif?>/>
                 </div>
                 <div class="items radio-items <?php if($settings->screen_cursor == 'screen_cursor-blank'):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/screen-settings/cursor.png') }}">
                     <p>Blank Cursor</p>
-                    <input type="radio" name="screen_cursor" value="screen_cursor-blank" <?php if($settings->screen_cursor == 'screen_cursor-blank'):?> checked <?php endif?>/>
+                    <input type="radio" name="screen_cursor"  value="screen_cursor-blank" <?php if($settings->screen_cursor == 'screen_cursor-blank'):?> checked <?php endif?>/>
                 </div>
                 <div class="items radio-items <?php if($settings->screen_cursor == 'screen_cursor-white'):?> active-checkbox <?php endif?>">
                     <img src="{{ asset('images/screen-settings/white-cursor.png') }}">
@@ -130,7 +130,8 @@
                     <input type="radio" name="screen_cursor" value="screen_cursor-white" <?php if($settings->screen_cursor == 'screen_cursor-white'):?> checked <?php endif?> />
                 </div>
             </div>
-            <?php elseif ($menu_items->name == 'Zoom'): ?>
+            <?php elseif ($menu_items->name == 'Zoom'):
+            ?>
             <div class="menu-bar hidden zoom" id="tabs-{{$key}}">
                 <div class="items zoom-increase radio-input">
                     <img src="{{ asset('images/zoom/increase.png') }}">
@@ -140,7 +141,7 @@
                     <img src="{{ asset('images/zoom/decrease.png') }}">
                     <p>Decrease</p>
                 </div>
-                <input type="hidden" class="zoom-input" value="0"name="zoom" min="-3" max="3">
+                <input type="hidden" class="zoom-input" value="{{ $settings->zoom }}"name="<?php if($settings->zoom > 0): ?>zoom_increase<?php elseif($settings->zoom < 0):?>zoom_decrease<?php else:?>zoom<?php endif; ?> " min="-3" max="3">
             </div>
             <?php elseif ($menu_items->name == 'Contrast'): ?>
             <div class="menu-bar hidden contrast" id="tabs-{{$key}}">
@@ -166,12 +167,12 @@
                 <div class="items <?php if($settings->tooltip_permanent ):?>active-checkbox<?php endif; ?>">
                     <img src="{{ asset('images/tooltips/permanent.png') }}">
                     <p>Permanent</p>
-                    <input type="checkbox" name="tooltip_permanent" value="true" <?php if($settings->tooltip_permanent ):?>checked<?php endif; ?> />
+                    <input type="checkbox" name="tooltip_permanent" data-name="tooltip_permanent" value="tooltip_permanent" <?php if($settings->tooltip_permanent ):?>checked<?php endif; ?> />
                 </div>
                 <div class="items <?php if($settings->tooltip_mouseover ):?>active-checkbox<?php endif; ?>">
                     <img src="{{ asset('images/tooltips/on-mouse-over.png') }}">
                     <p>On Mouse Over</p>
-                    <input type="checkbox" name="tooltip_mouseover" value="true" <?php if($settings->tooltip_mouseover ):?>checked<?php endif; ?>/>
+                    <input type="checkbox" name="tooltip_mouseover" value="tooltip_mouseover" data-name="tooltip_mouseover" <?php if($settings->tooltip_mouseover ):?>checked<?php endif; ?>/>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Other'): ?>
@@ -179,7 +180,7 @@
                 <div class="items <?php if($settings->text_mode ):?>active-checkbox<?php endif; ?>">
                     <img src="{{ asset('images/others/plain-text-mode.png') }}">
                     <p>Plain Text Mode</p>
-                    <input type="checkbox" name="text_mode" value="true" <?php if($settings->text_mode ):?>checked<?php endif; ?>/>
+                    <input type="checkbox" name="text_mode" data-name="text_mode" value="text_mode" <?php if($settings->text_mode ):?>checked<?php endif; ?>/>
                 </div>
                 <div class="items reset">
                     <img src="{{ asset('images/others/reset.png') }}">

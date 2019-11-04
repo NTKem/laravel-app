@@ -19322,6 +19322,10 @@ $(function () {
           });
         }
       }
+
+      if (key == 'contrast') {
+        $('input[value=' + e[key] + ']').parents('.contrast-items').addClass('active-checkbox');
+      }
     });
     setTimeout(function () {
       parent.postMessage(e, "*");
@@ -19348,7 +19352,7 @@ $(function () {
   $('.ederly input[type="checkbox"]').click(function () {
     if ($(this).is(':checked')) {
       $(this).parents('.items').addClass('active-checkbox');
-      $(this).val('true');
+      $(this).val($(this).data('name'));
     } else {
       $(this).parents('.items').removeClass('active-checkbox');
       $(this).val('null');
@@ -19359,7 +19363,7 @@ $(function () {
     $(this).parents('.list-items').addClass('active-checkbox');
   });
   $('.screen_settings input[type="radio"]').click(function () {
-    $('.radio-items').removeClass('active-checkbox');
+    $(this).parents('.menu-bar').removeClass('active-checkbox');
     $(this).parents('.items').addClass('active-checkbox');
   });
   $('.contrast-items input').click(function () {
@@ -19416,7 +19420,7 @@ $(function () {
   $('.radio-check input[type="radio"]').click(function () {
     var name = $(this).attr('name');
     e[name] = $(this).val();
-    $('.radio-check').find('.radio-input').removeClass('active-checkbox');
+    $(this).parents('.menu-bar').find('.radio-input').removeClass('active-checkbox');
     $(this).parents('.radio-input').addClass('active-checkbox');
     parent.postMessage(e, "*");
   });
