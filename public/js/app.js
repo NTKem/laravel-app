@@ -19551,6 +19551,10 @@ $(function () {
       window.location.href = href + '?shop=' + window.domain;
     });
   });
+  $('.nav-wrapper i.fas').click(function () {
+    $(this).toggleClass('fa-times');
+    $('.nav-list').toggleClass('-open');
+  });
 });
 
 /***/ }),

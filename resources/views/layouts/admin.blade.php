@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">--}}
     {{-- Styles --}}
     <link href="{{ mix('/css/app.css') }}" async  defer  rel="stylesheet">
     {{-- Scripts --}}
@@ -22,10 +22,34 @@
     </script>
     @yield('head')
 </head>
-<body class="@yield('class')">
+<body class="index-admin @yield('class')">
 <div id="app">
+    <header class="nav-wrapper">
+        <nav class="nav">
+            <i class="fas fa-bars toggle-nav"></i>
+            <ul class="nav-list" role="navigation">
+                <div class="list -left">
+                    <li class="item">
+                        <a class="link" href="/">Dashboads</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="admin/profile">Profile</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="settings">Settings</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" href="admin/upload-font">Upload Font</a>
+                    </li>
+                </div>
+                <div class="list -right">
+                    <div class="overlay"></div>
+                </div>
+            </ul>
+        </nav>
+    </header>
     <main class="py-4 main-app">
-                @yield('content')
+        @yield('content')
     </main>
 </div>
 

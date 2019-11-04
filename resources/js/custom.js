@@ -134,8 +134,6 @@ $(function(){
         $('.zoom .items').removeClass('active-checkbox');
         $('.zoom-decrease').addClass('active-checkbox')
     }
-
-
                 $('.radio-check input[type="radio"]').click(function () {
                     var name = $(this).attr('name');
                     e[name]= $(this).val();
@@ -266,5 +264,9 @@ $(function(){
             localStorage.setItem('data', JSON.stringify(e));
             window.location.href = href+'?shop='+window.domain;
         });
+    });
+    $('.nav-wrapper i.fas').click(function(){
+       $(this).toggleClass('fa-times');
+       $('.nav-list').toggleClass('-open');
     });
 });
