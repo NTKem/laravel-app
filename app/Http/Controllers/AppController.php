@@ -178,7 +178,7 @@ class AppController extends Controller
     }
     public function GetProfile($id,$domain){
         $shop = Shop::where('shopify_domain', '=', $domain)->first();
-        $setting = Setting::find($shop->id);
+        $setting = Setting::where('shop_id', '=', $shop->id)->where('profile_id', '=', $id)->first();
         $array =[
             'line_height'=>$setting->line_height,
             'font_size'=>$setting->font_size,
@@ -234,6 +234,8 @@ class AppController extends Controller
                     $string.="@import url('".$fonts->script."');";
                     $string.=' body.'.$fonts->name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
                 }
+                $str = preg_replace('!\s+!', '', strtolower($fonts->name));
+                dd($str);
             }
             $string.='</style>';
             $array = [
