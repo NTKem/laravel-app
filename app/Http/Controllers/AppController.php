@@ -231,11 +231,10 @@ class AppController extends Controller
                     }
                     $string.='} body.'.$fonts->name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
                 }else{
+                    $fonts_name = preg_replace('!\s+!', '', strtolower($fonts->name));
                     $string.="@import url('".$fonts->script."');";
-                    $string.=' body.'.$fonts->name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
+                    $string.=' body.'.$fonts_name.' :not(i):not(.fa):not(.fab):not(.fas):not(.glyphicon):not([class*=icons]):not([class*=icon]):not(.material-icons):not(#hkoAccessibilityAssets){font-family:'.$fonts->font_face.';}';
                 }
-                $str = preg_replace('!\s+!', '', strtolower($fonts->name));
-                dd($str);
             }
             $string.='</style>';
             $array = [
@@ -263,7 +262,8 @@ class AppController extends Controller
         $id = Shop::where('shopify_domain', '=', $domain)->first();
         if($request->has('up_script')){
             $script = new Upload_Font();
-            $script->name = $request->name;
+            $font_name = preg_replace('!\s+!', '', strtolower($request->name));
+            $script->name = $font_name;
             $script->font_face = $request->font_face;
             $script->script =  $request->script;
         }else{
@@ -289,7 +289,8 @@ class AppController extends Controller
     public function AdminPostEditFont(Request $request,$id){
         $font = Upload_Font::find($id);
         if($request->has('up_script')){
-            $font->name = $request->name;
+            $font_name = preg_replace('!\s+!', '', strtolower($request->name));
+            $font->name = $font_name;
             $font->font_face = $request->font_face;
             $font->script =  $request->script;
         }else{
