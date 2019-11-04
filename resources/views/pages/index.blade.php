@@ -30,7 +30,7 @@
         $(function(){
             e = $.parseJSON(localStorage.data);
            if(e['profile'] != undefined){
-               window.location.href = '{{$item->url}}/'+e['profile']+'/'+window.domain+'<?php if($page == 'admin-page'):?>?admin=true<?php endif;?>';
+               window.location.href = '{{$item->url}}/'+e['profile']+'/'+window.domain+'?shop=' +window.domain +'<?php if($page == 'admin-page'):?>&admin=true<?php endif;?>';
            }
         });
     </script>

@@ -3,6 +3,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
 }
+#bitnami-banner {
+  display: none !important;
+}
 html {
   overflow: scroll;
   overflow-x: hidden;
