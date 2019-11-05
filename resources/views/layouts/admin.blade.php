@@ -30,7 +30,7 @@
             <ul class="nav-list" role="navigation">
                 <div class="list -left">
                     <li class="item">
-                        <a class="link" href="/">Dashboads</a>
+                        <a class="link" href="/">Dashboard</a>
                     </li>
                     <li class="item">
                         <a class="link" href="admin/profile">Profile</a>
