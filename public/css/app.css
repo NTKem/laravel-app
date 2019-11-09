@@ -321,6 +321,36 @@ input {
   cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    height: 0;
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+  }
+
+  .main-content {
+    overflow: scroll;
+  }
+
+  .main-content .tab-bar .items {
+    font-size: 16px;
+  }
+
+  .main-content .menu-bar {
+    justify-content: left;
+  }
+
+  .main-content .active-bar {
+    overflow: unset;
+  }
+
+  .contrast-items {
+    margin: 5px;
+  }
+}
+
 html {
   height: 100%;
 }
@@ -378,7 +408,7 @@ html {
   background-color: #8F1EB2;
   border-radius: 50%;
   background-size: cover;
-  background: url(/images/icon_accessibility.png?42f0500a26a2010935fe89100fd055ee);
+  background: url(/images/icon_accessibility.png?33f49a06ebcadfac12e660a2c85b3426);
 }
 
 body.show-default .Orders-trigger-container {
@@ -586,5 +616,14 @@ body.default.admin-page .Orders-popup-full {
   padding-left: 1.5rem;
   color: #e0e0e0;
   transition: all 0.3s ease-in-out;
+}
+
+.index-admin .readable-text .custom-input {
+  position: relative;
+  opacity: 1;
+  width: auto;
+  max-width: 42px;
+  text-align: center;
+  height: 25px;
 }
 

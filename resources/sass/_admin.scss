@@ -235,8 +235,14 @@ body{
         }
       }
   }
-
-  .main-app{
-
+  .readable-text{
+    .custom-input{
+      position: relative;
+      opacity: 1;
+      width: auto;
+      max-width: 42px;
+      text-align: center;
+      height: 25px;
+    }
   }
 }

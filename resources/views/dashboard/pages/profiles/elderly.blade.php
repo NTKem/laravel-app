@@ -19,7 +19,7 @@
                     <p>Line<br> Height</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input class="custom-input" type="hidden" name="line_height" <?php if($settings->line_height):?> value="{{$settings->line_height}}" <?php else: ?>value="10" <?php endif?> min="1" max="100"/>
+                        <input class="custom-input" type="text" name="line_height" <?php if($settings->line_height):?> value="{{$settings->line_height}}" <?php else: ?>value="10" <?php endif?> min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <p>Font<br> Size</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input class="custom-input" type="hidden" name="font_size" <?php if($settings->font_size):?> value="{{$settings->font_size}}" <?php else: ?>value="10" <?php endif?> min="1" max="100"/>
+                        <input class="custom-input" type="text" name="font_size" <?php if($settings->font_size):?> value="{{$settings->font_size}}" <?php else: ?>value="10" <?php endif?> min="1" max="100"/>
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <p>Font<br> Spacing</p>
                     <div class="main-action">
                         <i class="fa fa-plus"></i>
-                        <input class="custom-input" type="hidden" name="font_spacing" <?php if($settings->font_spacing):?> value="{{$settings->font_spacing}}" <?php else: ?>value="0" <?php endif?>  min="0" max="100" />
+                        <input class="custom-input" type="text" name="font_spacing" <?php if($settings->font_spacing):?> value="{{$settings->font_spacing}}" <?php else: ?>value="0" <?php endif?>  min="0" max="100" />
                         <i class="fa fa-minus"></i>
                     </div>
                 </div>

@@ -286,3 +286,28 @@ a {
 input{
   cursor: pointer;
 }
+@media(max-width:767px){
+  ::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    height:0;
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+.main-content{
+  overflow: scroll;
+  .tab-bar {
+    .items{
+      font-size: 16px;
+    }
+  }
+  .menu-bar{
+    justify-content: left;
+  }
+  .active-bar{
+    overflow: unset;
+  }
+}
+  .contrast-items{
+    margin: 5px;
+  }
+
+}

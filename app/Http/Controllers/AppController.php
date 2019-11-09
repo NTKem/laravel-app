@@ -178,33 +178,45 @@ class AppController extends Controller
     public function GetProfile($id,$domain){
         $shop = Shop::where('shopify_domain', '=', $domain)->first();
         $setting = Setting::where('shop_id', '=', $shop->id)->where('profile_id', '=', $id)->first();
-        $zoom = $setting->zoom;
-        if($zoom > 0){
-            $zoom ='zoom_increase'.$zoom;
-        }else if($zoom < 0){
-            $zoom ='zoom_decrease-'.$zoom;
+        if ($setting == null){
+            $save =   new Setting();
+            $save->profile_id = $id;
+            $save->shop_id = $shop->id;
+            $save->zoom = 0;
+            $save->save();
+            $zoom = 0;
+            $array =[];
+        }else{
+            $zoom = $setting->zoom;
+            if($zoom > 0){
+                $zoom ='zoom_increase'.$zoom;
+            }else if($zoom < 0){
+                $zoom ='zoom_decrease-'.$zoom;
+            }
+            $array =[
+                'line_height'=>$setting->line_height,
+                'font_size'=>$setting->font_size,
+                'font_spacing'=>$setting->font_spacing,
+                'font_family'=>$setting->font_family,
+                'color_more'=>$setting->color_more,
+                'highlight_title'=>$setting->highlight_title,
+                'highlight_focus'=>$setting->highlight_focus,
+                'highlight_links'=>$setting->highlight_links,
+                'skip_title'=>$setting->skip_title,
+                'skip_focus'=>$setting->skip_focus,
+                'skip_links'=>$setting->skip_links,
+                'screen_settings'=>$setting->screen_settings,
+                'screen_ruler'=>$setting->screen_ruler,
+                'screen_cursor'=>$setting->screen_cursor,
+                'contrast'=>$setting->contrast,
+                'zoom'=>$zoom,
+                'tooltip_permanent'=>$setting->tooltip_permanent,
+                'tooltip_mouseover'=>$setting->tooltip_mouseover,
+                'text_mode'=>$setting->text_mode
+            ];
         }
-        $array =[
-            'line_height'=>$setting->line_height,
-            'font_size'=>$setting->font_size,
-            'font_spacing'=>$setting->font_spacing,
-            'font_family'=>$setting->font_family,
-            'color_more'=>$setting->color_more,
-            'highlight_title'=>$setting->highlight_title,
-            'highlight_focus'=>$setting->highlight_focus,
-            'highlight_links'=>$setting->highlight_links,
-            'skip_title'=>$setting->skip_title,
-            'skip_focus'=>$setting->skip_focus,
-            'skip_links'=>$setting->skip_links,
-            'screen_settings'=>$setting->screen_settings,
-            'screen_ruler'=>$setting->screen_ruler,
-            'screen_cursor'=>$setting->screen_cursor,
-            'contrast'=>$setting->contrast,
-            'zoom'=>$zoom,
-            'tooltip_permanent'=>$setting->tooltip_permanent,
-            'tooltip_mouseover'=>$setting->tooltip_mouseover,
-            'text_mode'=>$setting->text_mode
-        ];
+
+
         return $array;
     }
     public function AdminUploadFont(){

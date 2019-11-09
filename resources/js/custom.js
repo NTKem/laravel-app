@@ -4,7 +4,7 @@ $(function(){
     $.get('checkdomain/'+window.domain).done(function(data){
         e.layout = data;
         if(e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer'){
-            e['menu_bar']='false';
+            // e['menu_bar']='false';
         }else{
             e['menu_bar']='true';
         }
@@ -44,6 +44,9 @@ $(function(){
                 }
                 if(key == 'contrast'){
                     $('input[value=' + e[key] + ']').parents('.contrast-items').addClass('active-checkbox');
+                }
+                if (key == 'screen_cursor') {
+                    $('input[value=' + e[key] + ']').parents('.radio-items').addClass('active-checkbox');
                 }
             });
             setTimeout(function () {

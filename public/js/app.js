@@ -19284,8 +19284,7 @@ $(function () {
   $.get('checkdomain/' + window.domain).done(function (data) {
     e.layout = data;
 
-    if (e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer') {
-      e['menu_bar'] = 'false';
+    if (e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer') {// e['menu_bar']='false';
     } else {
       e['menu_bar'] = 'true';
     }
@@ -19325,6 +19324,10 @@ $(function () {
 
       if (key == 'contrast') {
         $('input[value=' + e[key] + ']').parents('.contrast-items').addClass('active-checkbox');
+      }
+
+      if (key == 'screen_cursor') {
+        $('input[value=' + e[key] + ']').parents('.radio-items').addClass('active-checkbox');
       }
     });
     setTimeout(function () {
@@ -19577,8 +19580,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
