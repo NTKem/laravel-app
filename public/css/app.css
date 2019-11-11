@@ -197,6 +197,7 @@ a {
   justify-content: center;
   border: solid 0.5px #eeee;
   margin: 0 5px;
+  background: #fff;
   cursor: pointer;
   box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -321,33 +322,29 @@ input {
   cursor: pointer;
 }
 
+.custom-slide {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .custom-slide {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 767px) {
-  ::-webkit-scrollbar {
-    width: 0;
-    /* Remove scrollbar space */
-    height: 0;
-    background: transparent;
-    /* Optional: just make scrollbar invisible */
-  }
-
-  .main-content {
-    overflow: scroll;
-  }
-
-  .main-content .tab-bar .items {
+  .tab-bar .items {
     font-size: 16px;
+    text-align: center;
   }
 
-  .main-content .menu-bar {
-    justify-content: left;
+  .menu-bar .items {
+    margin: 10px 10px;
   }
 
-  .main-content .active-bar {
-    overflow: unset;
-  }
-
-  .contrast-items {
-    margin: 5px;
+  .menu-bar .items img {
+    margin: 10px auto;
   }
 }
 

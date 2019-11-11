@@ -12,6 +12,9 @@ if($layout == ''){
 }
 ?>
 @extends('../../layouts.app')
+@section('head')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+@endsection
 @section('class',$layout.' ederly profile '.$page)
 @section('content')
     <div class="tab-bar">
@@ -23,32 +26,34 @@ if($layout == ''){
             <?php foreach ($site_menu as  $key => $menu_items):?>
             <?php if($menu_items->name == 'Readable Text'):?>
             <div class="menu-bar active-bar hidden readable-text" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items">
                     <img src="{{ asset('images/line-height.png') }}">
                     <p>Line<br> Height</p>
                     <div class="main-action">
-                        <i class="fa fa-plus"></i>
+                        <button class="fa fa-plus"></button>
                         <input class="custom-input" type="hidden" name="line_height" value="16" min="1" max="100"/>
-                        <i class="fa fa-minus"></i>
+                        <button class="fa fa-minus"></button>
                     </div>
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/Font-size.png') }}">
                     <p>Font<br> Size</p>
                     <div class="main-action">
-                        <i class="fa fa-plus"></i>
+                        <button class="fa fa-plus"></button>
                         <input class="custom-input" type="hidden" name="font_size" value="16" min="1" max="100"/>
-                        <i class="fa fa-minus"></i>
+                        <button class="fa fa-minus"></button>
                     </div>
                 </div>
                 <div class="items">
                     <img src="{{ asset('images/Font-spacing.png') }}">
                     <p>Font<br> Spacing</p>
                     <div class="main-action">
-                        <i class="fa fa-plus"></i>
+                        <button class="fa fa-plus"></button>
                         <input class="custom-input" type="hidden" name="font_spacing" value="0"  min="0" max="100" />
-                        <i class="fa fa-minus"></i>
+                        <button class="fa fa-minus"></button>
                     </div>
+                </div>
                 </div>
             </div>
             <?php elseif ($menu_items->name == 'Change Font'): ?>
@@ -81,6 +86,7 @@ if($layout == ''){
             </div>
             <?php elseif ($menu_items->name == 'Color More'): ?>
             <div class="menu-bar hidden color-more radio-check" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items radio-input">
                     <img src="{{ asset('images/color/Grayscale.png') }}">
                     <p>Grayscale</p>
@@ -96,9 +102,11 @@ if($layout == ''){
                     <p>Sepia</p>
                     <input type="radio" name="color_more" data-name="sepia" value="sepia"/>
                 </div>
+                </div>
             </div>
             <?php elseif ($menu_items->name == 'Highlight'): ?>
             <div class="menu-bar hidden highlight" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items" >
                     <img src="{{ asset('images/highlight/title.png') }}">
                     <p>Highlight Title</p>
@@ -114,9 +122,11 @@ if($layout == ''){
                     <p>Highlight Focus</p>
                     <input type="checkbox" name="highlight_focus" data-name="highlight_focus" value="highlight_focus" />
                 </div>
+                </div>
             </div>
             <?php elseif ($menu_items->name == 'Ship Link'): ?>
             <div class="menu-bar hidden skip-link" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items">
                     <img src="{{ asset('images/skip/title.png') }}">
                     <p>Skip Title</p>
@@ -132,9 +142,11 @@ if($layout == ''){
                     <p>Skip Focus</p>
                     <input type="checkbox" name="skip_focus" data-name="skip_focus" value="skip_focus" />
                 </div>
+                </div>
             </div>
             <?php elseif ($menu_items->name == 'Screen Settings'): ?>
             <div class="menu-bar hidden screen_settings" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items">
                     <img src="{{ asset('images/screen-settings/mask.png') }}">
                     <p>Screen Mask</p>
@@ -155,9 +167,11 @@ if($layout == ''){
                     <p>White Cursor</p>
                     <input type="radio" name="screen_cursor" value="screen_cursor-white" />
                 </div>
+                </div>
             </div>
             <?php elseif ($menu_items->name == 'Zoom'): ?>
             <div class="menu-bar hidden zoom" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items zoom-increase radio-input">
                     <img src="{{ asset('images/zoom/increase.png') }}">
                     <p>Increase</p>
@@ -165,6 +179,7 @@ if($layout == ''){
                 <div class="items zoom-decrease radio-input">
                     <img src="{{ asset('images/zoom/decrease.png') }}">
                     <p>Decrease</p>
+                </div>
                 </div>
                 <input type="hidden" class="zoom-input" value="0"name="zoom" min="-3" max="3">
             </div>
@@ -189,6 +204,7 @@ if($layout == ''){
             </div>
             <?php elseif ($menu_items->name == 'Tool Tip'): ?>
             <div class="menu-bar hidden tooltips" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items">
                     <img src="{{ asset('images/tooltips/permanent.png') }}">
                     <p>Permanent</p>
@@ -199,9 +215,11 @@ if($layout == ''){
                     <p>On Mouse Over</p>
                     <input type="checkbox" name="tooltip_mouseover" data-name="tooltip_mouseover" value="tooltip_mouseover" />
                 </div>
+                </div>
             </div>
             <?php elseif ($menu_items->name == 'Other'): ?>
             <div class="menu-bar hidden others" id="tabs-{{$key}}">
+                <div class="custom-slide">
                 <div class="items">
                     <img src="{{ asset('images/others/plain-text-mode.png') }}">
                     <p>Plain Text Mode</p>
@@ -211,8 +229,38 @@ if($layout == ''){
                     <img src="{{ asset('images/others/reset.png') }}">
                     <p>Reset</p>
                 </div>
+                </div>
             </div>
             <?php endif; ?>
             <?php endforeach;?>
     </div>
+@endsection
+@section('footer_scripts')
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        function slick(){
+            if(window.innerWidth <= 767){
+                $('.custom-slide').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    arrows: false,
+                    dots: false,
+                    slidesToScroll: 1
+                });
+                $('.tab-bar').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    arrows: false,
+                    dots: false,
+                    slidesToScroll: 1
+                });
+            }
+        };
+        slick();
+        $( window ).resize(function() {
+            slick();
+        });
+
+
+    </script>
 @endsection

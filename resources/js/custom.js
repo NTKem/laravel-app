@@ -48,6 +48,15 @@ $(function(){
                 if (key == 'screen_cursor') {
                     $('input[value=' + e[key] + ']').parents('.radio-items').addClass('active-checkbox');
                 }
+                if(key == 'font_size'){
+                    $('input[name=' + key + ']').val( e[key]);
+                }
+                if(key == 'line_height'){
+                    $('input[name=' + key + ']').val( e[key]);
+                }
+                if(key == 'font_spacing'){
+                    $('input[name=' + key + ']').val( e[key]);
+                }
             });
             setTimeout(function () {
             parent.postMessage(e, "*");
@@ -68,8 +77,18 @@ $(function(){
 
     $('.fa-minus').click(function(){
         var qty = $(this).parents('.items').find('input').val();
-        qty = parseInt(qty)  - 1;
-        $(this).parents('.items').find('input').val(qty).change();
+        if($(this).parents('.items').find('input').attr('name') == 'font_spacing'){
+            if(qty > 0){
+                qty = parseInt(qty)  - 1;
+                $(this).parents('.items').find('input').val(qty).change();
+            }
+        }else{
+            if(qty > 10){
+                qty = parseInt(qty)  - 1;
+                $(this).parents('.items').find('input').val(qty).change();
+            }
+        }
+
     });
     $('.ederly input[type="checkbox"]').click(function(){
         if($(this).is(':checked')){
@@ -189,6 +208,11 @@ $(function(){
                     parent.postMessage(e, "*");
                     e['reset']= 'false';
                     $('.active-checkbox').removeClass('active-checkbox');
+                    if($('body').hasClass('index-admin')){
+                            $('.menu-bar input').val(' ');
+                    }else{
+                        window.history.back()
+                    }
                 });
                 $('.tool-bar .right').click(function(){
                     if($(this).parents('body').hasClass('default')){
