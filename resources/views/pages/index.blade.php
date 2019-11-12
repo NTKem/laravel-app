@@ -9,6 +9,9 @@
     }
 ?>
 @extends('../layouts.app')
+@section('head')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+@endsection
 @section('class',$layout.' home fontend-pages '.$page)
 @section('content')
     <h2 class="title">select your profile</h2>
@@ -26,6 +29,7 @@
         endforeach
         ;?>
     </div>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         $(function(){
             e = $.parseJSON(localStorage.data);
