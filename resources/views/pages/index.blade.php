@@ -39,7 +39,7 @@
         });
         function slick(){
             if(window.innerWidth <= 767){
-                $('.profile-slick').slick({
+                $('.profile-slick').not('.slick-initialized').slick({
                     infinite: true,
                     slidesToShow: 1,
                     arrows: false,
@@ -52,9 +52,7 @@
         }
         slick();
         $( window ).resize(function() {
-            setTimeout(function(){
-                slick();
-            }, 3000);
+            slick();
         });
     </script>
 @endsection

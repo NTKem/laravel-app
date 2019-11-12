@@ -240,20 +240,21 @@ if($layout == ''){
     <script>
         function slick(){
             if(window.innerWidth <= 767){
-                $('.custom-slide').slick({
+                $(".custom-slide").not('.slick-initialized').slick({
                     infinite: true,
                     slidesToShow: 1,
                     arrows: false,
                     dots: false,
                     slidesToScroll: 1
                 });
-                $('.tab-bar').slick({
+                $(".tab-bar").not('.slick-initialized').slick({
                     infinite: true,
                     slidesToShow: 1,
                     arrows: false,
                     dots: false,
                     slidesToScroll: 1
                 });
+
             }else{
                 $('.custom-slide').slick('unslick');
                 $('.tab-bar').slick('unslick');
@@ -261,9 +262,9 @@ if($layout == ''){
         };
         slick();
         $( window ).resize(function() {
-            setTimeout(function(){
+
                 slick();
-            }, 3000);
+
         });
     </script>
 @endsection
