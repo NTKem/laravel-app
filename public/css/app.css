@@ -629,3 +629,8 @@ body.default.admin-page .Orders-popup-full {
   height: 25px;
 }
 
+.input-group-append .btn,
+.input-group-prepend .btn {
+  margin: 0;
+}
+
