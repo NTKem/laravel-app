@@ -1,4 +1,7 @@
 @extends('../../../layouts.admin')
+@section('head')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+@endsection
 @section('class','index-admin home show-default main-bottom')
 @section('content')
     <h2 class="title">select your profile</h2>
@@ -18,6 +21,7 @@
     </div>
 @endsection
 @section('scripts')
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     @parent
     @if(config('shopify-app.appbridge_enabled'))
         <script type="text/javascript">
@@ -32,4 +36,24 @@
             var myTitleBar = TitleBar.create(app, titleBarOptions);
         </script>
     @endif
+    <script>
+
+        function slick(){
+            if(window.innerWidth <= 767){
+                $('.menu-bar').not('.slick-initialized').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    arrows: false,
+                    dots: false,
+                    slidesToScroll: 1
+                });
+            }else{
+                $('.menu-bar').slick('unslick');
+            }
+        }
+        slick();
+        $( window ).resize(function() {
+            slick();
+        });
+    </script>
 @endsection
