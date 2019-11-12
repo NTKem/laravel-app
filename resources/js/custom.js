@@ -296,4 +296,8 @@ $(function(){
        $(this).toggleClass('fa-times');
        $('.nav-list').toggleClass('-open');
     });
+
+    $('.tab-bar .items').click(function(){
+        $('.custom-slide').slick('setPosition');
+    });
 });

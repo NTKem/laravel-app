@@ -346,6 +346,11 @@ input {
   .menu-bar .items img {
     margin: 10px auto;
   }
+
+  .main-section {
+    height: 135px;
+    margin-top: 60px;
+  }
 }
 
 html {
