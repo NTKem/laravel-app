@@ -38,19 +38,28 @@
            }
         });
         function slick(){
-            if(window.innerWidth <= 767){
                 $('.profile-slick').slick({
                     infinite: true,
                     slidesToShow: 1,
                     arrows: false,
                     dots: false,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: "unslick"
+                    },
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }
+                ]
                 });
-            }
         }
         slick();
-        $( window ).resize(function() {
-            slick();
-        });
+
     </script>
 @endsection
