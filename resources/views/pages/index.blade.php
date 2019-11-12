@@ -46,11 +46,15 @@
                     dots: false,
                     slidesToScroll: 1
                 });
+            }else{
+                $('.profile-slick').slick('unslick');
             }
         }
         slick();
         $( window ).resize(function() {
-            slick();
+            setTimeout(function(){
+                slick();
+            }, 3000);
         });
     </script>
 @endsection
