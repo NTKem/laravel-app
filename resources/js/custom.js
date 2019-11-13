@@ -202,7 +202,7 @@ $(function(){
                     if(ob['menu_bar'] != undefined){
                         e['menu_bar'] = ob['menu_bar'];
                     }else{
-                         e['menu_bar'] = 'false';
+                         e['menu_bar'] = 'true';
                     }
                     e['reset']= 'true';
                     parent.postMessage(e, "*");
@@ -211,7 +211,7 @@ $(function(){
                     if($('body').hasClass('index-admin')){
                             $('.menu-bar input').val(' ');
                     }else{
-                        window.history.back()
+                        window.location.href = "/profile?shop="+window.domain;
                     }
                 });
                 $('.tool-bar .right').click(function(){
