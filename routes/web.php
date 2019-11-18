@@ -34,4 +34,6 @@ Route::post('admin/edit-font/{id}', 'AppController@AdminPostEditFont')->middlewa
 
 Route::get('profile', 'AppController@profile')->name('profile');
 
+Route::get('do﻿cumentation','AppController@Do﻿cumentation')->name('do﻿cumentation');
+Route::get('support','AppController@Support')->name('support');
 

@@ -211,7 +211,7 @@ $(function(){
                     if($('body').hasClass('index-admin')){
                             $('.menu-bar input').val(' ');
                     }else{
-                        window.location.href = "/profile?shop="+window.domain;
+                        // window.location.href = "/profile?shop="+window.domain;
                     }
                 });
                 $('.tool-bar .right').click(function(){

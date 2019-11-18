@@ -38,17 +38,19 @@
            }
         });
         function slick(){
-            if(window.innerWidth <= 767){
-                $('.profile-slick').not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
-            }else{
-                $('.profile-slick').slick('unslick');
-            }
+            setTimeout(function(){
+                if(window.innerWidth <= 767){
+                    $('.profile-slick').not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+                }else{
+                    $('.profile-slick').slick('unslick');
+                }
+            },100);
         }
         slick();
         $( window ).resize(function() {

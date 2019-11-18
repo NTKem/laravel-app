@@ -41,6 +41,13 @@
                     <li class="item">
                         <a class="link" href="admin/upload-font">Upload Font</a>
                     </li>
+                    <li class="item">
+                        <a class="link" target="_blank" href="{{ url('do﻿cumentation') }}">Do﻿cumentation</a>
+                    </li>
+                    <li class="item">
+                        <a class="link" target="_blank" href="{{ url('support') }}">Support</a>
+                    </li>
+
                 </div>
                 <div class="list -right">
                     <div class="overlay"></div>

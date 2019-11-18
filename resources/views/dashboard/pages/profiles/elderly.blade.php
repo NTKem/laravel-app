@@ -245,7 +245,7 @@
             </div>
             <?php endif; ?>
             <?php endforeach;?>
-            <button>SAVE</button>
+            <button class="btn-submit">SAVE</button>
         </form>
     </div>
 @endsection
@@ -267,32 +267,32 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         function slick() {
-            if (window.innerWidth <= 767) {
-                $(".custom-slide").not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
-                $(".tab-bar").not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
+            setTimeout(function(){
+                if (window.innerWidth <= 767) {
+                    $(".custom-slide").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+                    $(".tab-bar").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
 
-            } else {
-                $('.custom-slide').slick('unslick');
-                $('.tab-bar').slick('unslick');
-            }
+                } else {
+                    $('.custom-slide').slick('unslick');
+                    $('.tab-bar').slick('unslick');
+                }
+            },100);
         };
         slick();
         $(window).resize(function () {
-
             slick();
-
         });
     </script>
 @endsection

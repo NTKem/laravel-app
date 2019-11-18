@@ -340,4 +340,10 @@ class AppController extends Controller
         $font->delete();
         return redirect('admin/upload-font');
     }
+    public function Do﻿cumentation(){
+        return view('pages/cms/do﻿cumentation');
+    }
+    public function Support(){
+        return view('pages/cms/support');
+    }
 }

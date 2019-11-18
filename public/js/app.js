@@ -19500,8 +19500,7 @@ $(function () {
 
     if ($('body').hasClass('index-admin')) {
       $('.menu-bar input').val(' ');
-    } else {
-      window.location.href = "/profile?shop=" + window.domain;
+    } else {// window.location.href = "/profile?shop="+window.domain;
     }
   });
   $('.tool-bar .right').click(function () {
@@ -19611,8 +19610,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

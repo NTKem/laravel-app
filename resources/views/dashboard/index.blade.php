@@ -10,13 +10,13 @@
         </div>
         <div class="items">
             <a class="link-bar" href="settings">
-                <img src="{{ asset('images/profile/ederly.png') }}">
+                <img src="{{ asset('images/profile/settings.png') }}">
                 <p>Settings</p>
             </a>
         </div>
         <div class="items">
             <a class="link-bar" href="admin/upload-font">
-                <img src="{{ asset('images/profile/ederly.png') }}">
+                <img src="{{ asset('images/profile/upload.png') }}">
                 <p>Upload Font</p>
             </a>
         </div>

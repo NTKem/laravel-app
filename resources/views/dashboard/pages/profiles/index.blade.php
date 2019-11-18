@@ -39,17 +39,19 @@
     <script>
 
         function slick(){
-            if(window.innerWidth <= 767){
-                $('.menu-bar').not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
-            }else{
-                $('.menu-bar').slick('unslick');
-            }
+            setTimeout(function(){
+                if(window.innerWidth <= 767){
+                    $('.menu-bar').not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+                }else{
+                    $('.menu-bar').slick('unslick');
+                }
+            },100);
         }
         slick();
         $( window ).resize(function() {

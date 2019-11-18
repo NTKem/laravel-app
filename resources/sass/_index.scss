@@ -33,11 +33,13 @@ a {
   .title {
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 0;
   }
 }
 .menu-bar {
   display: flex;
   justify-content: center;
+  margin-top: 0.83em;
   .items {
     min-width: 120px;
     border-radius: 5px;
@@ -198,6 +200,7 @@ a {
   flex-wrap: wrap;
   overflow-y: scroll;
   box-sizing: content-box;
+  padding-top: 10px;
 }
 .list-items {
   height: 35px;

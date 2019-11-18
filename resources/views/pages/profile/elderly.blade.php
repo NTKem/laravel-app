@@ -32,7 +32,7 @@ if($layout == ''){
                     <p>Line<br> Height</p>
                     <div class="main-action">
                         <button class="fa fa-plus"></button>
-                        <input class="custom-input" type="hidden" name="line_height" value="16" min="1" max="100"/>
+                        <input class="custom-input" type="text" name="line_height" value="16" min="1" max="100"/>
                         <button class="fa fa-minus"></button>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ if($layout == ''){
                     <p>Font<br> Size</p>
                     <div class="main-action">
                         <button class="fa fa-plus"></button>
-                        <input class="custom-input" type="hidden" name="font_size" value="16" min="1" max="100"/>
+                        <input class="custom-input" type="text" name="font_size" value="16" min="1" max="100"/>
                         <button class="fa fa-minus"></button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ if($layout == ''){
                     <p>Font<br> Spacing</p>
                     <div class="main-action">
                         <button class="fa fa-plus"></button>
-                        <input class="custom-input" type="hidden" name="font_spacing" value="0"  min="0" max="100" />
+                        <input class="custom-input" type="text" name="font_spacing" value="0"  min="0" max="100" />
                         <button class="fa fa-minus"></button>
                     </div>
                 </div>
@@ -239,32 +239,32 @@ if($layout == ''){
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         function slick(){
-            if(window.innerWidth <= 767){
-                $(".custom-slide").not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
-                $(".tab-bar").not('.slick-initialized').slick({
-                    infinite: true,
-                    slidesToShow: 1,
-                    arrows: false,
-                    dots: false,
-                    slidesToScroll: 1
-                });
+            setTimeout(function(){
+                if(window.innerWidth <= 767){
+                    $(".custom-slide").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+                    $(".tab-bar").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
 
-            }else{
-                $('.custom-slide').slick('unslick');
-                $('.tab-bar').slick('unslick');
-            }
+                }else{
+                    $('.custom-slide').slick('unslick');
+                    $('.tab-bar').slick('unslick');
+                }
+            },100);
         };
         slick();
         $( window ).resize(function() {
-
                 slick();
-
         });
     </script>
 @endsection
