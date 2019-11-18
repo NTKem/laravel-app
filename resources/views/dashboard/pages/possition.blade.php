@@ -1,4 +1,7 @@
 @extends('../../layouts.admin')
+@section('head')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+@endsection
 @section('class','index-admin settings')
 @section('content')
     <div class="menu-bar">
@@ -36,4 +39,27 @@
             var myTitleBar = TitleBar.create(app, titleBarOptions);
         </script>
     @endif
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        function slick() {
+            setTimeout(function(){
+                if (window.innerWidth <= 767) {
+                    $(".menu-bar").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+
+                } else {
+                    $('.menu-bar').slick('unslick');
+                }
+            },100);
+        };
+        slick();
+        $(window).resize(function () {
+            slick();
+        });
+    </script>
 @endsection

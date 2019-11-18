@@ -1,22 +1,27 @@
 @extends('../../layouts.admin')
+@section('head')
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+@endsection
 @section('class','index-admin settings')
 @section('content')
     <div class="menu-bar">
-        <div class="items radio-input  <?php if($layout['value'] == 'default' ):?> active-checkbox <?php endif; ?>">
+        <div class="custom-slide">
+            <div class="items radio-input  <?php if($layout['value'] == 'default' ):?> active-checkbox <?php endif; ?>">
                 <img src="images/profile/ederly.png">
                 <p>Current Layout</p>
                 <input type="radio" name="layout" value="default" />
-        </div>
-        <div class="items radio-input <?php if($layout['value'] == 'footer' ):?> active-checkbox <?php endif; ?>">
+            </div>
+            <div class="items radio-input <?php if($layout['value'] == 'footer' ):?> active-checkbox <?php endif; ?>">
                 <img src="images/profile/ederly.png">
                 <p>Footer</p>
                 <input type="radio" name="layout" value="footer" />
-        </div>
-        <div class="items radio-input <?php if($layout['value'] != 'footer' && $layout['value'] != 'default' ):?> active-checkbox <?php endif; ?>">
-            <a class="link-bar" href="possitions">
-                <img src="images/profile/ederly.png">
-                <p>Settings</p>
-            </a>
+            </div>
+            <div class="items radio-input <?php if($layout['value'] != 'footer' && $layout['value'] != 'default' ):?> active-checkbox <?php endif; ?>">
+                <a class="link-bar" href="possitions">
+                    <img src="images/profile/ederly.png">
+                    <p>Settings</p>
+                </a>
+            </div>
         </div>
     </div>
     <iframe id="hkoAccessibilityAssets" name="hkoAccessibilityFrame" allowpaymentrequest="yes" allowfullscreen="yes" allow="midi; geolocation; microphone; camera" id="hkoAccessibilityFrame" scrolling="no" src="{{ env('APP_URL') }}/profile?shop={{$domain}}&admin=true" tabindex="0" frameborder="0" title="Open Accessibility Toolbar" style="z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 350px;height:350px; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;height:350px"></iframe>
@@ -37,4 +42,27 @@
             var myTitleBar = TitleBar.create(app, titleBarOptions);
         </script>
     @endif
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        function slick() {
+            setTimeout(function(){
+                if (window.innerWidth <= 767) {
+                    $(".custom-slide").not('.slick-initialized').slick({
+                        infinite: true,
+                        slidesToShow: 1,
+                        arrows: false,
+                        dots: false,
+                        slidesToScroll: 1
+                    });
+
+                } else {
+                    $('.custom-slide').slick('unslick');
+                }
+            },100);
+        };
+        slick();
+        $(window).resize(function () {
+            slick();
+        });
+    </script>
 @endsection
