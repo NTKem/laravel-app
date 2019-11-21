@@ -197,6 +197,7 @@ $(function(){
                     var ob = e;
                     e  = {
                         access: "ACCESSIBILITY",
+                        'profile':e["profile"],
                     };
                     e['layout'] = ob['layout'];
                     if(ob['menu_bar'] != undefined){

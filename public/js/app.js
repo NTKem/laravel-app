@@ -19483,7 +19483,8 @@ $(function () {
   $('.reset').click(function () {
     var ob = e;
     e = {
-      access: "ACCESSIBILITY"
+      access: "ACCESSIBILITY",
+      'profile': e["profile"]
     };
     e['layout'] = ob['layout'];
 
@@ -19610,8 +19611,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
