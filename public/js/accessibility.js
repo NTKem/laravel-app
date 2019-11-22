@@ -43,7 +43,7 @@ function text_mode_off(){
         });
     }
 setTimeout(function(){
-    var iframeSource = 'https://ntkem.test/profile?shop='+domain,
+    var iframeSource = 'https://accessibilityplus.ca/profile?shop='+domain,
         iframeStyle ='height:350px;z-index: 2147483647; border: none; display: block; opacity: 1; position: fixed; left: auto; transition: all 0.3s ease 0s; max-height: 100vh; max-width: 100vw; visibility: visible; bottom: 0px; right: 0px; background: none transparent !important; margin-bottom: 0px !important; width: 100% !important;',
         iframe = document.createElement('iframe');
 
