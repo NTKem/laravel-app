@@ -19387,10 +19387,6 @@ $(function () {
     $('.list-items').removeClass('active-checkbox');
     $(this).parents('.list-items').addClass('active-checkbox');
   });
-  $('.screen_settings input[type="radio"]').click(function () {
-    $(this).parents('.menu-bar').removeClass('active-checkbox');
-    $(this).parents('.items').addClass('active-checkbox');
-  });
   $('.contrast-items input').click(function () {
     $('.contrast-items').removeClass('active-checkbox');
     $(this).parents('.contrast-items').addClass('active-checkbox');
@@ -19474,6 +19470,16 @@ $(function () {
     var name = $(this).attr('name');
     e[name] = $(this).val();
     parent.postMessage(e, "*");
+  });
+  $('.screen_settings input[type="radio"]').click(function () {
+    if ($(this).parents('.radio-items').hasClass('active-checkbox')) {
+      $(this).parents('.menu-bar').find('.radio-items').removeClass('active-checkbox');
+      e['screen_cursor'] = 'null';
+      parent.postMessage(e, "*");
+    } else {
+      $(this).parents('.menu-bar').find('.radio-items').removeClass('active-checkbox');
+      $(this).parents('.items').addClass('active-checkbox');
+    }
   });
   $('.zoom-input').change(function () {
     var name = $(this).attr('name');
@@ -19611,8 +19617,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopify-app-laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

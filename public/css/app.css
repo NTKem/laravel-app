@@ -559,13 +559,8 @@ body.default.admin-page .Orders-popup-full {
   margin: 0 auto;
   z-index: 1;
   padding: 0;
-  display: block;
-  transition: all 0.2s ease-in-out;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-transition: all 0.2s ease-in-out;
-  -webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .index-admin .toggle-nav {
@@ -602,7 +597,7 @@ body.default.admin-page .Orders-popup-full {
 .index-admin .nav-list > .list.-left {
   background: #212121;
   position: relative;
-  width: 30%;
+  width: 100%;
   height: 100%;
 }
 
@@ -634,6 +629,7 @@ body.default.admin-page .Orders-popup-full {
   padding-left: 1.5rem;
   color: #e0e0e0;
   transition: all 0.3s ease-in-out;
+  font-size: 14px;
 }
 
 .input-group-append .btn,
@@ -652,5 +648,40 @@ body .readable-text .custom-input {
   max-width: 42px;
   text-align: center;
   height: 25px;
+}
+
+.nav-list-new {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list-new .list-new {
+  padding-left: 14px;
+  display: flex;
+}
+
+.nav-list-new .list-new .item {
+  color: #fff;
+  list-style-type: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.nav-list-new .list-new .item a {
+  color: #fff;
+}
+
+.destop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobi {
+    display: none !important;
+  }
+
+  .destop {
+    display: block !important;
+  }
 }
 

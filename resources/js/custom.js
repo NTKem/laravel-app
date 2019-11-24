@@ -106,11 +106,6 @@ $(function(){
 
     });
 
-    $('.screen_settings input[type="radio"]').click(function(){
-        $(this).parents('.menu-bar').removeClass('active-checkbox');
-        $(this).parents('.items').addClass('active-checkbox');
-    });
-
     $('.contrast-items input').click(function(){
         $('.contrast-items').removeClass('active-checkbox');
         $(this).parents('.contrast-items').addClass('active-checkbox');
@@ -163,6 +158,7 @@ $(function(){
                     $(this).parents('.radio-input').addClass('active-checkbox');
                     parent.postMessage(e, "*");
                 });
+
                 $('.custom-input').change(function(){
                     var name = $(this).attr('name');
                     e[name] = $(this).val();
@@ -187,6 +183,16 @@ $(function(){
                     var name = $(this).attr('name');
                     e[name]= $(this).val();
                     parent.postMessage(e, "*");
+                });
+                $('.screen_settings input[type="radio"]').click(function(){
+                    if($(this).parents('.radio-items').hasClass('active-checkbox')){
+                        $(this).parents('.menu-bar').find('.radio-items').removeClass('active-checkbox');
+                        e['screen_cursor']= 'null';
+                        parent.postMessage(e, "*");
+                    }else{
+                        $(this).parents('.menu-bar').find('.radio-items').removeClass('active-checkbox');
+                        $(this).parents('.items').addClass('active-checkbox');
+                    }
                 });
                 $('.zoom-input').change(function () {
                     var name = $(this).attr('name');

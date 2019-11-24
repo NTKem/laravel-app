@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="items">
-            <a class="link-bar" href="settings">
+            <a class="link-bar" href="possitions">
                 <img src="{{ asset('images/profile/settings.png') }}">
                 <p>Settings</p>
             </a>

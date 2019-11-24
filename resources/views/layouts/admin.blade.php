@@ -25,7 +25,30 @@
 <body class="index-admin @yield('class')">
 <div id="app">
     <header class="nav-wrapper">
-        <nav class="nav">
+        <ul class="nav-list-new destop" role="navigation">
+            <div class="list-new">
+                <li class="item">
+                    <a class="link" href="/">Dashboard</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="admin/profile">Profile</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="possitions">Settings</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="admin/upload-font">Upload Font</a>
+                </li>
+                <li class="item">
+                    <a class="link" target="_blank" href="https://hopatoo.com">Do﻿cumentation</a>
+                </li>
+                <li class="item">
+                    <a class="link" target="_blank" href="https://hopatoo.com/contact">Support</a>
+                </li>
+
+            </div>
+        </ul>
+        <nav class="nav mobi">
             <i class="fas fa-bars toggle-nav"></i>
             <ul class="nav-list" role="navigation">
                 <div class="list -left">
@@ -42,10 +65,10 @@
                         <a class="link" href="admin/upload-font">Upload Font</a>
                     </li>
                     <li class="item">
-                        <a class="link" target="_blank" href="{{ url('do﻿cumentation') }}">Do﻿cumentation</a>
+                        <a class="link" href="do﻿cumentation">Do﻿cumentation</a>
                     </li>
                     <li class="item">
-                        <a class="link" target="_blank" href="{{ url('support') }}">Support</a>
+                        <a class="link" href="support">Support</a>
                     </li>
 
                 </div>
