@@ -19399,6 +19399,8 @@ $(function () {
       $('.zoom .items').removeClass('active-checkbox');
       $('.zoom-increase').addClass('active-checkbox');
       $(this).parents('.zoom').find('input').attr('name', 'zoom_increase');
+    } else if (qty == 0) {
+      $('.zoom .items').removeClass('active-checkbox');
     } else {
       $('.zoom .items').removeClass('active-checkbox');
       $('.zoom-decrease').addClass('active-checkbox');
@@ -19417,6 +19419,8 @@ $(function () {
       $('.zoom .items').removeClass('active-checkbox');
       $('.zoom-decrease').addClass('active-checkbox');
       $(this).parents('.zoom').find('input').attr('name', 'zoom_decrease');
+    } else if (qty == 0) {
+      $('.zoom .items').removeClass('active-checkbox');
     } else {
       $('.zoom .items').removeClass('active-checkbox');
       $('.zoom-increase').addClass('active-checkbox');
@@ -19440,10 +19444,24 @@ $(function () {
 
   $('.radio-check input[type="radio"]').click(function () {
     var name = $(this).attr('name');
-    e[name] = $(this).val();
-    $(this).parents('.menu-bar').find('.radio-input').removeClass('active-checkbox');
-    $(this).parents('.radio-input').addClass('active-checkbox');
-    parent.postMessage(e, "*");
+
+    if (name == 'color_more') {
+      if ($(this).parents('.radio-input').hasClass('active-checkbox')) {
+        $(this).parents('.menu-bar').find('.radio-input').removeClass('active-checkbox');
+        e['color_more'] = 'null';
+        parent.postMessage(e, "*");
+      } else {
+        e[name] = $(this).val();
+        $(this).parents('.menu-bar').find('.radio-input').removeClass('active-checkbox');
+        $(this).parents('.radio-input').addClass('active-checkbox');
+        parent.postMessage(e, "*");
+      }
+    } else {
+      e[name] = $(this).val();
+      $(this).parents('.menu-bar').find('.radio-input').removeClass('active-checkbox');
+      $(this).parents('.radio-input').addClass('active-checkbox');
+      parent.postMessage(e, "*");
+    }
   });
   $('.custom-input').change(function () {
     var name = $(this).attr('name');
@@ -19617,8 +19635,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xam7.2\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp73\htdocs\laravel-app\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp73\htdocs\laravel-app\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
