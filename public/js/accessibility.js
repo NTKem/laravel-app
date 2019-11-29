@@ -49,7 +49,7 @@ function text_mode_off(){
         });
     }
 setTimeout(function(){
-    var iframeSource = 'https://ntkem.test/profile?shop='+domain,
+    var iframeSource = 'https://accessibilityplus.ca/profile?shop='+domain,
         layout = '',
         iframeStyle ='';
     //     $.get("https://ntkem.test/picker?domain="+domain, function(data, status){
