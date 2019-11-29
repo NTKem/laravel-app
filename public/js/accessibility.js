@@ -102,7 +102,7 @@ setTimeout(function(){
                                     $('#hkoAccessibilityAssets').css({'height':'350px','min-height':'auto','width':'100%'});
                                 }
                             }else{
-                                if(new_ob['layout'] != 'default'){
+                                if(new_ob['layout'].trim() != 'default'){
                                     $('#hkoAccessibilityAssets').css({'height':'50px','min-height':'auto'});
                                     if(new_ob['position'] == 'middle-left'){
                                         $('#hkoAccessibilityAssets').css({'width':'50px','left':'15px','top':'50%'});
