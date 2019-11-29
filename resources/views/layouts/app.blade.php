@@ -25,7 +25,7 @@
 </head>
 <body class="@yield('class')">
 <div id="app">
-    <main class="py-4 hidden-timeout @if(isset($id->picker)){{ $id->picker }} @else default @endif" style="display: none">
+    <main class="py-4 hidden-timeout @if(isset($id->picker)){{ $id->picker }} @else middle-right @endif" style="display: none">
 
         <div class="Orders-trigger-container trigger-position-right">
             <div role="button" aria-expanded="false" tabindex="0" class="hikeOrders-trigger showNow">
