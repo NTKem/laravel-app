@@ -33,7 +33,9 @@ class AppController extends Controller
         View::share('shop',$this->shop);
     }
     public function index(){
-        return view('dashboard/index');
+        $domain = ShopifyApp::shop()->shopify_domain;
+        $id = Shop::where('shopify_domain', '=', $domain)->first();
+        return view('dashboard/index')->with(['id'=>$id]);
     }
     public function settings(){
         $domain = ShopifyApp::shop()->shopify_domain;
@@ -45,7 +47,7 @@ class AppController extends Controller
         $domain = ShopifyApp::shop()->shopify_domain;
         $id = Shop::where('shopify_domain', '=', $domain)->first();
         $layout = Layout::where('shop_id', '=', $id->id)->first();
-        return view('dashboard/pages/possition')->with(['layout'=>$layout,'domain'=>$domain]);
+        return view('dashboard/pages/possition')->with(['layout'=>$layout,'domain'=>$domain,'id'=>$id]);
     }
     public function layouts($value){
         $domain = ShopifyApp::shop()->shopify_domain;
@@ -73,19 +75,20 @@ class AppController extends Controller
         }else{
             $font = '';
         }
-
-        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id,'custom_font'=>$font,'layout'=>$layout]);
+        return view('pages/profile/elderly')->with(['site_menu'=>$this->site_menu,'site_font'=>$this->site_font,'contrast'=>$this->site_contrast,'id'=>$id,'custom_font'=>$font,'layout'=>$layout,'id'=>$shop]);
     }
     public function profile(){
         $domain = $_GET['shop'];
         $profile = Profile::all();
         $shop = Shop::where('shopify_domain','=',$domain)->first();
         $layout = $shop->layout['value'];
-        return view('pages/index')->with(['profile'=>$profile,'domain'=>$domain,'layout'=>$layout]);
+        return view('pages/index')->with(['profile'=>$profile,'domain'=>$domain,'layout'=>$layout,'id'=>$shop]);
     }
     public function AdminProfile(){
+        $domain = ShopifyApp::shop()->shopify_domain;
+        $id = Shop::where('shopify_domain', '=', $domain)->first();
         $profile = Profile::all();
-        return view('dashboard/pages/profiles/index')->with(['profile'=>$profile]);
+        return view('dashboard/pages/profiles/index')->with(['profile'=>$profile,'id'=>$id]);
     }
     public function AdminElderly($id){
         $domain = ShopifyApp::shop()->shopify_domain;
@@ -340,10 +343,27 @@ class AppController extends Controller
         $font->delete();
         return redirect('admin/upload-font');
     }
-    public function Do﻿cumentation(){
-        return view('pages/cms/do﻿cumentation');
+    public function AdminPostAddPicker(Request $request){
+        $domain = ShopifyApp::shop()->shopify_domain;
+        $id = Shop::where('shopify_domain', '=', $domain)->first();
+        $id->picker = $request->check;
+        $id->save();
+        return redirect('possitions');
     }
-    public function Support(){
-        return view('pages/cms/support');
+    public function Picker(){
+        $domain = $_GET['domain'];
+        $shop = Shop::where('shopify_domain', '=', $domain)->first();
+        return $shop->picker;
+    }
+    public function HiddenProfile(Request $request){
+        $domain = ShopifyApp::shop()->shopify_domain;
+        $id = Shop::where('shopify_domain', '=', $domain)->first();
+        $profile ='';
+        foreach($request->profile as $item){
+            $profile .= $item.',';
+        }
+        $id->namespace = $profile;
+        $id->save();
+        return redirect('admin/profile');
     }
 }

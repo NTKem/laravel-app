@@ -16,15 +16,21 @@
 @section('content')
     <h2 class="title">select your profile</h2>
     <div class="menu-bar profile-slick">
+
         <?php
+        $array = explode(",", $id->namespace);
+        unset($array[count($array) - 1]);
         foreach ($profile as $item):
         ?>
-        <div class="items">
-            <a class="link-bar" data-value="{{$item->id}}" href="{{route($item->url,['id' => $item->id,'domain'=>$domain])}}">
-                <img src="{{ asset('images/profile/'. $item->image.'') }}">
-                <p>{{ $item->name }}</p>
-            </a>
-        </div>
+            @if (in_array($item->name, $array))
+            @else
+                <div class="items">
+                    <a class="link-bar" data-value="{{$item->id}}" href="{{route($item->url,['id' => $item->id,'domain'=>$domain])}}">
+                        <img src="{{ asset('images/profile/'. $item->image.'') }}">
+                        <p>{{ $item->name }}</p>
+                    </a>
+                </div>
+            @endif
         <?php
         endforeach
         ;?>

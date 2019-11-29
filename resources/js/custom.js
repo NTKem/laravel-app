@@ -6,7 +6,9 @@ $(function () {
         if (e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer') {
             // e['menu_bar']='false';
         } else {
-            e['menu_bar'] = 'true';
+            e['position'] = window.position;
+            // e['menu_bar'] = 'true';
+            e['access'] = "ACCESSIBILITY";
         }
         localStorage.setItem('data', JSON.stringify(e));
     });
@@ -20,6 +22,7 @@ $(function () {
         : "message";
     eventer(messageEvent, function (e) {
         localStorage.setItem('data', JSON.stringify(e.data));
+
     });
     if (localStorage.data == undefined || localStorage.data == '{}') {
         localStorage.setItem('data', JSON.stringify(e));

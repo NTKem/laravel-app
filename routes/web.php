@@ -31,7 +31,9 @@ Route::post('admin/upload-font', 'AppController@AdminPostUploadFont')->middlewar
 Route::get('admin/edit-font/{id}', 'AppController@AdminEditFont')->middleware(['auth.shop']);
 Route::get('admin/delete-font/{id}', 'AppController@AdminDeleteFont')->middleware(['auth.shop']);
 Route::post('admin/edit-font/{id}', 'AppController@AdminPostEditFont')->middleware(['auth.shop']);
-
+Route::post('add-picker', 'AppController@AdminPostAddPicker')->middleware(['auth.shop']);
 Route::get('profile', 'AppController@profile')->name('profile');
+Route::get('picker', 'AppController@Picker');
+Route::post('hidden-profile','AppController@HiddenProfile')->middleware(['auth.shop']);
 
 

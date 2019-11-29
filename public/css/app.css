@@ -321,10 +321,6 @@ a {
   border: solid 2px;
 }
 
-.activeBar .main-bottom {
-  height: auto;
-}
-
 .activeBar .tool-bar .fa-times:before {
   content: "\F106";
 }
@@ -426,6 +422,7 @@ html {
   background-color: #8F1EB2;
   border-radius: 50%;
   background-size: cover;
+  display: none;
   background: url(/images/icon_accessibility.png?33f49a06ebcadfac12e660a2c85b3426);
 }
 
@@ -683,5 +680,13 @@ body .readable-text .custom-input {
   .destop {
     display: block !important;
   }
+}
+
+.trigger-false .Orders-trigger-container {
+  display: block;
+}
+
+.trigger-false .Orders-popup-full {
+  display: none;
 }
 

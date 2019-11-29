@@ -25,7 +25,7 @@
 </head>
 <body class="@yield('class')">
 <div id="app">
-    <main class="py-4">
+    <main class="py-4 hidden-timeout @if(isset($id->picker)){{ $id->picker }} @else default @endif" style="display: none">
 
         <div class="Orders-trigger-container trigger-position-right">
             <div role="button" aria-expanded="false" tabindex="0" class="hikeOrders-trigger showNow">
@@ -50,7 +50,10 @@
     <?php if(isset($_GET['shop'])):?>
     window.domain  = "{{ $_GET['shop'] }}";
     <?php endif; ?>
-
+        window.position = '@if(isset($id->picker)){{ $id->picker }}@else default @endif';
+        setTimeout(function(){
+            $('.hidden-timeout').show();
+        },2000)
 </script>
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('footer_scripts')

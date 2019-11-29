@@ -54,6 +54,7 @@ html{
   background-color: #8F1EB2;
   border-radius: 50%;
   background-size: cover;
+  display: none;
   background: url("images/icon_accessibility.png");
 }
 body{
@@ -284,3 +285,11 @@ body .readable-text{
   }
 }
 
+.trigger-false{
+  .Orders-trigger-container{
+    display: block;
+  }
+  .Orders-popup-full{
+    display: none;
+  }
+}

@@ -19286,7 +19286,9 @@ $(function () {
 
     if (e.layout == 'left' || e.layout == 'right' || e.layout == 'middle' || e.layout == 'footer') {// e['menu_bar']='false';
     } else {
-      e['menu_bar'] = 'true';
+      e['position'] = window.position; // e['menu_bar'] = 'true';
+
+      e['access'] = "ACCESSIBILITY";
     }
 
     localStorage.setItem('data', JSON.stringify(e));
