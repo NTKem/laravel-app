@@ -123,6 +123,37 @@
             transition: all .15s linear;
             margin: 10px 0 0 0;
         }
+        .Orders-trigger-container{
+            display: block !important;
+            position: fixed;
+            z-index: 99999;
+        }
+        .Orders-trigger-container.middle-left{
+            left:20px;
+            top: 50%;
+        }
+        .Orders-trigger-container.middle-right{
+            right:20px;
+            top: 50%;
+        }
+        .Orders-trigger-container.bottom-left{
+            bottom: 50px;
+            left: 20px;
+        }
+        .Orders-trigger-container.bottom-right{
+            bottom: 50px;
+            right: 20px;
+        }
+        .Orders-trigger-container.bottom-middle{
+            bottom: 50px;
+            left: 0;
+            right:0;
+            margin: auto;
+        }
+        .Orders-trigger-container.default{
+            bottom: 50px;
+            right: 20px;
+        }
     </style>
     <div class="main-picker">
         <div class="card-section mc-general-settings">
@@ -169,6 +200,11 @@
         </div>
 
     </div>
+    <div class="Orders-trigger-container  @if(isset($id->picker)) {{$id->picker}} @else default  @endif">
+        <div role="button" aria-expanded="false" tabindex="0" class="hikeOrders-trigger showNow">
+            <span class="icon icon-a11y-0"></span>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -193,6 +229,7 @@
         @endif
         $(function(){
             $('input[name="check"]').click(function () {
+                $('.Orders-trigger-container').removeClass().addClass('Orders-trigger-container '+ $(this).attr('class'));
                 $('.picker-text').text($(this).data('text'));
             });
         });
