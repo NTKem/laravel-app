@@ -690,3 +690,265 @@ body .readable-text .custom-input {
   display: none;
 }
 
+.admin-position {
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+
+.admin-position .mc-general-settings {
+  padding: 35px;
+  text-align: center;
+}
+
+.admin-position .picker-default {
+  border: 1px solid #ddd;
+  height: 200px;
+  position: relative;
+  max-width: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.admin-position .picker-default .container {
+  position: absolute;
+  width: 25px;
+}
+
+.admin-position .check-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 25px;
+  height: 25px;
+}
+
+.admin-position .check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.admin-position .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.admin-position .check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.admin-position .check-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.admin-position .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.admin-position .check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.admin-position .check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.admin-position .btn-general-settings {
+  width: 120px;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.3125rem 0.75rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  transition: all 0.15s linear;
+  margin: 10px 0 0 0;
+}
+
+.admin-position .Orders-trigger-container {
+  display: block !important;
+  position: fixed;
+  z-index: 99999;
+}
+
+.admin-position .Orders-trigger-container.middle-left {
+  left: 20px;
+  top: 50%;
+}
+
+.admin-position .Orders-trigger-container.middle-right {
+  right: 20px;
+  top: 50%;
+}
+
+.admin-position .Orders-trigger-container.bottom-left {
+  bottom: 50px;
+  left: 20px;
+}
+
+.admin-position .Orders-trigger-container.bottom-right {
+  bottom: 50px;
+  right: 20px;
+}
+
+.admin-position .Orders-trigger-container.bottom-middle {
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.admin-position .Orders-trigger-container.default {
+  bottom: 50px;
+  right: 20px;
+}
+
+.admin-custom-checkbox {
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+
+.admin-custom-checkbox .items {
+  position: relative;
+}
+
+.admin-custom-checkbox .picker-default .container {
+  position: absolute;
+  width: 25px;
+}
+
+.admin-custom-checkbox .check-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 25px;
+  height: 25px;
+}
+
+.admin-custom-checkbox .check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.admin-custom-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.admin-custom-checkbox .check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.admin-custom-checkbox .check-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.admin-custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.admin-custom-checkbox .check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.admin-custom-checkbox .check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.admin-custom-checkbox .btn-general-settings {
+  width: 120px;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0.3125rem 0.75rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  transition: all 0.15s linear;
+  margin: 10px 0 0 0;
+}
+
