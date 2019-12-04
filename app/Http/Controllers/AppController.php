@@ -359,11 +359,16 @@ class AppController extends Controller
         $domain = ShopifyApp::shop()->shopify_domain;
         $id = Shop::where('shopify_domain', '=', $domain)->first();
         $profile ='';
-        foreach($request->profile as $item){
-            $profile .= $item.',';
+        if($request->profile != null){
+            foreach($request->profile as $item){
+                $profile .= $item.',';
+            }
+            $id->namespace = $profile;
+            $id->save();
+        }else{
+            $id->namespace = null;
+            $id->save();
         }
-        $id->namespace = $profile;
-        $id->save();
         return redirect('admin/profile');
     }
 }
