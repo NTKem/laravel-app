@@ -36,7 +36,7 @@
             <div class="tool-bar">
                 <div class="left reset"><i class="fa fa-sync"></i></div>
                 <div class="center">accessibility</div>
-                <div class="right"><i class="fa fa-times"></i></div>
+                <div class="right"><i class="fa fas fa-angle-down"></i></div>
             </div>
             <div class="main-content">
                 @yield('content')

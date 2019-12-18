@@ -39,26 +39,26 @@
     <script>
         $(function(){
             e = $.parseJSON(localStorage.data);
-           if(e['profile'] != undefined){
-               window.location.href = '{{$item->url}}/'+e['profile']+'/'+window.domain+'?shop=' +window.domain +'<?php if($page == 'admin-page'):?>&admin=true<?php endif;?>';
-           }
+            if(e['profile'] != undefined){
+                window.location.href = '{{$item->url}}/'+e['profile']+'/'+window.domain+'?shop=' +window.domain +'<?php if($page == 'admin-page'):?>&admin=true<?php endif;?>';
+            }
         });
         function slick(){
-            setTimeout(function(){
-                if(window.innerWidth <= 767){
-                    $('.profile-slick').not('.slick-initialized').slick({
-                        infinite: true,
-                        slidesToShow: 1,
-                        arrows: false,
-                        dots: false,
-                        slidesToScroll: 1
-                    });
-                }else{
-                    $('.profile-slick').slick('unslick');
-                }
-            },100);
+            if(window.innerWidth <= 767){
+                $('.profile-slick').not('.slick-initialized').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    arrows: false,
+                    dots: false,
+                    slidesToScroll: 1
+                });
+            }else{
+                $('.profile-slick').slick('unslick');
+            }
         }
-        slick();
+        setTimeout(function(){
+            slick();
+        },2001);
         $( window ).resize(function() {
             slick();
         });
