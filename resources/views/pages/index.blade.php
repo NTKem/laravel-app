@@ -47,6 +47,8 @@
             if(window.innerWidth <= 767){
                 $('.profile-slick').not('.slick-initialized').slick({
                     infinite: true,
+                    centerMode: true,
+                    centerPadding: '40px',
                     slidesToShow: 1,
                     arrows: false,
                     dots: false,

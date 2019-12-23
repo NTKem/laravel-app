@@ -19558,6 +19558,11 @@ $(function () {
     parent.postMessage(e, "*");
   }); //admin js
 
+    $(document).ready(function () {
+        e['menu_bar'] = 'true';
+        parent.postMessage(e, "*");
+    });
+
   $('.index-admin.settings .items').click(function () {
     $('.items').removeClass('active-checkbox');
     $(this).addClass('active-checkbox');
